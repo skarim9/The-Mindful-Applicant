@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './quiz.scss'
+import QuizQuestion from './QuizQuestion'
 import Slider from '@material-ui/core/Slider';
 
 export default class Quiz extends Component <IAppProps,IAppState>{
@@ -13,19 +14,15 @@ constructor(props: IAppProps){
     
     return (
       <div className = "quiz-container">
+          
           <div>This is the Quiz page</div>
-          <div className="sliding-dial-container">
-          <Slider
-            defaultValue={3}
-            aria-labelledby="discrete-slider"
-            valueLabelDisplay="auto"
-            step={1}
-            marks
-            min={1}
-            max={5}
-        />
-        
-        </div>
+          <QuizQuestion question = "This is the first quiz question"/>
+          
+          <QuizQuestion question = "This is the second quiz question"/>
+          
+          <QuizQuestion question = "This is the third quiz question"/>
+          
+          <QuizQuestion question = "This is the fourth quiz question"/>
       </div>
     )
   }

@@ -1,11 +1,12 @@
 .quiz-container{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
+    
     padding: 10px;
     
 }
 
-.sliding-dial-container{
-    width: 80%;
+.quiz-question-container{
+    width: 80%;;
 }
