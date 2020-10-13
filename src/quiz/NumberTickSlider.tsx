@@ -19,7 +19,7 @@ const NumberTickSliderStyle = withStyles({
   },
   active: {},
   valueLabel: {
-    left: "calc(-50% + 4px)"
+    left: "calc(-50% + 20px)"
   },
   mark: {
     border:"2px solid #4593C4",
@@ -29,6 +29,9 @@ const NumberTickSliderStyle = withStyles({
     borderRadius: 30,
     marginTop: -15,
     marginLeft: -19,
+  },
+  markLabel: {
+    backgroundColor: "ff0000"
   },
   track: {
     height: 1,
@@ -42,34 +45,45 @@ const NumberTickSliderStyle = withStyles({
     
   }
 })(Slider);
+
 export default class NumberTickSlider extends Component <IAppProps,IAppState>{
   
-constructor(props: IAppProps){
-    super(props);
-    this.state = {}
-}
+    constructor(props: IAppProps){
+        super(props);
+        this.state = {selectedNum:3}
+    }
 
-  render() {
-    
-    return (
-      
-            <NumberTickSliderStyle
-              track={false}
-              valueLabelDisplay="off"
-              aria-labelledby="discrete-slider"
-              defaultValue={20}
-              step={1}
-              marks={true}
-              min={1}
-              max={5}
-            />
-        
-    )
-  }
+    setValue = (value: number | number[]) =>{
+        this.setState({
+            selectedNum:value
+        });
+    }
+    render() {
+        const handleChange = (event: any, newValue: number | number[]) => {
+            this.setValue(newValue);
+        };
+        return (
+            <div>
+                <NumberTickSliderStyle
+                track={false}
+                valueLabelDisplay="on"
+                onChangeCommitted={handleChange}
+                aria-labelledby="discrete-slider-custom"
+                defaultValue={3}
+                step={1}
+                marks
+                min={1}
+                max={5}
+                />
+                <p>{this.state.selectedNum}</p>
+            </div>
+            
+        )
+    }
 }
 interface IAppProps{
 }
 interface IAppState{
-    
+    selectedNum:number | number[]
 }
 
