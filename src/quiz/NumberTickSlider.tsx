@@ -28,10 +28,11 @@ const NumberTickSliderStyle = withStyles({
     width: 35,
     borderRadius: 30,
     marginTop: -15,
-    marginLeft: -19,
+    marginLeft: -19
   },
   markLabel: {
-    backgroundColor: "ff0000"
+      color:"#4593C4",
+      marginTop: -17,
   },
   track: {
     height: 1,
@@ -45,6 +46,28 @@ const NumberTickSliderStyle = withStyles({
     
   }
 })(Slider);
+const options = [
+    {
+      value: 1,
+      label: '1'
+    },
+    {
+      value: 2,
+      label: '2',
+    },
+    {
+      value: 3,
+      label: '3',
+    },
+    {
+      value: 4,
+      label: '4',
+    },
+    {
+        value: 5,
+        label: '5',
+    }
+  ];
 
 export default class NumberTickSlider extends Component <IAppProps,IAppState>{
   
@@ -66,16 +89,15 @@ export default class NumberTickSlider extends Component <IAppProps,IAppState>{
             <div>
                 <NumberTickSliderStyle
                 track={false}
-                valueLabelDisplay="on"
+                valueLabelDisplay="off"
                 onChangeCommitted={handleChange}
                 aria-labelledby="discrete-slider-custom"
                 defaultValue={3}
                 step={1}
-                marks
+                marks={options}
                 min={1}
                 max={5}
                 />
-                <p>{this.state.selectedNum}</p>
             </div>
             
         )
