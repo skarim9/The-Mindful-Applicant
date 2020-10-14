@@ -17,6 +17,7 @@ constructor(props: IAppProps){
           <p>{this.props.question}</p>
           
             <NumberTickSlider />
+            
         
         </div>
     )
