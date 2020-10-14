@@ -1,0 +1,35 @@
+.quiz-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    padding: 10px;
+    
+}
+li.invis-label{ //we don't use the default li labels so set them to invis.
+    list-style-type: none;
+}
+
+.ol-label-container{ 
+    
+    text-align: center;
+    border-radius: 10px;
+    margin-top:10px;
+    margin-right: 20px;
+    width:50px;
+    height: 50px;
+    background: lightblue;
+    
+    float: left;
+}
+
+.ol-label{//specifies where the number is placed relative to the container
+    
+    margin-top: 10px;
+    font-size: 25px;
+}
+
+.quiz-questions-container{
+    width: 80%;
+    
+}
