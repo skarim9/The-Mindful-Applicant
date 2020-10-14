@@ -9,7 +9,7 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
         super(props);
         this.state = {name:""}
     }
-
+    
     render() {
         
         return (
@@ -17,6 +17,7 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
                 <p>
                     This is the Points Allocation Page
                 </p>
+
                 <TickBar/>
             
 
