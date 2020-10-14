@@ -13,14 +13,12 @@ constructor(props: IAppProps){
   render() {
     
     return (
-      <div className = "quiz-question-container">
           <div>
           <p>{this.props.question}</p>
           
             <NumberTickSlider />
         
         </div>
-      </div>
     )
   }
 }

@@ -19,7 +19,8 @@ const NumberTickSliderStyle = withStyles({
   },
   active: {},
   valueLabel: {
-    left: "calc(-50% + 20px)"
+    left: "calc(-50% + 20px)",
+    
   },
   mark: {
     border:"2px solid #4593C4",
