@@ -5,7 +5,8 @@ import Slider from '@material-ui/core/Slider';
 const NumberTickSliderStyle = withStyles({
   root: {
     color: "#595959ff",
-    height: 8
+    height: 8,
+    width: '80%'
   },
   thumb: {
     height: 36,

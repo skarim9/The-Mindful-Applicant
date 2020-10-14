@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       
-      <Quiz numQuestions={5}/>
+      <Quiz questions={["Question 1 is here", "So is Question 2", "Here's Question 3"]}/>
     </div>
   );
 }

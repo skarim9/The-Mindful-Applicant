@@ -13,25 +13,30 @@ export default class Quiz extends Component <IAppProps,IAppState>{
     createQuestion =(_question:string,_index:number) => {
 
        
-            return <div> 
-                        <QuizQuestion question = {_question}/>
-                    </div>
+            return <li className = "invis-label" key = {_index}> 
+
+                        <span>
+                            <div  className = "ol-label-container">
+                                <div className="ol-label">{_index+1}</div>
+                            </div>
+                            <QuizQuestion question = {_question}/>
+                        </span>
+                    </li>
     }
     createQuizQuestions=(_questions: string[])=>{
-        return(<div className="quiz-question-container">
+        return(<ol className="quiz-questions-container">
             {_questions.map(this.createQuestion)}
-        </div>)
+        </ol>)
     }
     
 
     render() {
-        const questions = ["This is Q1","This is Q2","This is Q3"];
         return (
         <div className = "quiz-container">
             
             <div>This is the Quiz page</div>
             {
-                this.createQuizQuestions(questions)
+                this.createQuizQuestions(this.props.questions)
             }
                  
         </div>
@@ -39,7 +44,7 @@ export default class Quiz extends Component <IAppProps,IAppState>{
     }
 }
 interface IAppProps{
-    numQuestions:number
+    questions:string[];
 }
 interface IAppState{
     name:string;
