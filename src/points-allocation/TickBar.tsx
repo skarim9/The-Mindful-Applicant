@@ -7,17 +7,21 @@ export default class TickBar extends Component <IAppProps,IAppState>{
         super(props);
         this.state = {filledTicks: 3,numTicks:5}
     }
+    componentWillReceiveProps(props:IAppProps) {
+        this.setState({filledTicks: props.filledTicks,numTicks:props.numTicks});
+    }
+
 
     /**
      * Returns an html element representing a single tick of the tickbar
      */
-    createTick(_widthPercentage:number){
+    createTick(_widthPercentage:number, isFilled: boolean){
         let widthPercent = ""+_widthPercentage+"%";
         const tick = {
             
             border: '1px solid white',
-            backgroundColor:"#509eaa",
-            // color: "#509eaa",
+            backgroundColor: isFilled?"#509eaa":"",
+            
             width:widthPercent,
             height: '100%',
             minHeight:'15px'
@@ -43,8 +47,13 @@ export default class TickBar extends Component <IAppProps,IAppState>{
        
         const widthPercent = 100/_totalTicks;
         let ticks=[];
+        //create filled ticks
         for(let i = 0; i<_filledTicks;i++){
-            ticks.push(this.createTick(widthPercent));
+            ticks.push(this.createTick(widthPercent,true));
+        }
+        //create empty ticks
+        for(let i = 0; i<_totalTicks-_filledTicks;i++){
+            ticks.push(this.createTick(widthPercent,false));
         }
         return(
             <div style={container}> 
@@ -67,6 +76,8 @@ export default class TickBar extends Component <IAppProps,IAppState>{
     }
 }
 interface IAppProps{
+    filledTicks:number,
+    numTicks:number
 }
 interface IAppState{
     filledTicks:number,

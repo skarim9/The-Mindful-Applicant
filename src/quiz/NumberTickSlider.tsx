@@ -4,14 +4,14 @@ import Slider from '@material-ui/core/Slider';
 
 const NumberTickSliderStyle = withStyles({
   root: {
-    color: "#595959ff",
+    color: "#ffffff",
     height: 8,
     width: '80%'
   },
   thumb: {
     height: 36,
     width: 36,
-    backgroundColor: "#4593C4",
+    backgroundColor: "#509EAA",
     marginTop: -13.5,
     marginLeft: -17.5,
     "&:focus, &:hover, &$active": {
@@ -24,8 +24,8 @@ const NumberTickSliderStyle = withStyles({
     
   },
   mark: {
-    border:"2px solid #4593C4",
-    backgroundColor: '#595959ff',
+    border:"2px solid #509EAA",
+    backgroundColor: '#fffffff',
     height: 35,
     width: 35,
     borderRadius: 30,
@@ -33,7 +33,7 @@ const NumberTickSliderStyle = withStyles({
     marginLeft: -19
   },
   markLabel: {
-      color:"#4593C4",
+      color:"#509EAA",
       marginTop: -17,
   },
   track: {
