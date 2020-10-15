@@ -9,29 +9,81 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
         super(props);
         
         this.state = {
-            categories:["Decision Making", "Self Awareness", "Self Management","Social Awareness","Relationship Skills"],//categories to reallocate points to
-            pointScale:5,//each category is out of pointScale points
-            pointsToAllocate:10
+            
+        pointsToAllocate:10,
+            stats:[
+            {
+                category: "Decision Making",
+                progress:2,
+                total:5
+            },
+            {
+                category: "Self Awareness",
+                progress:3,
+                total:5
+            },
+            {
+                category: "Self Management",
+                progress:2,
+                total:5
+            },
+            {
+                category: "Social Awareness",
+                progress:4,
+                total:5
+            },
+            {
+                category: "Relationship Skills",
+                progress:1,
+                total:5
+            }]
         }
     }
+    
+    /**
+     * Removes point from stat and puts it in the point bank
+     * @param stat - stat to modify
+     */
+    subtractPoint(stat:{category: string, progress:number,total:number}){
+        stat.progress = stat.progress-1;
+        console.log("Clicked on stat. Progress is now "+this.state.stats[0].progress)
+        this.setState({
+            pointsToAllocate:this.state.pointsToAllocate+1
+        })
+        
+    }
+    /**
+     * Takes point from point bank and adds it to the stat
+     * @param stat - stat to modify
+     */
+    addPoint(stat:{category: string, progress:number,total:number}){
+        stat.progress = stat.progress+1;
+        console.log("Clicked on stat. Progress is now "+this.state.stats[0].progress)
+        this.setState({
+            pointsToAllocate:this.state.pointsToAllocate-1
+        })
+        
+    }
+    
 
-
-    createTickBars(_categories:string[]){
+    createTickBars(){
         let labels = [];//labels for tickbars
         let tickBars = []; //tickbars
 
 
 
-        for(let i = 0; i<_categories.length;i++){
+        for(let i = 0; i<this.state.stats.length;i++){
             labels.push(
-                <div  className = "tick-bar-padding">
-                    {_categories[i]}
+                <div  key = {this.state.stats[i].category+"-label"} className = "tick-bar-padding">
+                    {this.state.stats[i].category}
                 </div>
             )
             tickBars.push(
-                <div  className = "tick-bar-padding">
+                <div key = {this.state.stats[i].category+"-bar"} className = "tick-bar-padding" >
                     {
-                        <TickBar filledTicks={3} numTicks={this.state.pointScale}/>
+                        <div onClick={(e) => this.addPoint(this.state.stats[i])}>
+                        <TickBar filledTicks={this.state.stats[i].progress} numTicks={this.state.stats[i].total}/>
+                        </div>
                     }
                 </div>
             )
@@ -58,13 +110,13 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
         return (
             <div className="points-allocation-page-container">
                 <h1>
-                    This is the Points Allocation Page
+                    Social Emotional Points Reallocation
                 </h1>
                 
 
                 {
                     /*Tick buttons */
-                    this.createTickBars(this.state.categories)
+                    this.createTickBars()
                 }
 
                 {/* Points bank */
@@ -78,8 +130,11 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
 interface IAppProps{
 }
 interface IAppState{
-    categories: string[],
-    pointScale:number
+    stats:{
+        category: string,
+        progress:number,
+        total:number
+    }[],
     pointsToAllocate:number
 }
 

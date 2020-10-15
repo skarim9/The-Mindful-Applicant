@@ -5,29 +5,26 @@ export default class TickBar extends Component <IAppProps,IAppState>{
     
     constructor(props: IAppProps){
         super(props);
-        this.state = {filledTicks: 3,numTicks:5}
-    }
-    componentWillReceiveProps(props:IAppProps) {
-        this.setState({filledTicks: props.filledTicks,numTicks:props.numTicks});
+        this.state = {filledTicks: 2,numTicks:5}
     }
 
 
     /**
      * Returns an html element representing a single tick of the tickbar
      */
-    createTick(_widthPercentage:number, isFilled: boolean){
+    createTick(_widthPercentage:number, _isFilled: boolean, _key:string){
         let widthPercent = ""+_widthPercentage+"%";
         const tick = {
             
             border: '1px solid white',
-            backgroundColor: isFilled?"#509eaa":"",
+            backgroundColor: _isFilled?"#509eaa":"",
             
             width:widthPercent,
             height: '100%',
             minHeight:'15px'
         }  
         return(
-            <div style = {tick}></div>
+            <div style = {tick} key={_key}></div>
             )
     }
 
@@ -49,11 +46,11 @@ export default class TickBar extends Component <IAppProps,IAppState>{
         let ticks=[];
         //create filled ticks
         for(let i = 0; i<_filledTicks;i++){
-            ticks.push(this.createTick(widthPercent,true));
+            ticks.push(this.createTick(widthPercent,true,i+"tickBar"));
         }
         //create empty ticks
         for(let i = 0; i<_totalTicks-_filledTicks;i++){
-            ticks.push(this.createTick(widthPercent,false));
+            ticks.push(this.createTick(widthPercent,false,(_totalTicks-i)+"tickBarUnfilled"));
         }
         return(
             <div style={container}> 
@@ -68,7 +65,7 @@ export default class TickBar extends Component <IAppProps,IAppState>{
         return (
             <div>
             {
-                this.createTicks(this.state.numTicks,this.state.filledTicks)
+                this.createTicks(this.props.numTicks,this.props.filledTicks)
             }
             
             </div>
