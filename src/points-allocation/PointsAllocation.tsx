@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TickBar from  './TickBar'
+import PromptBox from './prompt-box/PromptBox'
 import './point-allocation.scss'
 
 
@@ -122,6 +123,7 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
                 {/* Points bank */
                     this.createPointsBank(this.state.pointsToAllocate)
                 }
+                <PromptBox/>
             
             </div>
         )
