@@ -11,9 +11,15 @@ function App() {
       <BrowserRouter>
         <div>
         <nav>
+          <ul>
+            <li>
              <Link  style = {{color:"white"}} to="/quiz">Quiz</Link>
+             </li>
+
+             <li>
              <Link  style = {{color:"white"}} to="/points-allocation">Points Allocation</Link>
-           
+             </li>
+          </ul>
              
          </nav>
             <Switch>
