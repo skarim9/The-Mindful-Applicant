@@ -49,13 +49,15 @@ export default class Quiz extends Component <IAppProps,IAppState>{
 
     render() {
         return (
+            <div>
         <div className = "quiz-container">
             
-            <div>This is the Quiz page</div>
+        <h1 >Social Emotional Quiz</h1>
             {
                 this.createQuizQuestions(this.state.questions)
             }
                  
+        </div>
         </div>
         )
     }

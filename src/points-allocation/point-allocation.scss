@@ -2,6 +2,10 @@
     display:flex;
     flex-direction: column;
 }
+.points-allocation-page-container h1{
+    margin-left: 10px;
+    align-self: flex-start;
+}
 
 .tick-bars-container{
     display:block;

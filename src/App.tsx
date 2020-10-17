@@ -17,7 +17,7 @@ function App() {
              </li>
 
              <li>
-             <Link  style = {{color:"white"}} to="/points-allocation">Points Allocation</Link>
+             <Link  style = {{color:"white"}} to="/points-reallocation">Points Allocation</Link>
              </li>
           </ul>
              
