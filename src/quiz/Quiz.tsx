@@ -7,7 +7,9 @@ export default class Quiz extends Component <IAppProps,IAppState>{
   
     constructor(props: IAppProps){
         super(props);
-        this.state = {name:"", 
+        this.state = {
+        name:"",
+        isShowResults:false, 
         questions:[
             "I know myself. I can react well to different situations.", 
             "I dismiss negative thoughts I have about myself when they arise.",
@@ -26,7 +28,6 @@ export default class Quiz extends Component <IAppProps,IAppState>{
             "I do what I think is right even when pressured not to. ",
         ]}
     }
-
     createQuestion =(_question:string,_index:number) => {
 
        
@@ -50,14 +51,15 @@ export default class Quiz extends Component <IAppProps,IAppState>{
     render() {
         return (
             <div>
-        <div className = "quiz-container">
-            
-        <h1 >Social Emotional Quiz</h1>
-            {
-                this.createQuizQuestions(this.state.questions)
-            }
-                 
-        </div>
+            <div className = "quiz-container">
+                
+            <h1 >Social Emotional Quiz</h1>
+                {
+                    this.createQuizQuestions(this.state.questions)
+                }
+                    
+            </div>
+            <button className = "submitBtn" >Submit</button>
         </div>
         )
     }
@@ -65,7 +67,7 @@ export default class Quiz extends Component <IAppProps,IAppState>{
 interface IAppProps{
 }
 interface IAppState{
-    
+    isShowResults: boolean;
     questions:string[];
     name:string;
 }
