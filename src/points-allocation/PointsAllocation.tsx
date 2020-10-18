@@ -61,10 +61,16 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
                     this.createPointsBank(this.state.pointsToAllocate)
                 }
                 <PromptBox/>
+                
+                <button onClick = {()=>{this.saveResults()}} className = "button">Submit</button>
             
             </div>
         )
     }
+    saveResults(){
+        alert("Results will be saved");
+    }
+
     
         /**
      * Removes point from stat and puts it in the point bank
