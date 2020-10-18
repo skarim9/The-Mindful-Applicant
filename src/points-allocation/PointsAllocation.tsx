@@ -42,31 +42,33 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
         }
     }
     
-    /**
+        /**
      * Removes point from stat and puts it in the point bank
      * @param stat - stat to modify
      */
     subtractPoint(stat:{category: string, progress:number,total:number}){
-        stat.progress = stat.progress-1;
-        console.log("Clicked on stat. Progress is now "+this.state.stats[0].progress)
-        this.setState({
-            pointsToAllocate:this.state.pointsToAllocate+1
-        })
-        
+        if(stat.progress>0){//can only subtract point from stat if stat has points
+            stat.progress = stat.progress-1;
+            console.log("Clicked on stat. Progress is now "+this.state.stats[0].progress)
+            this.setState({
+                pointsToAllocate:this.state.pointsToAllocate+1
+            })
+        }
     }
     /**
      * Takes point from point bank and adds it to the stat
      * @param stat - stat to modify
      */
     addPoint(stat:{category: string, progress:number,total:number}){
-        stat.progress = stat.progress+1;
-        console.log("Clicked on stat. Progress is now "+this.state.stats[0].progress)
-        this.setState({
-            pointsToAllocate:this.state.pointsToAllocate-1
-        })
+        if(this.state.pointsToAllocate>0&&stat.progress<stat.total){//add point iff stat is not full and there are points in bank
+            stat.progress = stat.progress+1;
+            console.log("Clicked on stat. Progress is now "+this.state.stats[0].progress)
+            this.setState({
+                pointsToAllocate:this.state.pointsToAllocate-1
+            })
+        }
         
     }
-    
 
     createTickBars(){
         let labels = [];//labels for tickbars
@@ -91,8 +93,9 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
                         <TickBar filledTicks={this.state.stats[i].progress} numTicks={this.state.stats[i].total}/>
                         </td>
                         <td className="tick-bar-modifier">
-                            <button className="tick-bar-modifier" onClick={(e) => this.addPoint(this.state.stats[i])}>+</button>
-                            <button className="tick-bar-modifier" onClick={(e) => this.subtractPoint(this.state.stats[i])}>-</button>
+                            <button className="add-btn" onClick={(e) => this.addPoint(this.state.stats[i])}>+</button>
+                            <button className = "sub-btn"onClick={(e) => this.subtractPoint(this.state.stats[i])}>-</button>
+                            
                         </td>
                     
                 </tr>

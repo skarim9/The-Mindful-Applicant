@@ -10,23 +10,35 @@ td.tick-bar-block{
 }
 .tick-bar-modifier{
     float: right;
-    
+    margin-left: 10px;
     display: flex;
     flex-direction: row;
     border: 2px solid white;
-    justify-content: space-between;
+    justify-content: space-evenly;
     border-radius: 5px;
 }
-button.tick-bar-modifier{
+.tick-bar-modifier button{
+    margin:0;
     background:none;
     border: none;
-    width: 100%;
-    color:white;
-}
-button.tick-bar-modifier:active{
+    min-width: 50px;
     
-    border: none;
+    color:white;
+    border-radius: 0px;
 }
+.tick-bar-modifier button:focus{
+    
+    outline: none;
+    box-shadow: none;     
+}
+button.add-btn:hover{
+    background-color: #9ae0b6;
+}
+button.sub-btn:hover{
+    background-color:#c96c6c ;
+}
+
+
 .points-allocation-page-container h1{
     margin-left: 10px;
     align-self: flex-start;
