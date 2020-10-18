@@ -2,15 +2,58 @@
     display:flex;
     flex-direction: column;
 }
+.tick-bar-and-mod-wrapper{
+    display: flex;
+}
+td.tick-bar-block{
+    width: 100%;
+}
+.tick-bar-modifier{
+    float: right;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: row;
+    border: 2px solid white;
+    justify-content: space-evenly;
+    border-radius: 5px;
+}
+.tick-bar-modifier button{
+    margin:0;
+    background:none;
+    border: none;
+    min-width: 50px;
+    
+    color:white;
+    border-radius: 0px;
+}
+.tick-bar-modifier button:focus{
+    
+    outline: none;
+    box-shadow: none;     
+}
+button.add-btn:hover{
+    background-color: #9ae0b6;
+}
+button.sub-btn:hover{
+    background-color:#c96c6c ;
+}
+
+
+.points-allocation-page-container h1{
+    margin-left: 10px;
+    align-self: flex-start;
+}
+.tick-bar-label{
+    text-align: left;
+    float: left;
+    margin-right: 10px;
+    white-space: nowrap;
+}
 
 .tick-bars-container{
-    display:block;
+    display:inline-block;
     width:50%;
     margin:10px;
-    float:left;
-}
-.tick-bar-padding{
-    padding:10px;
 }
 
 .points-label-container{ 

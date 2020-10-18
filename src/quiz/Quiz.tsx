@@ -7,9 +7,27 @@ export default class Quiz extends Component <IAppProps,IAppState>{
   
     constructor(props: IAppProps){
         super(props);
-        this.state = {name:""}
+        this.state = {
+        name:"",
+        isShowResults:false, 
+        questions:[
+            "I know myself. I can react well to different situations.", 
+            "I dismiss negative thoughts I have about myself when they arise.",
+            "I ask people in school and in my community for help when I face a problem.",
+            "I don't let my peers push me into things I don't want to do.",
+            "I keep my friends safe and healthy when I've invited them somewhere.",
+            "I understand how to use my strengths and weaknesses to make future plans.",
+            "I control my emotions.",
+            "I understand how others feel.",
+            "I confront friends about problems, even if it sucks.",
+            "I analyze a situation in order to anticipate what will happen next.",
+            "I overcome setbacks and failures.",
+            "I take small steps every day to achieve my goals.",
+            "I show respect for others, even those that think differently than I do.",
+            "I am helpful in group / team projects. ",
+            "I do what I think is right even when pressured not to. ",
+        ]}
     }
-
     createQuestion =(_question:string,_index:number) => {
 
        
@@ -32,20 +50,24 @@ export default class Quiz extends Component <IAppProps,IAppState>{
 
     render() {
         return (
-        <div className = "quiz-container">
-            
-            <div>This is the Quiz page</div>
-            {
-                this.createQuizQuestions(this.props.questions)
-            }
-                 
+            <div>
+            <div className = "quiz-container">
+                
+            <h1 >Social Emotional Quiz</h1>
+                {
+                    this.createQuizQuestions(this.state.questions)
+                }
+                    
+            </div>
+            <button className = "submitBtn" >Submit</button>
         </div>
         )
     }
 }
 interface IAppProps{
-    questions:string[];
 }
 interface IAppState{
+    isShowResults: boolean;
+    questions:string[];
     name:string;
 }
