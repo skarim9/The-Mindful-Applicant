@@ -41,6 +41,30 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
             }]
         }
     }
+
+    
+    render() {
+        
+        return (
+            <div className="points-allocation-page-container">
+                <h1>
+                    Social Emotional Points Reallocation
+                </h1>
+                
+
+                {
+                    /*Tick buttons */
+                    this.createTickBars()
+                }
+
+                {/* Points bank */
+                    this.createPointsBank(this.state.pointsToAllocate)
+                }
+                <PromptBox/>
+            
+            </div>
+        )
+    }
     
         /**
      * Removes point from stat and puts it in the point bank
@@ -114,28 +138,6 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
                     <h2>Social Emotional Points Bank</h2>
                     <div className="points-label">{_pointsToAllocate}</div>
                 </div>)
-    }
-    render() {
-        
-        return (
-            <div className="points-allocation-page-container">
-                <h1>
-                    Social Emotional Points Reallocation
-                </h1>
-                
-
-                {
-                    /*Tick buttons */
-                    this.createTickBars()
-                }
-
-                {/* Points bank */
-                    this.createPointsBank(this.state.pointsToAllocate)
-                }
-                <PromptBox/>
-            
-            </div>
-        )
     }
 }
 interface IAppProps{

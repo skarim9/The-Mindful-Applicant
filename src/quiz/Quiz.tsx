@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './quiz.scss'
 import QuizQuestion from './QuizQuestion'
 import Slider from '@material-ui/core/Slider';
+import QuizResults from './quiz-results/QuizResults';
 
 export default class Quiz extends Component <IAppProps,IAppState>{
   
@@ -9,7 +10,7 @@ export default class Quiz extends Component <IAppProps,IAppState>{
         super(props);
         this.state = {
         name:"",
-        isShowResults:false, 
+        isShowResults:true, 
         questions:[
             "I know myself. I can react well to different situations.", 
             "I dismiss negative thoughts I have about myself when they arise.",
@@ -28,6 +29,46 @@ export default class Quiz extends Component <IAppProps,IAppState>{
             "I do what I think is right even when pressured not to. ",
         ]}
     }
+
+
+
+
+    render() {
+        return (
+            <div>
+                
+                <h1 >Social Emotional Quiz</h1>
+                    
+              {  this.state.isShowResults?
+              <div><QuizResults/></div>
+              :
+                <div className = "quiz-container">
+                    
+                        {this.createQuizQuestions(this.state.questions)}
+                    
+                    
+                <button onClick={(e) => this.toggleResults(true)} className = "submitBtn" >Submit</button> 
+                
+                </div>
+              } 
+        </div>
+        )
+    }
+
+    toggleResults(_showResults:boolean){
+        this.setState({
+            isShowResults:_showResults
+        })
+    }
+
+
+
+
+
+
+
+
+
     createQuestion =(_question:string,_index:number) => {
 
        
@@ -48,21 +89,7 @@ export default class Quiz extends Component <IAppProps,IAppState>{
     }
     
 
-    render() {
-        return (
-            <div>
-            <div className = "quiz-container">
-                
-            <h1 >Social Emotional Quiz</h1>
-                {
-                    this.createQuizQuestions(this.state.questions)
-                }
-                    
-            </div>
-            <button className = "submitBtn" >Submit</button>
-        </div>
-        )
-    }
+    
 }
 interface IAppProps{
 }
