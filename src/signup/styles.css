@@ -34,11 +34,11 @@ input::placeholder {
 }
 
 p {
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 .btn {
-  margin-top: 30px;
+  margin-top: 15px;
   border-radius: 20px;
   width: 70%;
   font-family: 'Spinnaker', sans-serif;
@@ -52,6 +52,7 @@ p {
 .form-control {
   border: 2px solid;
   border-radius: 15px;
+  margin-top: 15px;
 }
 
 .form-group {
@@ -59,12 +60,16 @@ p {
 }
 
 .heading {
-  margin: -5px auto 35px;
+  margin: -5px auto 15px;
 }
 
 .names {
   margin-bottom: 0px;
   padding: 5px 16px;
+}
+
+.form-row {
+  margin-bottom: -10px;
 }
 
 .left_side {
@@ -88,5 +93,5 @@ p {
 }
 
 .logo {
-  margin: 40px auto 20px;
+  margin: 10px auto 10px;
 }
