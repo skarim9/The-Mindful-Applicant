@@ -4,8 +4,8 @@ import * as d3 from "d3";
 const data = [1, 1, 1, 1,1];
 
 export const SimplePieChart = () => {
-  const height = 400;
-  const width = 400;
+  const height = 200;
+  const width = 200;
 
   let pie = d3.pie()(data);
 
