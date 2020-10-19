@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import TickBar from  './TickBar'
 import PromptBox from './prompt-box/PromptBox'
 import './point-allocation.scss'
+import { SimplePieChart } from "../components/SimplePieChart";
+
 import { flexbox } from '@material-ui/system';
 
 
@@ -51,17 +53,21 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
                     Social Emotional Points Reallocation
                 </h1>
                 
-
+                <div className = "resultsContainer">
+                    
+                
                 {
                     /*Tick buttons */
                     this.createTickBars()
                 }
+                
+                <SimplePieChart/>
+                </div>
 
                 {/* Points bank */
                     this.createPointsBank(this.state.pointsToAllocate)
                 }
                 <PromptBox/>
-                
                 <button onClick = {()=>{this.saveResults()}} className = "button">Submit</button>
             
             </div>

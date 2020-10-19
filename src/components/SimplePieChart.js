@@ -11,20 +11,21 @@ export const SimplePieChart = () => {
 
   function createSlices(num){
     let slices = [];
+    
+    
 
     for(let i = 0; i<num;i++){
       const space = 3;
       const start = i*100/num+space;
       const end = start + 100/num-space;
       slices.push(
-        
-      <Slice pie={pie} innerRadius = {start} outerRadius={end}/>
+      <Slice key = {i+"-slice"}  pie={pie} innerRadius = {start} outerRadius={end} />
+      
       )
     }
 
     return (
-      <div>
-        Slices
+      <div key = {num+"UNIQUE KEY"}>
         
     <svg height={height} width={width}>
       <g transform={`translate(${width / 2},${height / 2})`}>
@@ -49,7 +50,6 @@ export const SimplePieChart = () => {
 const Slice = props => {
   let { pie } = props;
   let { innerRadius} = props;
-  
   let { outerRadius} = props;
 
   let arc = d3
@@ -62,6 +62,6 @@ const Slice = props => {
   return pie.map((slice, index) => {
     let sliceColor = interpolate(index / (pie.length - 1));
 
-    return <path d={arc(slice)} fill={sliceColor} />;
+    return <path key = {"Path "+innerRadius+", "+outerRadius+","+sliceColor} d={arc(slice)} fill={sliceColor} />;
   });
 };
