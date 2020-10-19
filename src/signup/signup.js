@@ -1,3 +1,5 @@
+/* eslint-env jquery */
+
 $('#PW, #CPW').on('keyup', function () {
   var password = $('#PW').val();
   var confirm_password = $('#CPW').val();
