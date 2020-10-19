@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { SimplePieChart } from "../../components/SimplePieChart";
+
 import { BrowserRouter, Route, Switch,Link } from 'react-router-dom';
 
 import './quiz-results.scss'
@@ -17,9 +19,11 @@ export default class QuizResults extends Component <ResultsProps,IAppState>{
     render() {
         return (
             <div>
+
             <div className="quiz-results-container">
                 <div className = "snapshot">
                     <h2>Your Elements</h2>
+                   <SimplePieChart/>
                 </div>
                 <div className = "snapshot">
                     <h2>Your Type</h2>
