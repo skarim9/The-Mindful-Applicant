@@ -1,0 +1,92 @@
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background-color: #323232;
+  font-family: 'Alegreya', serif;
+  text-align: center;
+  color: white;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Spinnaker', sans-serif;
+}
+
+div {
+  margin-bottom: 15px;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+input {
+  text-align: center;
+  font-family: 'Spinnaker', sans-serif;
+}
+
+input::placeholder {
+  text-align: center;
+}
+
+p {
+  margin-top: 20px;
+}
+
+.btn {
+  margin-top: 30px;
+  border-radius: 20px;
+  width: 70%;
+  font-family: 'Spinnaker', sans-serif;
+}
+
+
+.container {
+  width: 100%;
+}
+
+.form-control {
+  border: 2px solid;
+  border-radius: 15px;
+}
+
+.form-group {
+  text-align: center;
+}
+
+.heading {
+  margin: -5px auto 35px;
+}
+
+.names {
+  margin-bottom: 0px;
+  padding: 5px 16px;
+}
+
+.left_side {
+  width: 60%;
+  height: 100vh;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-image: url("../images/Path_MindfulApp.jpg");
+}
+
+.right_side {
+  width: 40%;
+  height: 100vh;
+  padding-top: 20px;
+}
+
+.logo_div {
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  margin: 40px auto 20px;
+}
