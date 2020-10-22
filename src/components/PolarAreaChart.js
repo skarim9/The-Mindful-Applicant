@@ -9,9 +9,11 @@ import {Polar,defaults} from 'react-chartjs-2'
 export default class PolarAreaChart extends Component{
     constructor(props){
         super(props);
-        
         this.state = {
             options:{
+                legend:{
+                    display:false
+                },
                 scale:{
                     
                     ticks: {
@@ -23,9 +25,9 @@ export default class PolarAreaChart extends Component{
                     },
                     gridLines:{
                         color:'#ffffff',
-                        lineWidth:1,
+                        lineWidth:2,
                         drawBorder:false,
-                        z:1
+                        z:5
                     },
                     pointLabels:{
                         display:false

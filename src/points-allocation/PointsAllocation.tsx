@@ -3,6 +3,7 @@ import TickBar from  './TickBar'
 import PromptBox from './prompt-box/PromptBox'
 import './point-allocation.scss'
 import PolarAreaChart  from "../components/PolarAreaChart";
+import {colors} from "../quiz/quiz-results/QuizResults";
 
 import { flexbox } from '@material-ui/system';
 
@@ -14,14 +15,14 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
         
         this.state = {
             
-        pointsToAllocate:0
+        pointsToAllocate:5
             
         }
     }
 
     
     render() {
-        
+        let data = this.props.polarChartData(this.props.stats);
         return (
             <div className="points-allocation-page-container">
                 <h1>
@@ -35,7 +36,10 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
                     /*Tick buttons */
                     this.createTickBars()
                 }
-                
+                <div className="polar-chart-container">
+                <PolarAreaChart data={data}/>
+                </div>
+                        
                 </div>
 
                 {/* Points bank */
@@ -100,7 +104,7 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
                             {this.props.stats[i].category}
                         </th>
                         <td className="tick-bar-block">
-                        <TickBar filledTicks={this.props.stats[i].progress} numTicks={this.props.stats[i].total}/>
+                        <TickBar color = {colors[i%colors.length]} filledTicks={this.props.stats[i].progress} numTicks={this.props.stats[i].total}/>
                         </td>
                         <td className="tick-bar-modifier">
                             <button className="add-btn" onClick={(e) => this.addPoint(this.props.stats[i])}>+</button>
@@ -131,7 +135,8 @@ interface IAppProps{
         category: string,
         progress:number,
         total:number
-    }[]
+    }[],
+    polarChartData:Function
 }
 interface IAppState{
     

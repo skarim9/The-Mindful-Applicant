@@ -1,3 +1,4 @@
+import { Color } from '@material-ui/core';
 import React, { Component } from 'react';
 
 
@@ -17,7 +18,7 @@ export default class TickBar extends Component <IAppProps,IAppState>{
         const tick = {
             
             border: '1px solid white',
-            backgroundColor: _isFilled?"#509eaa":"",
+            backgroundColor: _isFilled?this.props.color:"",
             
             width:widthPercent,
             height: '100%',
@@ -74,7 +75,8 @@ export default class TickBar extends Component <IAppProps,IAppState>{
 }
 interface IAppProps{
     filledTicks:number,
-    numTicks:number
+    numTicks:number,
+    color: string
 }
 interface IAppState{
     filledTicks:number,

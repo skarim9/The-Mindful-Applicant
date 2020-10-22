@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Switch,Link } from 'react-router-dom';
 import './quiz-results.scss'
 import PointsAllocation from '../../points-allocation/PointsAllocation';
 
-const colors = ["#ab8de0","#d34545","#45b0d3","#8fe891","#eac567","ac88ef"]
+export const colors = ["#ab8de0","#d34545","#45b0d3","#8fe891","#eac567","ac88ef"]
 
 export default class QuizResults extends Component <ResultsProps,IAppState>{
   
@@ -42,29 +42,33 @@ export default class QuizResults extends Component <ResultsProps,IAppState>{
         }
     }
     
-    polarChartData(){
-        let stats=[];
+    polarChartData(stats:{
+        category: string,
+        progress:number,
+        total:number
+    }[]){
+        let values=[];
         let categories=[];
-        for(let i = 0; i<this.state.stats.length;i++){
-            stats.push(this.state.stats[i].progress);
-            categories.push(this.state.stats[i].category);
+        for(let i = 0; i<stats.length;i++){
+            values.push(stats[i].progress);
+            categories.push(stats[i].category);
         }
         
         let data  = {
-            datasets: [{data:stats,backgroundColor:colors,label: 'Results', borderColor:'#ffffff', borderWidth: 1}],
+            datasets: [{data:values,backgroundColor:colors,label: 'Results', borderColor:'#ffffff', borderWidth: 1}],
             labels:categories
         };
         return data;
     }
 
     render() {
-        let data = this.polarChartData();
+        let data = this.polarChartData(this.state.stats);
 
         return (
             <div>
                 { this.state.isAllocatePoints?
                 
-                <PointsAllocation stats = {this.state.stats}/>:
+                <PointsAllocation polarChartData = {this.polarChartData}stats = {this.state.stats}/>:
                 <div>
                     <div className="quiz-results-container">
                         <div className = "snapshot">
