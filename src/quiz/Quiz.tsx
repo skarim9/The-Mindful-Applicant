@@ -10,7 +10,7 @@ export default class Quiz extends Component <IAppProps,IAppState>{
         super(props);
         this.state = {
         name:"",
-        isShowResults:true, 
+        isShowResults:false, 
         questions:[
             "I know myself. I can react well to different situations.", 
             "I dismiss negative thoughts I have about myself when they arise.",
