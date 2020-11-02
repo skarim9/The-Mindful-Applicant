@@ -3,7 +3,7 @@ import './quiz.scss'
 import QuizQuestion from './QuizQuestion'
 import Slider from '@material-ui/core/Slider';
 import QuizResults from './quiz-results/QuizResults';
-
+import TextButton from '../components/TextButton'
 export default class Quiz extends Component <IAppProps,IAppState>{
   
     constructor(props: IAppProps){
@@ -47,7 +47,7 @@ export default class Quiz extends Component <IAppProps,IAppState>{
                         {this.createQuizQuestions(this.state.questions)}
                     
                     
-                <button onClick={(e) => this.toggleResults(true)} className = "submitBtn" >Submit</button> 
+                <TextButton onClick={()=>this.toggleResults(true)} textLabel="Submit" /> 
                 
                 </div>
               } 

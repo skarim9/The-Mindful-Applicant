@@ -11,7 +11,6 @@ function App() {
       <BrowserRouter>
         <div>
             <Switch>
-             <Route path="/points-reallocation" component={PointsAllocation} />
              <Route path="/quiz" component={Quiz}/>
              
            </Switch>

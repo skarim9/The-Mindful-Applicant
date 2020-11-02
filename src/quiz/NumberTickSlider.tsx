@@ -9,6 +9,7 @@ const NumberTickSliderStyle = withStyles({
     width: '80%'
   },
   thumb: {
+    display:'none',
     height: 36,
     width: 36,
     backgroundColor: "#509EAA",
@@ -18,7 +19,9 @@ const NumberTickSliderStyle = withStyles({
       boxShadow: "inherit"
     }
   },
-  active: {},
+  
+  active: {
+  },
   valueLabel: {
     left: "calc(-50% + 20px)",
     
@@ -32,8 +35,15 @@ const NumberTickSliderStyle = withStyles({
     marginTop: -15,
     marginLeft: -19
   },
+  markActive: {
+    backgroundColor: "#509EAA",
+    opacity:'100%',
+    color:'#ffffff',
+    "&:focus, &:hover, &$active": {
+      boxShadow: "inherit"
+    }
+  },
   markLabel: {
-      color:"#509EAA",
       marginTop: -17,
   },
   track: {
@@ -64,10 +74,6 @@ const options = [
     {
       value: 4,
       label: '4',
-    },
-    {
-        value: 5,
-        label: '5',
     }
   ];
 
@@ -94,11 +100,11 @@ export default class NumberTickSlider extends Component <IAppProps,IAppState>{
                 valueLabelDisplay="off"
                 onChangeCommitted={handleChange}
                 aria-labelledby="discrete-slider-custom"
-                defaultValue={3}
+                defaultValue={2.5}
                 step={1}
                 marks={options}
                 min={1}
-                max={5}
+                max={4}
                 />
             </div>
             

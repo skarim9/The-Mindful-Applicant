@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PolarAreaChart from '../../components/PolarAreaChart'
-import { BrowserRouter, Route, Switch,Link } from 'react-router-dom';
-
+import Typology from '../../components/Typology'
 import './quiz-results.scss'
 import PointsAllocation from '../../points-allocation/PointsAllocation';
-
+import TextButton from '../../components/TextButton'
 export const colors = ["#ab8de0","#d34545","#45b0d3","#8fe891","#eac567","ac88ef"]
+
 
 export default class QuizResults extends Component <ResultsProps,IAppState>{
   
@@ -63,7 +63,12 @@ export default class QuizResults extends Component <ResultsProps,IAppState>{
 
     render() {
         let data = this.polarChartData(this.state.stats);
-
+        //TODO REMOVE THESE DUMMIES LATER
+        const dummyPicUrl = "/typology-images/dummy-pic.png";
+        let dummyMessage = "Dummy description to be replaced later";
+        for(let i = 0; i<400;i++){
+            dummyMessage+=" ";
+        }
         return (
             <div>
                 { this.state.isAllocatePoints?
@@ -77,10 +82,11 @@ export default class QuizResults extends Component <ResultsProps,IAppState>{
                         </div>
                         <div className = "snapshot">
                             <h2>Your Type</h2>
-
+                            <Typology description = {dummyMessage} image = {dummyPicUrl}/>
                         </div>
                     </div>
-                    <button onClick={(e)=>{this.setState({isAllocatePoints:true})}}>Reallocate Points</button>
+                    <TextButton onClick={()=>this.setState({isAllocatePoints:true})} textLabel="Reallocate Points" /> 
+                
                 </div>
                 }
             </div>

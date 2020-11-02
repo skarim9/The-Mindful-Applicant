@@ -4,7 +4,7 @@ import PromptBox from './prompt-box/PromptBox'
 import './point-allocation.scss'
 import PolarAreaChart  from "../components/PolarAreaChart";
 import {colors} from "../quiz/quiz-results/QuizResults";
-
+import TextButton from "../components/TextButton"
 import { flexbox } from '@material-ui/system';
 
 
@@ -28,7 +28,7 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
                 <h1>
                     Social Emotional Points Reallocation
                 </h1>
-                
+                <p>Start by taking a point off a stat</p>
                 <div className = "resultsContainer">
                     
                 
@@ -46,7 +46,7 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
                     this.createPointsBank(this.state.pointsToAllocate)
                 }
                 <PromptBox/>
-                <button onClick = {()=>{this.saveResults()}} className = "button">Submit</button>
+                <TextButton onClick = {()=>{this.saveResults()}} textLabel = "Submit"/>
             
             </div>
         )
