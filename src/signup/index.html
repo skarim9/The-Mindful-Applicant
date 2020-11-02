@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;0,800;0,900;1,400;1,500;1,700;1,800;1,900&family=Spinnaker&display=swap" rel="stylesheet">
+  <title>The Mindful Applicant</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+  <!-- Custom styles for this template -->
+  <link href="styles.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container-fluid px-0">
+    <div class="row no-gutters">
+      <div class="col-lg-8 left_side">
+      </div>
+      <div class="col-lg-4 right_side">
+        <form>
+          <div class="logo_div">
+            <img src="../images/MindfulMDark.png" alt="Dark Mindful M logo" class="logo">
+          </div>
+          <div class="heading">
+            <h2>Sign Up</h2>
+          </div>
+          <div class="form-group names">
+
+            <div class="form-row">
+              <div class="col-md col-sm">
+                <input type="text" class="form-control LName" placeholder="First name" required>
+              </div>
+              <div class="col-md col-sm">
+                <input type="text" class="form-control LName" placeholder="Last name" required>
+              </div>
+            </div>
+
+            <label for="HS" class="sr-only">High School</label>
+            <input type="text" id="HS" class="form-control" placeholder="High School" required>
+
+            <label for="Grade" class="sr-only">Grade</label>
+            <input type="text" id="Grade" class="form-control" placeholder="Grade" required>
+
+            <label for="email" class="sr-only">Email</label>
+            <input type="email" id="email" class="form-control" placeholder="Email" required>
+
+            <label for="User" class="sr-only">Username</label>
+            <input type="text" id="User" class="form-control" placeholder="Username" required>
+
+            <label for="PW" class="sr-only">Password</label>
+            <input type="password" id="PW" class="form-control" placeholder="Password" required>
+
+            <label for="CPW" class="sr-only">Confirm Password</label>
+            <input type="password" id="CPW" class="form-control" placeholder="Confirm Password" required>
+            <span id="message"></span>
+
+            <button class="btn btn-lg btn-secondary" type="submit">Create Your Account</button>
+
+            <p>Already have an account? <span><a href="../login/index.html">Click here</a></span> to go back</p>
+
+            <p>&copy; 2020</p>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="signup.js"></script>
+</body>
+
+</html>

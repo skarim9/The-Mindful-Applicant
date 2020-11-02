@@ -12,18 +12,6 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <div>
-        <nav>
-          <ul>
-            <li>
-             <Link  style = {{color:"white"}} to="/quiz">Quiz</Link>
-             </li>
-
-             <li>
-             <Link  style = {{color:"white"}} to="/points-reallocation">Points Allocation</Link>
-             </li>
-          </ul>
-             
-         </nav>
             <Switch>
              <Route path="/points-reallocation" component={PointsAllocation} />
              <Route path="/quiz" component={Quiz}/>

@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import TickBar from  './TickBar'
 import PromptBox from './prompt-box/PromptBox'
 import './point-allocation.scss'
+import PolarAreaChart  from "../components/PolarAreaChart";
+import {colors} from "../quiz/quiz-results/QuizResults";
+
 import { flexbox } from '@material-ui/system';
 
 
@@ -12,35 +15,46 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
         
         this.state = {
             
-        pointsToAllocate:10,
-            stats:[
-            {
-                category: "Decision Making",
-                progress:2,
-                total:5
-            },
-            {
-                category: "Self Awareness",
-                progress:3,
-                total:5
-            },
-            {
-                category: "Self Management",
-                progress:2,
-                total:5
-            },
-            {
-                category: "Social Awareness",
-                progress:4,
-                total:5
-            },
-            {
-                category: "Relationship Skills",
-                progress:1,
-                total:5
-            }]
+        pointsToAllocate:5
+            
         }
     }
+
+    
+    render() {
+        let data = this.props.polarChartData(this.props.stats);
+        return (
+            <div className="points-allocation-page-container">
+                <h1>
+                    Social Emotional Points Reallocation
+                </h1>
+                
+                <div className = "resultsContainer">
+                    
+                
+                {
+                    /*Tick buttons */
+                    this.createTickBars()
+                }
+                <div className="polar-chart-container">
+                <PolarAreaChart data={data}/>
+                </div>
+                        
+                </div>
+
+                {/* Points bank */
+                    this.createPointsBank(this.state.pointsToAllocate)
+                }
+                <PromptBox/>
+                <button onClick = {()=>{this.saveResults()}} className = "button">Submit</button>
+            
+            </div>
+        )
+    }
+    saveResults(){
+        alert("Results will be saved");
+    }
+
     
         /**
      * Removes point from stat and puts it in the point bank
@@ -49,7 +63,7 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
     subtractPoint(stat:{category: string, progress:number,total:number}){
         if(stat.progress>0){//can only subtract point from stat if stat has points
             stat.progress = stat.progress-1;
-            console.log("Clicked on stat. Progress is now "+this.state.stats[0].progress)
+            console.log("Clicked on stat. Progress is now "+this.props.stats[0].progress)
             this.setState({
                 pointsToAllocate:this.state.pointsToAllocate+1
             })
@@ -62,7 +76,7 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
     addPoint(stat:{category: string, progress:number,total:number}){
         if(this.state.pointsToAllocate>0&&stat.progress<stat.total){//add point iff stat is not full and there are points in bank
             stat.progress = stat.progress+1;
-            console.log("Clicked on stat. Progress is now "+this.state.stats[0].progress)
+            console.log("Clicked on stat. Progress is now "+this.props.stats[0].progress)
             this.setState({
                 pointsToAllocate:this.state.pointsToAllocate-1
             })
@@ -76,25 +90,25 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
 
 
 
-        for(let i = 0; i<this.state.stats.length;i++){
+        for(let i = 0; i<this.props.stats.length;i++){
             labels.push(
-                <div  key = {this.state.stats[i].category+"-label"} className = "tick-bar-padding">
-                    {this.state.stats[i].category}
+                <div  key = {this.props.stats[i].category+"-label"} className = "tick-bar-padding">
+                    {this.props.stats[i].category}
                 </div>
             )
             tickBars.push(
-                <tr key = {this.state.stats[i].category+"-bar"} className = "tick-bar-padding" >
+                <tr key = {this.props.stats[i].category+"-bar"} className = "tick-bar-padding" >
                     
                             
-                        <th  className = "tick-bar-label" key = {this.state.stats[i].category+"-label"}>
-                            {this.state.stats[i].category}
+                        <th  className = "tick-bar-label" key = {this.props.stats[i].category+"-label"}>
+                            {this.props.stats[i].category}
                         </th>
                         <td className="tick-bar-block">
-                        <TickBar filledTicks={this.state.stats[i].progress} numTicks={this.state.stats[i].total}/>
+                        <TickBar color = {colors[i%colors.length]} filledTicks={this.props.stats[i].progress} numTicks={this.props.stats[i].total}/>
                         </td>
                         <td className="tick-bar-modifier">
-                            <button className="add-btn" onClick={(e) => this.addPoint(this.state.stats[i])}>+</button>
-                            <button className = "sub-btn"onClick={(e) => this.subtractPoint(this.state.stats[i])}>-</button>
+                            <button className="add-btn" onClick={(e) => this.addPoint(this.props.stats[i])}>+</button>
+                            <button className = "sub-btn"onClick={(e) => this.subtractPoint(this.props.stats[i])}>-</button>
                             
                         </td>
                     
@@ -115,37 +129,17 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
                     <div className="points-label">{_pointsToAllocate}</div>
                 </div>)
     }
-    render() {
-        
-        return (
-            <div className="points-allocation-page-container">
-                <h1>
-                    Social Emotional Points Reallocation
-                </h1>
-                
-
-                {
-                    /*Tick buttons */
-                    this.createTickBars()
-                }
-
-                {/* Points bank */
-                    this.createPointsBank(this.state.pointsToAllocate)
-                }
-                <PromptBox/>
-            
-            </div>
-        )
-    }
 }
 interface IAppProps{
-}
-interface IAppState{
     stats:{
         category: string,
         progress:number,
         total:number
     }[],
+    polarChartData:Function
+}
+interface IAppState{
+    
     pointsToAllocate:number
 }
 
