@@ -9,9 +9,8 @@ class PromptBox extends Component {
     return (
       <div className = "promptStyle">
       <label>Reason for Point Reallocation:</label>
-      <TextareaAutosize id="story_details" />
+      <TextareaAutosize id="reallocation_details" />
       
-      <button className = "button">Submit</button>
       </div>
     )
   }
