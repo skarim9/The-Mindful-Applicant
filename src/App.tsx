@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import './App.css';
 import Quiz from './quiz/Quiz';
 import PointsAllocation from './points-allocation/PointsAllocation';
+import Login from './login/login'
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Switch>
              <Route path="/points-reallocation" component={PointsAllocation} />
              <Route path="/quiz" component={Quiz}/>
+             <Route path="/login" component={Login}/>
              
            </Switch>
         </div> 
