@@ -6,7 +6,7 @@ import Quiz from './quiz/Quiz';
 
 import Dashboard from './profile/index';
 import PointsAllocation from './points-allocation/PointsAllocation';
-import Login from './login/login'
+import SignIn from './login/Login'
 
 function App() {
   return (
@@ -17,6 +17,7 @@ function App() {
              <Route path="/points-reallocation" component={PointsAllocation} />
              <Route path="/quiz" component={Quiz}/>
              <Route path ="/profile" component={Dashboard}/>
+             <Route path="/signin" component={SignIn}/>
              
            </Switch>
         </div> 
