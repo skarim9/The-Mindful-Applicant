@@ -16,11 +16,7 @@ function App() {
             <Switch>
              <Route path="/points-reallocation" component={PointsAllocation} />
              <Route path="/quiz" component={Quiz}/>
-<<<<<<< HEAD
-             <Route path="/login" component={Login}/>
-=======
              <Route path ="/profile" component={Dashboard}/>
->>>>>>> origin/main
              
            </Switch>
         </div> 
