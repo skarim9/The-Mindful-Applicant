@@ -6,11 +6,12 @@ import Quiz from './quiz/Quiz';
 
 import Dashboard from './profile/index';
 import PointsAllocation from './points-allocation/PointsAllocation';
-import SignIn from './login/Login'
+import SignIn from './login/login'
 
 function App() {
   return (
     <div className="App">
+   
       <BrowserRouter>
         <div>
             <Switch>

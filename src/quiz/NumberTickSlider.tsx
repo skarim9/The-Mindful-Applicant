@@ -51,23 +51,19 @@ const NumberTickSliderStyle = withStyles({
 const options = [
     {
       value: 1,
-      label: '1'
+      label: ''
     },
     {
       value: 2,
-      label: '2',
+      label: '',
     },
     {
       value: 3,
-      label: '3',
+      label: '',
     },
     {
       value: 4,
-      label: '4',
-    },
-    {
-        value: 5,
-        label: '5',
+      label: '',
     }
   ];
 
@@ -98,7 +94,7 @@ export default class NumberTickSlider extends Component <IAppProps,IAppState>{
                 step={1}
                 marks={options}
                 min={1}
-                max={5}
+                max={4}
                 />
             </div>
             
