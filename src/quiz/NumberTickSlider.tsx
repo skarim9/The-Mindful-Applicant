@@ -4,7 +4,7 @@ import Slider from '@material-ui/core/Slider';
 
 const NumberTickSliderStyle = withStyles({
   root: {
-    color: "#ffffff",
+    color: "#6B9BC0",
     height: 8,
     width: '80%'
   },
@@ -24,8 +24,8 @@ const NumberTickSliderStyle = withStyles({
     
   },
   mark: {
-    border:"2px solid #509EAA",
-    backgroundColor: '#fffffff',
+    border:"2px solid #6B9BC0",
+    backgroundColor: '#ffffff',
     height: 35,
     width: 35,
     borderRadius: 30,
