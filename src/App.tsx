@@ -10,6 +10,7 @@ import Dashboard from './profile/index';
 import PointsAllocation from './points-allocation/PointsAllocation';
 import SignIn from './login/login'
 
+import {addQuizResult} from './firebase-db/firestore/db-functions'
 
 class App extends React.Component {
 
@@ -30,8 +31,15 @@ class App extends React.Component {
     }
   }
 
-
-
+  addToDB(){
+    addQuizResult(
+      {date: new Date(),
+      quiz:{
+        decision_making:389472
+      }},
+      "SAMPLE_USER_WITH_AUTO_ID"
+    )
+  }
   render(){
     return (
       <div className="App">
@@ -46,6 +54,7 @@ class App extends React.Component {
                <Route path="/signin" component={SignIn}/>
                
              </Switch>
+             <button onClick = {this.addToDB}>Click to add quiz result</button>
              
           </div> 
         </BrowserRouter>
