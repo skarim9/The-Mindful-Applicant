@@ -13,18 +13,24 @@ constructor(props: IAppProps){
   render() {
     
     return (
-          <div>
-          <p>{this.props.question}</p>
-          
-            <NumberTickSlider />
-            
-        
-        </div>
+      <table width = "100%">
+        <tbody>
+          <tr className = "question-container">
+            <td width = "25%">{this.props.question.option1}</td>
+            <td width = "50%"><NumberTickSlider /></td>
+            <td width = "25%">{this.props.question.option2}</td>            
+        </tr>
+        </tbody>
+        </table>
     )
   }
 }
 interface IAppProps{
-    question:string;
+    question:{
+        option1:string,
+        option2:string
+    }
+    
 }
 interface IAppState{
     name:string;

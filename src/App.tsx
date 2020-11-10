@@ -1,31 +1,70 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch,Link } from 'react-router-dom';
-import logo from './logo.svg';
+// database imports
+import Firebase from 'firebase';
+
 import './App.css';
 import Quiz from './quiz/Quiz';
 
 import Dashboard from './profile/index';
 import PointsAllocation from './points-allocation/PointsAllocation';
-import SignIn from './login/Login'
+import SignIn from './login/login'
 
-function App() {
-  return (
-    <div className="App">
-      <BrowserRouter>
-        <div>
-            <Switch>
-             <Route path="/points-reallocation" component={PointsAllocation} />
-             <Route path="/quiz" component={Quiz}/>
-             <Route path ="/profile" component={Dashboard}/>
-             <Route path="/signin" component={SignIn}/>
-             
-           </Switch>
-        </div> 
-      </BrowserRouter>
+import {addQuizResult} from './firebase-db/firestore/db-functions'
+
+class App extends React.Component {
+
+  constructor(props:any){
+    super(props);
+    this.state = {
+      users: []
+    }
+  }
+
+  componentDidMount() {
+  }
+  componentDidUpdate(prevProps:any, prevState:any) {
+    // check on previous state
+    // only write when it's different with the new state
+    if (prevState !== this.state) {
+      
+    }
+  }
+
+  addToDB(){
+    addQuizResult(
+      {date: new Date(),
+      quiz:{
+        decision_making:389472
+      }},
+      "SAMPLE_USER_WITH_AUTO_ID"
+    )
+  }
+  render(){
+    return (
+      <div className="App">
      
-    </div>
+        <BrowserRouter>
+          <div>
 
-  );
+              <Switch>
+               <Route path="/points-reallocation" component={PointsAllocation} />
+               <Route path="/quiz" component={Quiz}/>
+               <Route path ="/profile" component={Dashboard}/>
+               <Route path="/signin" component={SignIn}/>
+               
+             </Switch>
+             <button onClick = {this.addToDB}>Click to add quiz result</button>
+             
+          </div> 
+        </BrowserRouter>
+
+        
+       
+      </div>
+  
+    );
+  }
 }
 
 export default App;

@@ -4,7 +4,7 @@ import Slider from '@material-ui/core/Slider';
 
 const NumberTickSliderStyle = withStyles({
   root: {
-    color: "#ffffff",
+    color: "#6B9BC0",
     height: 8,
     width: '80%'
   },
@@ -24,8 +24,8 @@ const NumberTickSliderStyle = withStyles({
     
   },
   mark: {
-    border:"2px solid #509EAA",
-    backgroundColor: '#fffffff',
+    border:"2px solid #6B9BC0",
+    backgroundColor: '#ffffff',
     height: 35,
     width: 35,
     borderRadius: 30,
@@ -51,23 +51,19 @@ const NumberTickSliderStyle = withStyles({
 const options = [
     {
       value: 1,
-      label: '1'
+      label: ''
     },
     {
       value: 2,
-      label: '2',
+      label: '',
     },
     {
       value: 3,
-      label: '3',
+      label: '',
     },
     {
       value: 4,
-      label: '4',
-    },
-    {
-        value: 5,
-        label: '5',
+      label: '',
     }
   ];
 
@@ -98,7 +94,7 @@ export default class NumberTickSlider extends Component <IAppProps,IAppState>{
                 step={1}
                 marks={options}
                 min={1}
-                max={5}
+                max={4}
                 />
             </div>
             
