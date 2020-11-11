@@ -71,7 +71,7 @@ export default class NumberTickSlider extends Component <IAppProps,IAppState>{
   
     constructor(props: IAppProps){
         super(props);
-        this.state = {selectedNum:3}
+        this.state = {selectedNum:0,minNum:1,maxNum:4}
     }
 
     setValue = (value: number | number[]) =>{
@@ -82,6 +82,7 @@ export default class NumberTickSlider extends Component <IAppProps,IAppState>{
     render() {
         const handleChange = (event: any, newValue: number | number[]) => {
             this.setValue(newValue);
+            this.props.handleValue(newValue,this.state.minNum,this.state.maxNum);
         };
         return (
             <div>
@@ -93,8 +94,8 @@ export default class NumberTickSlider extends Component <IAppProps,IAppState>{
                 defaultValue={3}
                 step={1}
                 marks={options}
-                min={1}
-                max={4}
+                min={this.state.minNum}
+                max={this.state.maxNum}
                 />
             </div>
             
@@ -102,8 +103,11 @@ export default class NumberTickSlider extends Component <IAppProps,IAppState>{
     }
 }
 interface IAppProps{
+  handleValue:(value:number | number[],minValue:number, maxValue:number) => void;
 }
 interface IAppState{
     selectedNum:number | number[]
+    minNum:number
+    maxNum:number
 }
 
