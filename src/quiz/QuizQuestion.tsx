@@ -10,6 +10,7 @@ constructor(props: IAppProps){
     this.state = {name:""}
 }
 
+  
   render() {
     
     return (
@@ -26,6 +27,7 @@ constructor(props: IAppProps){
   }
 }
 interface IAppProps{
+  updateCategoryScore:(category:Category, addPoints:number) =>void
     question:{
       option1:{
           statement:string

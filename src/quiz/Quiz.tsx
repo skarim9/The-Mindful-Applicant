@@ -10,12 +10,15 @@ export default class Quiz extends Component <IAppProps,IAppState>{
         this.state = {
             name:"",
             isShowResults:false, 
-            questions:questionsData
+            score:{
+                decision_making:0,
+                relationship_skills:0,
+                self_awareness:0,
+                social_awareness:0,
+                self_management:0
+            }
         }
     }
-
-
-
 
     render() {
         return (
@@ -28,7 +31,7 @@ export default class Quiz extends Component <IAppProps,IAppState>{
               :
                 <div className = "quiz-container">
                     
-                    {this.createQuizQuestions(this.state.questions)}
+                    {this.createQuizQuestions(questionsData)}
                     
                     
                 <button onClick={(e) => this.toggleResults(true)} className = "submitBtn" >Submit</button> 
@@ -71,7 +74,7 @@ export default class Quiz extends Component <IAppProps,IAppState>{
                             <div  className = "ol-label-container">
                                 <div className="ol-label">{_index+1}</div>
                             </div>
-                            <QuizQuestion question = {_question}/>
+                            <QuizQuestion question = {_question} updateCategoryScore = {this.updateCategoryScore}/>
                         </span>
                     </li>
     }
@@ -90,6 +93,57 @@ export default class Quiz extends Component <IAppProps,IAppState>{
         </ol>)
     }
     
+    /**
+     * updates the category by adding the points to the current number of points
+     * @param category - category to add points to
+     * @param addPoints - amount of points to add
+     */
+    updateCategoryScore(category:Category, addPoints:number){
+        switch(category){
+            case Category.Decision_Making:
+                this.setState(prevState => ({
+                    score: {                   // object that we want to update
+                        ...prevState.score,    // keep all other key-value pairs
+                        decision_making: prevState.score.decision_making+addPoints       // update the value of specific key
+                    }
+                }));
+                break;
+            case Category.Self_Awareness:
+                this.setState(prevState => ({
+                    score: {                   // object that we want to update
+                        ...prevState.score,    // keep all other key-value pairs
+                        self_awareness: prevState.score.decision_making+addPoints       // update the value of specific key
+                    }
+                }));
+                break;
+            case Category.Relationship_Skills:
+                this.setState(prevState => ({
+                    score: {                   // object that we want to update
+                        ...prevState.score,    // keep all other key-value pairs
+                        relationship_skills: prevState.score.decision_making+addPoints       // update the value of specific key
+                    }
+                }));
+                break;
+            case Category.Social_Awareness:
+                this.setState(prevState => ({
+                    score: {                   // object that we want to update
+                        ...prevState.score,    // keep all other key-value pairs
+                        social_awareness: prevState.score.decision_making+addPoints       // update the value of specific key
+                    }
+                }));
+                break;
+            case Category.Self_Management:
+                this.setState(prevState => ({
+                    score: {                   // object that we want to update
+                        ...prevState.score,    // keep all other key-value pairs
+                        self_management: prevState.score.decision_making+addPoints       // update the value of specific key
+                    }
+                }));
+                break;
+                        
+        }
+    }
+
 
     
 }
@@ -99,16 +153,6 @@ interface IAppState{
     isShowResults: boolean;
     
     name:string;
-    questions:{
-        option1:{
-            statement:string
-            category:Category
-        },
-        option2:{
-            statement:string
-            category:Category
-        }
-    }[];
     score:{
         decision_making:number
         relationship_skills:number 
