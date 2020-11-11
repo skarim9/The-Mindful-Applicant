@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './quiz.scss'
 import NumberTickSlider from './NumberTickSlider'
-
+import {Category} from './quiz-questions-data'
 
 export default class QuizQuestion extends Component <IAppProps,IAppState>{
   
@@ -16,9 +16,9 @@ constructor(props: IAppProps){
       <table width = "100%">
         <tbody>
           <tr className = "question-container">
-            <td width = "25%">{this.props.question.option1}</td>
+            <td width = "25%">{this.props.question.option1.statement}</td>
             <td width = "50%"><NumberTickSlider /></td>
-            <td width = "25%">{this.props.question.option2}</td>            
+            <td width = "25%">{this.props.question.option2.statement}</td>            
         </tr>
         </tbody>
         </table>
@@ -27,9 +27,15 @@ constructor(props: IAppProps){
 }
 interface IAppProps{
     question:{
-        option1:string,
-        option2:string
-    }
+      option1:{
+          statement:string
+          category:Category
+      },
+      option2:{
+          statement:string
+          category:Category
+      }
+  }
     
 }
 interface IAppState{

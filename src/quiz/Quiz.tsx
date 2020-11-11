@@ -28,7 +28,7 @@ export default class Quiz extends Component <IAppProps,IAppState>{
               :
                 <div className = "quiz-container">
                     
-                        {this.createQuizQuestions(this.state.questions)}
+                    {this.createQuizQuestions(this.state.questions)}
                     
                     
                 <button onClick={(e) => this.toggleResults(true)} className = "submitBtn" >Submit</button> 
@@ -54,8 +54,14 @@ export default class Quiz extends Component <IAppProps,IAppState>{
 
 
     createQuestion =(_question:{
-        option1:string,
-        option2:string
+        option1:{
+            statement:string
+            category:Category
+        },
+        option2:{
+            statement:string
+            category:Category
+        }
     },_index:number) => {
 
        
@@ -70,8 +76,14 @@ export default class Quiz extends Component <IAppProps,IAppState>{
                     </li>
     }
     createQuizQuestions=(_questions: {
-        option1:string,
-        option2:string
+        option1:{
+            statement:string
+            category:Category
+        },
+        option2:{
+            statement:string
+            category:Category
+        }
     }[])=>{
         return(<ol className="quiz-questions-container">
             {_questions.map(this.createQuestion)}
@@ -97,5 +109,11 @@ interface IAppState{
             category:Category
         }
     }[];
-    
+    score:{
+        decision_making:number
+        relationship_skills:number 
+        self_awareness:number
+        social_awareness:number 
+        self_management:number
+    }
 }

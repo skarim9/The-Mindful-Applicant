@@ -10,7 +10,7 @@ export const questionsData = [
     {
         option1:
         {
-            statment:'I know myself. I can react well to different situations.',
+            statement:'I know myself. I can react well to different situations.',
             category:Category.Self_Awareness
         },
         option2:
@@ -228,5 +228,5 @@ export const questionsData = [
         }
     }
     
-]
+];
 
