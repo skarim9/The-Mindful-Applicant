@@ -44,6 +44,16 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  splitScreen: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  leftPane: {
+    width: '60%',
+  },
+  rightPane: {
+    width: '40%',
+  },
 }));
 
 export default function SignIn() {
@@ -52,6 +62,10 @@ export default function SignIn() {
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
+      <div className={classes.splitScreen}>
+        <div className={classes.leftPane}></div>
+        <div className={classes.rightPane}></div>
+      </div>
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
