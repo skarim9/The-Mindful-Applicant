@@ -1,7 +1,18 @@
 import {db} from '../config'
+interface Quiz{
+	decision_making:number,
 
-export const addQuizResult = async (quiz_result:{date:Date,quiz:{decision_making:number}}, user_id:string) => {//takes in a quiz object and a users special uid to create a quiz under the uid.
-	const quizDataRef = db.collection(`users/${user_id}/quiz_results/${quiz_result.date.toString()}/original_results`).doc()
+}
+export const addOriginalQuizResult = async(quiz_result:{date:Date,quiz:Quiz}, user_id:string)=>{
+	addQuizResult(quiz_result,user_id,`users/${user_id}/quiz_results/${quiz_result.date.toString()}/original_results`);
+}
+export const addReallocatedQuizResult = async(quiz_result:{date:Date,quiz:Quiz}, user_id:string)=>{
+	addQuizResult(quiz_result,user_id,`users/${user_id}/quiz_results/${quiz_result.date.toString()}/reallocation_results`);
+}
+
+
+const addQuizResult = async (quiz_result:{date:Date,quiz:{decision_making:number}}, user_id:string,db_path:string) => {//takes in a quiz object and a users special uid to create a quiz under the uid.
+	const quizDataRef = db.collection(db_path).doc()
 
 	await quizDataRef.get()
 		.then(async (snapshot: { exists: any; id: any; data: () => any }) => {//needs to check if the snapshot exists or not
