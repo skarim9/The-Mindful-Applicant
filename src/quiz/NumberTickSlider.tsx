@@ -50,8 +50,12 @@ const NumberTickSliderStyle = withStyles({
 })(Slider);
 const options = [
     {
-      value: 1,
+      value: 0,
       label: ''
+    },
+    {
+      value: 1,
+      label: '',
     },
     {
       value: 2,
@@ -60,10 +64,6 @@ const options = [
     {
       value: 3,
       label: '',
-    },
-    {
-      value: 4,
-      label: '',
     }
   ];
 
@@ -71,7 +71,7 @@ export default class NumberTickSlider extends Component <IAppProps,IAppState>{
   
     constructor(props: IAppProps){
         super(props);
-        this.state = {selectedNum:0,minNum:1,maxNum:4}
+        this.state = {selectedNum:0,minNum:0,maxNum:3}
     }
 
     setValue = (value: number | number[]) =>{
@@ -91,7 +91,7 @@ export default class NumberTickSlider extends Component <IAppProps,IAppState>{
                 valueLabelDisplay="off"
                 onChangeCommitted={handleChange}
                 aria-labelledby="discrete-slider-custom"
-                defaultValue={3}
+                
                 step={1}
                 marks={options}
                 min={this.state.minNum}

@@ -22,7 +22,7 @@ export const questionsData = [
     {
         option1:{
             statement:'I understand how to use my strengths and weaknesses to make future plans.',
-            category:Category.Self_Management
+            category:Category.Self_Awareness
         },
         option2:{
             statement:'I ask people in school and in my community for help when I face a problem.',

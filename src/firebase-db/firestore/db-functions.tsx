@@ -1,6 +1,11 @@
 import {db} from '../config'
 interface Quiz{
+	
 	decision_making:number,
+	relationship_skills:number, 
+	self_awareness:number,
+	social_awareness:number, 
+	self_management:number
 
 }
 export const addNewUser = async(school_email:string) => {

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PolarAreaChart from '../../components/PolarAreaChart'
-import { BrowserRouter, Route, Switch,Link } from 'react-router-dom';
 
 import './quiz-results.scss'
 import PointsAllocation from '../../points-allocation/PointsAllocation';
+import {Score} from '../Quiz'
 
 export const colors = ["#ab8de0","#d34545","#45b0d3","#8fe891","#eac567","ac88ef"]
 
@@ -13,33 +13,16 @@ export default class QuizResults extends Component <ResultsProps,IAppState>{
         super(props);
         this.state = {
             isAllocatePoints:false,
-            stats:[
-                {
-                    category: "Decision Making",
-                    progress:2,
-                    total:5
-                },
-                {
-                    category: "Self Awareness",
-                    progress:3,
-                    total:5
-                },
-                {
-                    category: "Self Management",
-                    progress:2,
-                    total:5
-                },
-                {
-                    category: "Social Awareness",
-                    progress:4,
-                    total:5
-                },
-                {
-                    category: "Relationship Skills",
-                    progress:1,
-                    total:5
-                }]
+            
         }
+    }
+    componentDidMount(){
+        let a = "";
+        for(let k in this.props.stats){
+            a+="\n"+this.props.stats[k].category+":"+this.props.stats[k].progress;
+        }
+        
+        console.log(`Quiz Results are  is ${a}`)
     }
     
     polarChartData(stats:{
@@ -62,13 +45,13 @@ export default class QuizResults extends Component <ResultsProps,IAppState>{
     }
 
     render() {
-        let data = this.polarChartData(this.state.stats);
+        let data = this.polarChartData(this.props.stats);
 
         return (
             <div>
                 { this.state.isAllocatePoints?
                 
-                <PointsAllocation polarChartData = {this.polarChartData}stats = {this.state.stats}/>:
+                <PointsAllocation polarChartData = {this.polarChartData}stats = {this.props.stats}/>:
                 <div>
                     <div className="quiz-results-container">
                         <div className = "snapshot">
@@ -88,13 +71,13 @@ export default class QuizResults extends Component <ResultsProps,IAppState>{
     }
 }
 interface ResultsProps{
-
-}
-interface IAppState{
-    isAllocatePoints:boolean,
     stats:{
         category: string,
         progress:number,
         total:number
     }[]
+}
+interface IAppState{
+    isAllocatePoints:boolean,
+    
 }

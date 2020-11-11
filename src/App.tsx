@@ -37,15 +37,23 @@ class App extends React.Component {
     addOriginalQuizResult(
       {date: new Date(),
       quiz:{
-        decision_making:389472
+        decision_making:324,
+        relationship_skills:3422342,
+        self_awareness:6545,
+        social_awareness:34,
+        self_management:4593
       }},
       "SANDRA"
     )
     addReallocatedQuizResult(
       {date: new Date(),
-      quiz:{
-        decision_making:389472
-      }},
+        quiz:{
+          decision_making:324,
+          relationship_skills:3422342,
+          self_awareness:6545,
+          social_awareness:34,
+          self_management:4593
+        }},
       "SANDRA"
     )
   }

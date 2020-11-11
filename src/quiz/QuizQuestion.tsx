@@ -9,7 +9,8 @@ export default class QuizQuestion extends Component <IAppProps,IAppState>{
   
 constructor(props: IAppProps){
     super(props);
-    this.state = {name:""}
+    // console.log(`Props is ${this.props}`)
+    this.state = {isAnswered:false}
 }
 
 
@@ -32,29 +33,19 @@ constructor(props: IAppProps){
    * WARNING: Code is specific to the scale used in number tick slider
    * @param selectedValue H
    */
-  handleSelectedValue(selectedValue:number|number[], minValue:number, maxValue:number){
-    (selectedValue?:number)=>{//if selected value is number
-      if(selectedValue !== undefined)//if selected value is not undefined
-      {
-        //updates category score according to values
-        this.props.updateCategoryScore(this.props.question.option1.category,selectedValue+minValue);
-        this.props.updateCategoryScore(this.props.question.option2.category,maxValue-(selectedValue+minValue));
-      
+  handleSelectedValue = async(selectedValue:number|number[], minValue:number, maxValue:number)=>{
+    if(!this.state.isAnswered){
+      if (typeof selectedValue === "number") {
+          //updates category score according to values
+        await this.props.updateCategoryScore(this.props.question.option1.category,maxValue-(selectedValue));
+        await this.props.updateCategoryScore(this.props.question.option2.category,selectedValue);
       }
-    
+        this.setState({isAnswered:true})
+        this.props.updateAnsweredCount();
+    }    
+    else{
+      console.log( `This question has already been answered.`);
     }
-    (selectedValue?:number[])=>{//if selected value is number
-      if(selectedValue !== undefined&&selectedValue.length)//if selected value is not undefined
-      {
-        //updates category score according to values
-        this.props.updateCategoryScore(this.props.question.option1.category,selectedValue[0]+minValue);
-        this.props.updateCategoryScore(this.props.question.option2.category,maxValue-(selectedValue[0]+minValue));
-      
-      }
-    
-    }
-    
-      
   }
 }
 interface IAppProps{
@@ -68,10 +59,11 @@ interface IAppProps{
         statement:string
         category:Category
     }
-  }
+  },
+  updateAnsweredCount:Function
     
 }
 interface IAppState{
-    name:string;
+    isAnswered:boolean
 }
 
