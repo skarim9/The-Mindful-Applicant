@@ -3,6 +3,25 @@ interface Quiz{
 	decision_making:number,
 
 }
+export const addNewUser = async(school_email:string) => {
+	const data = {
+	  email:school_email,
+	  uid: new Date().getTime()
+	};
+  
+	// adding data here
+	db.collection("users")
+	  .doc(data.email)
+	  .set(data)
+	  .then(() => {
+		console.log("New user has been added ");
+	  })
+	  .catch(error => {
+		  
+		console.log("ERROR IN ADDING NEW USER");
+	  });
+  }
+
 export const addOriginalQuizResult = async(quiz_result:{date:Date,quiz:Quiz}, user_id:string)=>{
 	addQuizResult(quiz_result,user_id,`users/${user_id}/quiz_results/${quiz_result.date.toString()}/original_results`);
 }
