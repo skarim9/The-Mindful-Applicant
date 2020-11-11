@@ -10,7 +10,7 @@ import Dashboard from './profile/index';
 import PointsAllocation from './points-allocation/PointsAllocation';
 import SignIn from './login/login'
 
-import {addQuizResult} from './firebase-db/firestore/db-functions'
+import {addNewUser,addOriginalQuizResult,addReallocatedQuizResult} from './firebase-db/firestore/db-functions'
 
 class App extends React.Component {
 
@@ -30,14 +30,23 @@ class App extends React.Component {
       
     }
   }
-
+  addUser(){
+    addNewUser('szhen@gmail.com');
+  }
   addToDB(){
-    addQuizResult(
+    addOriginalQuizResult(
       {date: new Date(),
       quiz:{
         decision_making:389472
       }},
-      "SAMPLE_USER_WITH_AUTO_ID"
+      "SANDRA"
+    )
+    addReallocatedQuizResult(
+      {date: new Date(),
+      quiz:{
+        decision_making:389472
+      }},
+      "SANDRA"
     )
   }
   render(){
@@ -54,6 +63,8 @@ class App extends React.Component {
                <Route path="/signin" component={SignIn}/>
                
              </Switch>
+             <button onClick = {this.addUser}>Click to add user</button>
+             
              <button onClick = {this.addToDB}>Click to add quiz result</button>
              
           </div> 
