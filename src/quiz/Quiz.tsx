@@ -124,19 +124,10 @@ export default class Quiz extends Component <IAppProps,IAppState>{
                 console.log("Decision Making score updated to be "+this.state.score.decision_making);
                 break;
             case Category.Self_Awareness:
-                await this.setState({
-                    score:{
-                        decision_making:this.state.score.decision_making,
-                        relationship_skills:this.state.score.relationship_skills, 
-                        self_awareness:this.state.score.self_awareness+addPoints,
-                        social_awareness:this.state.score.social_awareness, 
-                        self_management:this.state.score.self_management,
-                    }
-                })
                 await this.setState(prevState => ({
                     score: {                   // object that we want to update
                         ...prevState.score,    // keep all other key-value pairs
-                        self_awareness: prevState.score.decision_making+addPoints       // update the value of specific key
+                        self_awareness: prevState.score.self_awareness+addPoints       // update the value of specific key
                     }
                 }));
                 console.log("Self Awareness score updated to be "+this.state.score.self_awareness);
@@ -146,7 +137,7 @@ export default class Quiz extends Component <IAppProps,IAppState>{
                 await this.setState(prevState => ({
                     score: {                   // object that we want to update
                         ...prevState.score,    // keep all other key-value pairs
-                        relationship_skills: prevState.score.decision_making+addPoints       // update the value of specific key
+                        relationship_skills: prevState.score.relationship_skills+addPoints       // update the value of specific key
                     }
                 }));
                 break;
@@ -154,7 +145,7 @@ export default class Quiz extends Component <IAppProps,IAppState>{
                 await this.setState(prevState => ({
                     score: {                   // object that we want to update
                         ...prevState.score,    // keep all other key-value pairs
-                        social_awareness: prevState.score.decision_making+addPoints       // update the value of specific key
+                        social_awareness: prevState.score.social_awareness+addPoints       // update the value of specific key
                     }
                 }));
                 break;
@@ -162,7 +153,7 @@ export default class Quiz extends Component <IAppProps,IAppState>{
                 await  this.setState(prevState => ({
                     score: {                   // object that we want to update
                         ...prevState.score,    // keep all other key-value pairs
-                        self_management: prevState.score.decision_making+addPoints       // update the value of specific key
+                        self_management: prevState.score.self_management+addPoints       // update the value of specific key
                     }
                 }));
                 break;
