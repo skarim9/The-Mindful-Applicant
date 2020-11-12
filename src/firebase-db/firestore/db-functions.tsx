@@ -35,7 +35,7 @@ export const addReallocatedQuizResult = async(quiz_result:{date:Date,quiz:Quiz},
 }
 
 
-const addQuizResult = async (quiz_result:{date:Date,quiz:{decision_making:number}}, user_id:string,db_path:string) => {//takes in a quiz object and a users special uid to create a quiz under the uid.
+const addQuizResult = async (quiz_result:{date:Date,quiz:Quiz}, user_id:string,db_path:string) => {//takes in a quiz object and a users special uid to create a quiz under the uid.
 	const quizDataRef = db.collection(db_path).doc()
 
 	await quizDataRef.get()
@@ -47,7 +47,11 @@ const addQuizResult = async (quiz_result:{date:Date,quiz:{decision_making:number
 			} else {//doc.data() here will be undefined in this case
 				//console.log("initializing quiz " + quiz.title)
 				await quizDataRef.set({
-					decision_making:quiz_result.quiz.decision_making
+					decision_making:quiz_result.quiz.decision_making,
+					relationship_skills:quiz_result.quiz.relationship_skills,
+					self_awareness:quiz_result.quiz.self_awareness,
+					self_management:quiz_result.quiz.self_management,
+					social_awareness:quiz_result.quiz.social_awareness
 				})
 			}
 			return true

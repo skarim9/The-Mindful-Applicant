@@ -38,3 +38,7 @@ export const scoreToStat = (score:{
     });
     return arr;
 }
+
+export const statToScore=()=>{
+    
+}
