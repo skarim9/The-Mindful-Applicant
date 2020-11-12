@@ -9,6 +9,7 @@ const NumberTickSliderStyle = withStyles({
     width: '80%'
   },
   thumb: {
+    display:'none',
     height: 36,
     width: 36,
     backgroundColor: "#509EAA",
@@ -18,7 +19,8 @@ const NumberTickSliderStyle = withStyles({
       boxShadow: "inherit"
     }
   },
-  active: {},
+  active: {
+  },
   valueLabel: {
     left: "calc(-50% + 20px)",
     
@@ -31,6 +33,10 @@ const NumberTickSliderStyle = withStyles({
     borderRadius: 30,
     marginTop: -15,
     marginLeft: -19
+  },
+  markActive:{
+    backgroundColor:'#6B9BC0',
+    opacity:1
   },
   markLabel: {
       color:"#509EAA",

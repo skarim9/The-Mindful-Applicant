@@ -230,5 +230,5 @@ export const questionsData = [
     
 ];
 
-
+export const MAX_POINTS_PER_CATEGORY = 24;
 
