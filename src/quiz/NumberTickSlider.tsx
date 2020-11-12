@@ -72,12 +72,12 @@ const options = [
       label: '',
     }
   ];
-
+export const maxValue = 3;
 export default class NumberTickSlider extends Component <IAppProps,IAppState>{
   
     constructor(props: IAppProps){
         super(props);
-        this.state = {selectedNum:0,minNum:0,maxNum:3}
+        this.state = {selectedNum:0,minNum:0,maxNum:maxValue}
     }
 
     setValue = (value: number | number[]) =>{

@@ -4,6 +4,7 @@ import QuizQuestion from './QuizQuestion'
 import QuizResults from './quiz-results/QuizResults';
 import {questionsData,Category} from './quiz-questions-data'
 import {scoreToStat} from './QuizAdapterFunctions'
+import {maxValue} from './NumberTickSlider'
 export default class Quiz extends Component <IAppProps,IAppState>{
   
     constructor(props: IAppProps){
@@ -19,7 +20,7 @@ export default class Quiz extends Component <IAppProps,IAppState>{
                 social_awareness:0,
                 self_management:0
             },
-            maxScorePerQuestion:3,
+            maxScorePerQuestion:maxValue,
             selectedAnswers:[] //holds the numbers that the user selected from quiz questions
         }
     }
