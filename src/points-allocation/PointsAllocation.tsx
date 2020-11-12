@@ -15,7 +15,7 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
         
         this.state = {
             
-        pointsToAllocate:5
+        pointsToAllocate:0
             
         }
     }

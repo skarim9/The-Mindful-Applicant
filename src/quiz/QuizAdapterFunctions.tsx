@@ -1,4 +1,4 @@
-import {Category} from './quiz-questions-data'
+import {Category,MAX_POINTS_PER_CATEGORY} from './quiz-questions-data'
 /**
  * Few adapter functions to handle the way I coded up original quiz scores vs stats
  */
@@ -9,7 +9,7 @@ export const scoreToStat = (score:{
     social_awareness:number, 
     self_management:number
 }) =>{
-    let max = 100;
+    let max = MAX_POINTS_PER_CATEGORY;
     let arr = [];
     arr.push({
         category:Category.Decision_Making,
