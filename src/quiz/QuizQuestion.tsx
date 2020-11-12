@@ -34,22 +34,23 @@ constructor(props: IAppProps){
    * @param selectedValue H
    */
   handleSelectedValue = async(selectedValue:number|number[], minValue:number, maxValue:number)=>{
-    if(!this.state.isAnswered){
+    // if(!this.state.isAnswered){
       if (typeof selectedValue === "number") {
-          //updates category score according to values
-        await this.props.updateCategoryScore(this.props.question.option1.category,maxValue-(selectedValue));
-        await this.props.updateCategoryScore(this.props.question.option2.category,selectedValue);
+          this.props.updateQuestionState(this.props.id,selectedValue)
+        // await this.props.updateCategoryScore(this.props.question.option1.category,maxValue-(selectedValue));
+        // await this.props.updateCategoryScore(this.props.question.option2.category,selectedValue);
       }
         this.setState({isAnswered:true})
         this.props.updateAnsweredCount();
-    }    
-    else{
-      console.log( `This question has already been answered.`);
-    }
+    // }    
+    // else{
+    //   console.log( `This question has already been answered.`);
+    // }
   }
 }
 interface IAppProps{
-  updateCategoryScore:(category:Category, addPoints:number) =>void
+  id:number
+  updateQuestionState:(id:number, selectedNum:number) =>void
   question:{
     option1:{
         statement:string
