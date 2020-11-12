@@ -18,7 +18,9 @@ export default class Quiz extends Component <IAppProps,IAppState>{
                 self_awareness:0,
                 social_awareness:0,
                 self_management:0
-            }
+            },
+            maxScorePerQuestion:3,
+            selectedAnswers:[] //holds the numbers that the user selected from quiz questions
         }
     }
 
@@ -36,14 +38,30 @@ export default class Quiz extends Component <IAppProps,IAppState>{
                     {this.createQuizQuestions(questionsData)}
                     
                     
-                <button onClick={(e) => this.showResults(true)} className = "submitBtn" >Submit</button> 
+                <button onClick={(e) => this.getResults()} className = "submitBtn" >Submit</button> 
                 
                 </div>
               } 
         </div>
         )
     }
+    /**
+     * Calculates the results of the quiz
+     * WARNING: fragile code, might cause mismatching of question and selected answer if anything changes
+     */
+    getResults=async()=>{
+        for(let i in this.state.selectedAnswers){
+            let selectedValue = this.state.selectedAnswers[i];
+            await this.updateCategoryScore(questionsData[i].option1.category,this.state.maxScorePerQuestion-(selectedValue));
+            await this.updateCategoryScore(questionsData[i].option2.category,selectedValue);
+        }
+        this.showResults(true);
+    }
 
+    /**
+     * calculates and shows the results
+     * @param _showResults 
+     */
     showResults(_showResults:boolean){
         if(this.state.answeredCount<questionsData.length){
             alert('Not all questions have been answered.');
@@ -85,7 +103,7 @@ export default class Quiz extends Component <IAppProps,IAppState>{
                             <div  className = "ol-label-container">
                                 <div className="ol-label">{_index+1}</div>
                             </div>
-                            <QuizQuestion question = {_question} updateAnsweredCount={this.updateAnsweredCount} updateCategoryScore = {this.updateCategoryScore}/>
+                            <QuizQuestion id = {_index} question = {_question} updateAnsweredCount={this.updateAnsweredCount} updateQuestionState = {this.updateQuestionState}/>
                         </span>
                     </li>
     }
@@ -104,6 +122,10 @@ export default class Quiz extends Component <IAppProps,IAppState>{
         </ol>)
     }
     
+    updateQuestionState=(id:number, selectedNum:number)=>{
+        this.state.selectedAnswers[id] = selectedNum;
+    }
+
     /**
      * updates the category by adding the points to the current number of points
      * @param category - category to add points to
@@ -171,7 +193,7 @@ interface IAppState{
     
     name:string;
     answeredCount:number;
-    
+    selectedAnswers:number[];
     score:{
         decision_making:number
         relationship_skills:number 
@@ -179,6 +201,7 @@ interface IAppState{
         social_awareness:number 
         self_management:number
     }
+    maxScorePerQuestion:number
 }
 export interface Score{
     
