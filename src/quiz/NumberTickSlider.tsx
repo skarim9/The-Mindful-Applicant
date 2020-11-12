@@ -50,8 +50,12 @@ const NumberTickSliderStyle = withStyles({
 })(Slider);
 const options = [
     {
-      value: 1,
+      value: 0,
       label: ''
+    },
+    {
+      value: 1,
+      label: '',
     },
     {
       value: 2,
@@ -60,10 +64,6 @@ const options = [
     {
       value: 3,
       label: '',
-    },
-    {
-      value: 4,
-      label: '',
     }
   ];
 
@@ -71,7 +71,7 @@ export default class NumberTickSlider extends Component <IAppProps,IAppState>{
   
     constructor(props: IAppProps){
         super(props);
-        this.state = {selectedNum:3}
+        this.state = {selectedNum:0,minNum:0,maxNum:3}
     }
 
     setValue = (value: number | number[]) =>{
@@ -82,6 +82,7 @@ export default class NumberTickSlider extends Component <IAppProps,IAppState>{
     render() {
         const handleChange = (event: any, newValue: number | number[]) => {
             this.setValue(newValue);
+            this.props.handleValue(newValue,this.state.minNum,this.state.maxNum);
         };
         return (
             <div>
@@ -90,11 +91,11 @@ export default class NumberTickSlider extends Component <IAppProps,IAppState>{
                 valueLabelDisplay="off"
                 onChangeCommitted={handleChange}
                 aria-labelledby="discrete-slider-custom"
-                defaultValue={3}
+                
                 step={1}
                 marks={options}
-                min={1}
-                max={4}
+                min={this.state.minNum}
+                max={this.state.maxNum}
                 />
             </div>
             
@@ -102,8 +103,11 @@ export default class NumberTickSlider extends Component <IAppProps,IAppState>{
     }
 }
 interface IAppProps{
+  handleValue:(value:number | number[],minValue:number, maxValue:number) => void;
 }
 interface IAppState{
     selectedNum:number | number[]
+    minNum:number
+    maxNum:number
 }
 
