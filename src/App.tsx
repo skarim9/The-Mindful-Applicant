@@ -71,10 +71,10 @@ class App extends React.Component {
                <Route path="/signin" component={SignIn}/>
                
              </Switch>
-             <button onClick = {this.addUser}>Click to add user</button>
+             {/* <button onClick = {this.addUser}>Click to add user</button>
              
              <button onClick = {this.addToDB}>Click to add quiz result</button>
-             
+              */}
           </div> 
         </BrowserRouter>
 
