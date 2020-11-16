@@ -1,6 +1,4 @@
 import {db} from '../config'
-import 'firebase/auth'
-import 'firebase/firestore'
 interface Quiz{
 	
 	decision_making:number,
@@ -62,8 +60,3 @@ const addQuizResult = async (quiz_result:{date:Date,quiz:Quiz}, user_id:string,d
 			return false
 		})
 }
-
-
-
-
-

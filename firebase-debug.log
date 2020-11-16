@@ -1,0 +1,21 @@
+[debug] [2020-11-09T18:18:28.650Z] ----------------------------------------------------------------------
+[debug] [2020-11-09T18:18:28.652Z] Command:       D:\Downloads\Nodejs\node.exe C:\Users\zabby\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2020-11-09T18:18:28.653Z] CLI Version:   8.15.1
+[debug] [2020-11-09T18:18:28.653Z] Platform:      win32
+[debug] [2020-11-09T18:18:28.653Z] Node Version:  v12.15.0
+[debug] [2020-11-09T18:18:28.654Z] Time:          Mon Nov 09 2020 13:18:28 GMT-0500 (Eastern Standard Time)
+[debug] [2020-11-09T18:18:28.654Z] ----------------------------------------------------------------------
+[debug] [2020-11-09T18:18:28.654Z] 
+[debug] [2020-11-09T18:18:28.661Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-11-09T18:18:28.662Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\Spark\501\The-Mindful-Applicant
+
