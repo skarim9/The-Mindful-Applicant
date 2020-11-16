@@ -2,7 +2,7 @@ import React, { useContext }  from 'react';
 import { BrowserRouter, Route, Switch,Link } from 'react-router-dom';
 // database imports
 
-import { signInWithGoogle } from "./firebase-db/config";
+import { signInWithGoogle,auth } from "./firebase-db/config";
 import './App.css';
 import Quiz from './quiz/Quiz';
 
@@ -40,7 +40,7 @@ function App(){
         </div> 
       </BrowserRouter>
 
-      
+      <button onClick = {() => {auth.signOut()}}>Sign Out</button>
      
     </div>
     :
