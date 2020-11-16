@@ -6,7 +6,31 @@ import Quiz from './quiz/Quiz';
 
 import Dashboard from './profile/index';
 import PointsAllocation from './points-allocation/PointsAllocation';
-import SignIn from './login/Login'
+import SignIn from './login/login'
+
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import 'firebase/auth';
+import 'firebase/analytics';
+
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
+
+firebase.initializeApp({
+  apiKey: "AIzaSyAyXW5rmBKE6CVO_alY3JaTprY6Qs4qqpE",
+  authDomain: "quickstart-1573950019598.firebaseapp.com",
+  databaseURL: "https://quickstart-1573950019598.firebaseio.com",
+  projectId: "quickstart-1573950019598",
+  storageBucket: "quickstart-1573950019598.appspot.com",
+  messagingSenderId: "581831503315",
+  appId: "1:581831503315:web:6da8aa3cb8f9d2ad14d326",
+  measurementId: "G-RQL95BZ6NJ"
+})
+
+const auth = firebase.auth();
+const firestore = firebase.firestore();
+const analytics = firebase.analytics();
+
 
 function App() {
   return (
