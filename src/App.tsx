@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Switch,Link } from 'react-router-dom';
 import './App.css';
 import Quiz from './quiz/Quiz';
 
-import Dashboard from './profile/index';
+import Dashboard from './profile/Dashboard';
 import PointsAllocation from './points-allocation/PointsAllocation';
 import SignIn from './login/login';
 import SignUp from './signup/Signup';

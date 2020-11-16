@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
-import Navbar from './Navbar';
+import Navbar from './NavBar';
 import Drawer from './Drawer';
 
 import Paper from '@material-ui/core/Paper';
