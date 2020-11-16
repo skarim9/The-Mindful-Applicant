@@ -4,11 +4,12 @@ import Slider from '@material-ui/core/Slider';
 
 const NumberTickSliderStyle = withStyles({
   root: {
-    color: "#ffffff",
+    color: "#6B9BC0",
     height: 8,
     width: '80%'
   },
   thumb: {
+    display:'none',
     height: 36,
     width: 36,
     backgroundColor: "#509EAA",
@@ -18,19 +19,24 @@ const NumberTickSliderStyle = withStyles({
       boxShadow: "inherit"
     }
   },
-  active: {},
+  active: {
+  },
   valueLabel: {
     left: "calc(-50% + 20px)",
     
   },
   mark: {
-    border:"2px solid #509EAA",
-    backgroundColor: '#fffffff',
+    border:"2px solid #6B9BC0",
+    backgroundColor: '#ffffff',
     height: 35,
     width: 35,
     borderRadius: 30,
     marginTop: -15,
     marginLeft: -19
+  },
+  markActive:{
+    backgroundColor:'#6B9BC0',
+    opacity:1
   },
   markLabel: {
       color:"#509EAA",
@@ -50,32 +56,28 @@ const NumberTickSliderStyle = withStyles({
 })(Slider);
 const options = [
     {
+      value: 0,
+      label: ''
+    },
+    {
       value: 1,
-      label: '1'
+      label: '',
     },
     {
       value: 2,
-      label: '2',
+      label: '',
     },
     {
       value: 3,
-      label: '3',
-    },
-    {
-      value: 4,
-      label: '4',
-    },
-    {
-        value: 5,
-        label: '5',
+      label: '',
     }
   ];
-
+export const maxValue = 3;
 export default class NumberTickSlider extends Component <IAppProps,IAppState>{
   
     constructor(props: IAppProps){
         super(props);
-        this.state = {selectedNum:3}
+        this.state = {selectedNum:0,minNum:0,maxNum:maxValue}
     }
 
     setValue = (value: number | number[]) =>{
@@ -86,6 +88,7 @@ export default class NumberTickSlider extends Component <IAppProps,IAppState>{
     render() {
         const handleChange = (event: any, newValue: number | number[]) => {
             this.setValue(newValue);
+            this.props.handleValue(newValue,this.state.minNum,this.state.maxNum);
         };
         return (
             <div>
@@ -94,11 +97,11 @@ export default class NumberTickSlider extends Component <IAppProps,IAppState>{
                 valueLabelDisplay="off"
                 onChangeCommitted={handleChange}
                 aria-labelledby="discrete-slider-custom"
-                defaultValue={3}
+                
                 step={1}
                 marks={options}
-                min={1}
-                max={5}
+                min={this.state.minNum}
+                max={this.state.maxNum}
                 />
             </div>
             
@@ -106,8 +109,11 @@ export default class NumberTickSlider extends Component <IAppProps,IAppState>{
     }
 }
 interface IAppProps{
+  handleValue:(value:number | number[],minValue:number, maxValue:number) => void;
 }
 interface IAppState{
     selectedNum:number | number[]
+    minNum:number
+    maxNum:number
 }
 

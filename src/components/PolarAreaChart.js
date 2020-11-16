@@ -17,9 +17,9 @@ export default class PolarAreaChart extends Component{
                 scale:{
                     
                     ticks: {
-                        max: 5,
+                        max: 25,
                         min: 0,
-                        stepSize: 1,
+                        stepSize: 5,
                         showLabelBackdrop:false,
                         display:false
                     },

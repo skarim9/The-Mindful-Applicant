@@ -27,6 +27,7 @@ import InputBase from '@material-ui/core/InputBase';
 import '../App.css';
 import InputLabel from '@material-ui/core/InputLabel';
 
+
 // function Copyright() {
 //   return (
 //     <Typography variant="body2" color="textSecondary" align="center">
@@ -132,10 +133,10 @@ const useStyles = makeStyles((theme) => ({
   },
   margin: {
     margin: theme.spacing(1),
-    marginBottom: theme.spacing(2),
+    marginBottom: theme.spacing(1),
   },
   avatar: {
-    margin: theme.spacing(3),
+    margin: theme.spacing(2),
     borderRadius: '0',
     border: '4px solid #252525',
     boxSizing: 'border-box',
@@ -149,7 +150,7 @@ const useStyles = makeStyles((theme) => ({
   },
   signinMargin: {
     marginTop: theme.spacing(-1),
-    marginBottom: theme.spacing(4),
+    marginBottom: theme.spacing(3),
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -173,7 +174,8 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 6,
     width: '90%',
     '&:hover': {
-      backgroundColor: "#5c6e91",
+      backgroundColor: "#DBD8D4",
+      color: "#6B9BC0",
     },
   },
   signupP: {
@@ -181,7 +183,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 16,
     lineHeight: '17px',
     position: "relative",
-    bottom: '-23.5vh',
+    bottom: '-0.5vh',
     justifyContent: 'center',
   },
   signupLink: {
@@ -192,7 +194,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+export default function SignUp() {
   const classes = useStyles();
 
   return (
@@ -216,20 +218,44 @@ export default function SignIn() {
               M 
             </Avatar>
             <Typography component="h1" variant="h5" className={classes.signinMargin}>
-              Sign in
+              Sign Up
             </Typography>
             <form className={classes.form} noValidate>
               <FormControl className={classes.margin}>
                 <InputLabel shrink htmlFor="bootstrap-input" className={classes.inputLabel} >
-                  Email
+                  Your Name
                 </InputLabel>
-                <BootstrapInput id="email" placeholder="Enter your email address" autoComplete="None"/>
+                <BootstrapInput id="name" placeholder="Enter your full name" autoComplete="off" type="text"/>
               </FormControl>
               <FormControl className={classes.margin}>
                 <InputLabel shrink htmlFor="bootstrap-input" className={classes.inputLabel} >
-                  Password
+                  Email
                 </InputLabel>
-                <BootstrapInput id="password" placeholder="Enter your password" autoComplete="None"/>
+                <BootstrapInput id="email" placeholder="Enter your email address" autoComplete="off"/>
+              </FormControl>
+              <FormControl className={classes.margin}>
+                <InputLabel shrink htmlFor="bootstrap-input" className={classes.inputLabel} >
+                  Your School
+                </InputLabel>
+                <BootstrapInput id="school" placeholder="Enter your current school" autoComplete="off"/>
+              </FormControl>
+              <FormControl className={classes.margin}>
+                <InputLabel shrink htmlFor="bootstrap-input" className={classes.inputLabel} >
+                  Your Grade
+                </InputLabel>
+                <BootstrapInput id="grade" placeholder="Enter your current grade"/>
+              </FormControl>
+              <FormControl className={classes.margin}>
+                <InputLabel shrink htmlFor="bootstrap-input" className={classes.inputLabel} >
+                  Choose a Password
+                </InputLabel>
+                <BootstrapInput id="password" placeholder="Enter desired password" autoComplete="off" type="password"/>
+              </FormControl>
+              <FormControl className={classes.margin}>
+                <InputLabel shrink htmlFor="bootstrap-input" className={classes.inputLabel} >
+                  Confirm your password
+                </InputLabel>
+                <BootstrapInput id="password_confirm" placeholder="Re-type your password" autoComplete="off" type="password"/>
               </FormControl>
               {/* <TextField
                 className={classes.textField}
@@ -265,7 +291,7 @@ export default function SignIn() {
                 className={classes.submit}
                 href="/profile"
               >
-                Sign In
+                Sign Up
               </Button>
               <Grid container>
                 <Grid item xs>
@@ -275,9 +301,9 @@ export default function SignIn() {
                 </Grid>
               </Grid>
               <Box mt={5} className={classes.box}>
-                <p className={classes.signupP}>Don't have an account? 
-                  <Link href="/signup" variant="body2" className={classes.signupLink} underline="none">
-                    {" Sign Up"}
+                <p className={classes.signupP}>Already have an account? 
+                  <Link href="/signin" variant="body2" className={classes.signupLink} underline="none">
+                    {" Sign In"}
                   </Link>
                 </p>
               </Box>

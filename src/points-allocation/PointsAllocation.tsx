@@ -5,8 +5,6 @@ import './point-allocation.scss'
 import PolarAreaChart  from "../components/PolarAreaChart";
 import {colors} from "../quiz/quiz-results/QuizResults";
 
-import { flexbox } from '@material-ui/system';
-
 
 export default class PointsAllocation extends Component <IAppProps,IAppState>{
   
@@ -15,7 +13,7 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
         
         this.state = {
             
-        pointsToAllocate:5
+        pointsToAllocate:0
             
         }
     }
