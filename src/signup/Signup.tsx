@@ -22,6 +22,8 @@ import { makeStyles,
 import { relative } from 'path';
 import { url } from 'inspector';
 import logo from '../icons/welcome_logo.png';
+import {ReactComponent as Mlogo} from '../icons/logo_black.svg';
+import {ReactComponent as Titlelogo} from '../icons/mindfulwordmarkwhite.svg';
 import {  } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 import '../App.css';
@@ -78,8 +80,12 @@ const theme = createMuiTheme({
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
+    overflowX: "hidden",
   },
   image: {
+    [theme.breakpoints.down('xs')]: {
+      display: "none",
+    },
     backgroundRepeat: 'no-repeat',
     backgroundColor: '#6B9BC0',
     backgroundSize: 'cover',
@@ -99,12 +105,23 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     position: 'absolute',
-    left: '1.5vw',
-    top: '-2vh',
+    left: '2.5vw',
+    [theme.breakpoints.down('sm')]: {
+      top: '-1.5vh',
+    },
+    [theme.breakpoints.up('md')]: {
+      top: '-2.6vh',
+    },
+    [theme.breakpoints.up('lg')]: {
+      top: '-3.5vh'
+    },
+    [theme.breakpoints.up('xl')]: {
+      top: '-2.5vh',
+    },
+    
   },
-  titleText: {
-    fontSize: "48px",
-    // fontStretch: 'expanded',
+  titleSize: {
+    width: "65em",
   },
   ellipse: {
     borderRadius: '100%',
@@ -114,19 +131,48 @@ const useStyles = makeStyles((theme) => ({
     transform: 'translate(-50%, -50%)',
   },
   logo: {
+    [theme.breakpoints.down('sm')]: {
+      height: "282px",
+      width: "244.6px",
+    },
+    [theme.breakpoints.up('md')]: {
+      height: "364px",
+      width: "315.75px",
+    },
+    [theme.breakpoints.up('lg')]: {
+      height: "440px",
+      width: "381.7px",
+    },
+    [theme.breakpoints.up('xl')]: {
+      height: "480px",
+      width: "427px",
+    },
     borderRadius: '100%',
-    height: '95%',
-    width: "93%",
   },
   captionLogo: {
+    marginTop: "8%",
     position:'relative',
     top: '70%',
     left: '50%',
     transform: 'translate(-50%, 8%)',
   },
   captionText: {
-    lineHeight: '1.4',
-    fontSize: '32px',
+    [theme.breakpoints.down('sm')]: {
+      lineHeight: '1.2',
+      fontSize: '26px',
+    },
+    [theme.breakpoints.up('md')]: {
+      lineHeight: '1.4',
+      fontSize: '28px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      lineHeight: '1.6',
+      fontSize: '31px',
+    },
+    [theme.breakpoints.up('xl')]: {
+      lineHeight: '1.8',
+      fontSize: '35px',
+    },
   },
   captionBlock: {
     display: 'block',
@@ -142,7 +188,6 @@ const useStyles = makeStyles((theme) => ({
     boxSizing: 'border-box',
     color: "#252525",
     backgroundColor: "#FFFFFF",
-    fontSize: '55px',
   },
   large: {
     width: theme.spacing(15),
@@ -185,6 +230,7 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     bottom: '-0.5vh',
     justifyContent: 'center',
+    marginBottom: "25px",
   },
   signupLink: {
     fontSize: 16,
@@ -201,9 +247,10 @@ export default function SignUp() {
     <ThemeProvider theme={theme}>
       <Grid container component="main" className={classes.root}>
         <CssBaseline />
-        <Grid item xs={8} sm={8} md={9} className={classes.image} >
+        <Grid item xs={false} sm={6} md={9} className={classes.image} >
           <div className={classes.title}>
-            <p className={classes.titleText}>The Mindful Applicant</p>
+            {/* <p className={classes.titleText}>The Mindful Applicant</p> */}
+            <Titlelogo/>
           </div>
           <div className={classes.ellipse}>
             <img src={logo} alt="Welcome logo" className= {classes.logo}/>
@@ -212,10 +259,10 @@ export default function SignUp() {
             <p className= {classes.captionText}><span className= {classes.captionBlock}>Helping students pave intentional,</span><span className= {classes.captionBlock}>joyful paths to college and career</span></p>
           </div>
         </Grid>
-        <Grid item xs={4} sm={4} md={3} component={Paper} elevation={6} square className={classes.right}>
+        <Grid item xs={12} sm={6} md={3} component={Paper} elevation={6} square className={classes.right}>
           <div className={classes.paper}>
             <Avatar className={`${classes.avatar} ${classes.large}`}>
-              M 
+              <Mlogo/>
             </Avatar>
             <Typography component="h1" variant="h5" className={classes.signinMargin}>
               Sign Up
@@ -298,15 +345,14 @@ export default function SignUp() {
                   <Link href="#" variant="body2" underline="none">
                     Forgot your password?
                   </Link>
-                </Grid>
-              </Grid>
-              <Box mt={5} className={classes.box}>
-                <p className={classes.signupP}>Already have an account? 
+
+                  <p className={classes.signupP}>Already have an account? 
                   <Link href="/signin" variant="body2" className={classes.signupLink} underline="none">
                     {" Sign In"}
                   </Link>
                 </p>
-              </Box>
+                </Grid>
+              </Grid>
             </form>
           </div>
         </Grid>
