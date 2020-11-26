@@ -1,3 +1,26 @@
+export enum Typology {
+    Maverick = "The Maverick",
+    Thinker = "The Thinker",
+    Philosopher = "The Philosopher",
+    Conscious = "The Conscious",
+    Altruist = "The Altruist",
+    Ally = "The Ally",
+    Deliberator = "The Deliberator",
+    Giver = "The Giver",
+    Networker = "The Networker",
+    Doer = "The Doer",
+    Free_Spirit = "The Free Spirit",
+    Collaborator = "The Collaborator",
+    Officer = "The Officer",
+    Go_Getter = "The Go Getter",
+    Planner = "The Planner",
+    Proj_Manager = "The Project Manager",
+    Engineer = "The Engineer",
+    Lone_Wolf = "The Lone Wolf",
+    Independent_Operator = "The Independent Operator",
+    System_Maker = "The System Maker"
+
+  }
 
 /**
  * Given score, determines the type based on highest and lowest score
