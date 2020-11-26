@@ -5,6 +5,7 @@ import QuizResults from './quiz-results/QuizResults';
 import {questionsData,Category} from './quiz-questions-data'
 import {scoreToStat} from './QuizAdapterFunctions'
 import {maxValue} from './NumberTickSlider'
+import {determineType} from './quiz-results/TypologyDeterminator'
 export default class Quiz extends Component <IAppProps,IAppState>{
   
     constructor(props: IAppProps){
@@ -32,7 +33,7 @@ export default class Quiz extends Component <IAppProps,IAppState>{
                 <h1 >Social Emotional Quiz</h1>
                     
               {  this.state.isShowResults?
-              <div><QuizResults stats = {scoreToStat(this.state.score)}/></div>
+              <div>{determineType(this.state.score)}<QuizResults stats = {scoreToStat(this.state.score)}/></div>
               :
                 <div className = "quiz-container">
                     

@@ -76,7 +76,7 @@ export const questionsData = [
     
     {
         option1:{
-            statement:'I do well in events (like competitions, presentations or events) when I\'m asked to perform under pressure.',
+            statement:'I do well in events like competitions or presentations) when I\'m asked to perform under pressure.',
             category:Category.Self_Management
         },
         option2:{
@@ -120,7 +120,7 @@ export const questionsData = [
     
     {
         option1:{
-            statement:'I often think ahead to try to understand the impact of my behavior.',
+            statement:'I\'m good at solving problems (either mechanical or human in nature.)',
             category:Category.Decision_Making
         },
         option2:{

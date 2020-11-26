@@ -18,11 +18,15 @@ export default class QuizResults extends Component <ResultsProps,IAppState>{
     }
     componentDidMount(){
         let a = "";
+        
         for(let k in this.props.stats){
             a+="\n"+this.props.stats[k].category+":"+this.props.stats[k].progress;
+            
         }
+
         
-        console.log(`Quiz Results are  is ${a}`)
+        console.log(`Quiz Results are  is ${a}`);
+
     }
     
     polarChartData(stats:{
