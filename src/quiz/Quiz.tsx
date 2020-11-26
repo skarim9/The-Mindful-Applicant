@@ -33,7 +33,7 @@ export default class Quiz extends Component <IAppProps,IAppState>{
                 <h1 >Social Emotional Quiz</h1>
                     
               {  this.state.isShowResults?
-              <div>{determineType(this.state.score)}<QuizResults stats = {scoreToStat(this.state.score)}/></div>
+              <div><QuizResults stats = {scoreToStat(this.state.score)} typology = {determineType(this.state.score)}/></div>
               :
                 <div className = "quiz-container">
                     

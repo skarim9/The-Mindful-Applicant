@@ -62,12 +62,62 @@ export const determineType = (score:{
     if(maxCategory=='self_awareness' && minCategory=='self_management'){
         typology = Typology.Conscious;
     }
+    if(maxCategory=='social_awareness' && minCategory=='self_awareness'){
+        typology = Typology.Altruist;
+    }
+    if(maxCategory=='social_awareness' && minCategory=='relationship_skills'){
+        typology = Typology.Ally;
+    }
+    if(maxCategory=='social_awareness' && minCategory=='decision_making'){
+        typology = Typology.Deliberator;
+    }
+    if(maxCategory=='social_awareness' && minCategory=='self_management'){
+        typology = Typology.Giver;
+    }
+    if(maxCategory=='relationship_skills' && minCategory=='self_awareness'){
+        typology = Typology.Networker;
+    }
+    if(maxCategory=='relationship_skills' && minCategory=='social_awareness'){
+        typology = Typology.Doer;
+    }
+    if(maxCategory=='relationship_skills' && minCategory=='decision_making'){
+        typology = Typology.Free_Spirit;
+    }
+    if(maxCategory=='relationship_skills' && minCategory=='self_management'){
+        typology = Typology.Collaborator;
+    }
+    if(maxCategory=='decision_making' && minCategory=='self_awareness'){
+        typology = Typology.Officer;
+    }
+    if(maxCategory=='decision_making' && minCategory=='social_awareness'){
+        typology = Typology.Go_Getter;
+    }
+    if(maxCategory=='decision_making' && minCategory=='relationship_skills'){
+        typology = Typology.Planner;
+    }
+    if(maxCategory=='decision_making' && minCategory=='self_management'){
+        typology = Typology.Proj_Manager;
+    }
+    if(maxCategory=='self_management' && minCategory=='self_awareness'){
+        typology = Typology.Engineer;
+    }
+    if(maxCategory=='self_management' && minCategory=='social_awareness'){
+        typology = Typology.Lone_Wolf;
+    }
+    if(maxCategory=='self_management' && minCategory=='relationship_skills'){
+        typology = Typology.Independent_Operator;
+    }
+    if(maxCategory=='self_management' && minCategory=='decision_making'){
+        typology = Typology.System_Maker;
+    }
+
+
 
 
 
 
     console.log(`Typology is determined to be ${typology}`);
-
+    return typology;
 
 
 }
