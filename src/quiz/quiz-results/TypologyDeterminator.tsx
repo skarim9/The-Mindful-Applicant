@@ -48,11 +48,25 @@ export const determineType = (score:{
             minScore = v;
         }
     }
-    
+    let typology = Typology.Ally;
     console.log(`Min category is ${minCategory} with score ${minScore}\nMax category is ${maxCategory} with score ${maxScore}`);
-    if(maxCategory=='self_awareness'){
-        console.log(`Success`);
+    if(maxCategory=='self_awareness' && minCategory=='social_awareness'){
+        typology = Typology.Maverick;
     }
+    if(maxCategory=='self_awareness' && minCategory=='relationship_skills'){
+        typology = Typology.Thinker;
+    }
+    if(maxCategory=='self_awareness' && minCategory=='decision_making'){
+        typology = Typology.Philosopher;
+    }
+    if(maxCategory=='self_awareness' && minCategory=='self_management'){
+        typology = Typology.Conscious;
+    }
+
+
+
+
+    console.log(`Typology is determined to be ${typology}`);
 
 
 
