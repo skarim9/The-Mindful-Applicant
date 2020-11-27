@@ -52,7 +52,7 @@ export default function Dashboard() {
   const classes = useStyles();
 
   return (
-    <div style={{overflow: 'auto'}}>
+    <div>
       <Navbar />
       <div className={classes.root}>
           <Drawer />
@@ -61,8 +61,8 @@ export default function Dashboard() {
             <div>
               <Typography variant="h5" style={{color: "#FFFFFF", paddingTop: theme.spacing(1)}}>Overview</Typography>
               <Typography variant="h4" style={{color: "#FFFFFF", paddingBottom: theme.spacing(1)}}>Social Emotional Profile</Typography>
-              <Paper style={{width: '200%', height: '80%', alignContent: 'center', justifyContent: 'center'}}>
-                <Typography variant="h3" style={{textAlign: 'center', color: "#6B9BC0", paddingTop: theme.spacing(25)}}>Take our Social Emotional Quiz now!</Typography>
+              <Paper style={{width: '100%', height: '80%', alignContent: 'center', justifyContent: 'center'}}>
+                <Typography variant="h3" style={{textAlign: 'center', color: "#6B9BC0"}}>Take our Social Emotional Quiz now!</Typography>
                 <div style={{alignContent: 'center', justifyContent: 'center', position: 'absolute'}}>
                   <Button>Hello!</Button>
                 </div>
