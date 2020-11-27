@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import PolarAreaChart from '../../components/PolarAreaChart'
-
-import './quiz-results.scss'
-import PointsAllocation from '../../points-allocation/PointsAllocation';
-import { Typology } from './TypologyDeterminator';
+import { Typology } from '../TypologyDeterminator';
 
 export const colors = ["#ab8de0","#d34545","#45b0d3","#8fe891","#eac567","ac88ef"]
 
@@ -18,12 +14,12 @@ export default class QuizResults extends Component <ResultsProps,IAppState>{
     }
 
     render() {
-
+        
         return (
             <div>
                 <h1>{this.props.typology}</h1>
-                {this.getTypologyImage}
-                {this.renderTypology}
+                {this.getTypologyImage(this.props.typology)}
+                {this.renderTypology(this.props.typology)}
             </div>
         )
     }
@@ -135,6 +131,13 @@ export default class QuizResults extends Component <ResultsProps,IAppState>{
       </div>
     }
 
+
+
+
+
+
+
+
     /**
      * Returns image associated with typology
      * @param typology 
@@ -142,64 +145,64 @@ export default class QuizResults extends Component <ResultsProps,IAppState>{
     getTypologyImage(typology: Typology){
       switch(typology) {
           case Typology.Maverick:
-            return <img src = "./bitmoji/maverick.png"/>;
+            return <img src = "./bitmoji/maverick.png"alt = {typology}/>;
             
           case Typology.Thinker:
-            return <img src = "./bitmoji/thinker.png"/>;
+            return <img src = "./bitmoji/thinker.png"alt = {typology}/>;
               
           case Typology.Philosopher:
-            return <img src = "./bitmoji/philosopher.png"/>;
+            return <img src = "./bitmoji/philosopher.png"alt = {typology}/>;
               
           case Typology.Conscious:
-              return <div></div>;
+            return <img src = "./bitmoji/conscious.png"alt = {typology}/>;
               
           case Typology.Altruist:
-              return <div></div>;
+            return <img src = "./bitmoji/altruist.png"alt = {typology}/>;
               
           case Typology.Ally:
-              return <div></div>;
+            return <img src = "./bitmoji/ally.png"alt = {typology}/>;
               
           case Typology.Deliberator:
-              return <div></div>;
+            return <img src = "./bitmoji/deliberator.png"alt = {typology}/>;
               
           case Typology.Giver:
-              return <div></div>;
+            return <img src = "./bitmoji/giver.png"alt = {typology}/>;
               
           case Typology.Networker:
-              return <div></div>;
+            return <img src = "./bitmoji/networker.png" alt = {typology}/>;
               
           case Typology.Doer:
-              return <div></div>;
+            return <img src = "./bitmoji/doer.png" alt = {typology}/>;
               
           case Typology.Free_Spirit:
-              return <div></div>;
+            return <img src = "./bitmoji/free_spirit.png" alt = {typology}/>;
               
           case Typology.Collaborator:
-              return <div></div>;
+            return <img src = "./bitmoji/collaborator.png" alt = {typology}/>;
               
           case Typology.Officer:
-              return <div></div>;
+            return <img src = "./bitmoji/officer.png" alt = {typology}/>;
               
           case Typology.Go_Getter:
-              return <div></div>;
+            return <img src = "./bitmoji/go_getter.png" alt = {typology}/>;
               
           case Typology.Planner:
-              return <div></div>;
+            return <img src = "./bitmoji/planner.png" alt = {typology}/>;
               
           case Typology.Proj_Manager:
-              return <div></div>;
+            return <img src = "./bitmoji/proj_manager.png" alt = {typology}/>;
               
           case Typology.Engineer:
-              return <div></div>;
+            return <img src = "./bitmoji/engineer.png" alt = {typology}/>;
               
           case Typology.Lone_Wolf:
-              return <div></div>;
+            return <img src = "./bitmoji/lone_wolf.png" alt = {typology}/>;
               
           case Typology.Independent_Operator:
-              return <div></div>;
+            return <img src = "./bitmoji/independent_operator.png" alt = {typology}/>;
               
           case Typology.System_Maker:
-              return <div></div>;
+            return <img src = "./bitmoji/system_maker.png" alt = {typology}/>;
 
           default:
             return <div></div>;
