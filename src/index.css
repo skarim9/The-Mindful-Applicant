@@ -13,3 +13,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+button {
+  min-height: 30px;
+  background-color: #6B9BC0;
+  color: #DBD8D4;
+  border: none;
+  border-radius: 5px;
+  margin:8px;
+}
+button:hover {
+  min-height: 30px;
+  background-color: #DBD8D4;
+  color: #6B9BC0;
+  border: none;
+  border-radius: 5px;
+  margin:8px;
+  
+}
+button:focus {
+  outline: none;
+  
+}

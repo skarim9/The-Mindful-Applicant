@@ -20,12 +20,12 @@ export default class PolarAreaChart extends Component{
                         max: 25,
                         min: 0,
                         stepSize: 5,
-                        showLabelBackdrop:false,
+                        showLabelBackdrop:true,
                         display:false
                     },
                     gridLines:{
-                        color:'#ffffff',
-                        lineWidth:2,
+                        color:'#000000',
+                        lineWidth:1,
                         drawBorder:false,
                         z:5
                     },
@@ -33,13 +33,6 @@ export default class PolarAreaChart extends Component{
                         display:false
                     }
                 }
-                // segmentShowStroke:false,
-                // scaleLineColor:"#ff",
-                // scaleOverride:true,
-                // scaleSteps:5,
-                // scaleStepWidth: 1,
-                // scaleStartValue: 1,
-                // stepped: true
             }
         }
     }
