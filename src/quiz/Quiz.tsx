@@ -40,7 +40,7 @@ export default class Quiz extends Component <IAppProps,IAppState>{
                     {this.createQuizQuestions(questionsData)}
                     
                     
-                <button onClick={(e) => this.getResults()} className = "submitBtn" >Submit</button> 
+                <button onClick={(e) => this.getResults()} >Submit</button> 
                 
                 </div>
               } 
