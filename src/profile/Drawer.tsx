@@ -45,7 +45,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     drawerPaper: {
       position: 'relative',
-      width: '240px',
       paddingTop: theme.spacing(30),
       paddingBottom: theme.spacing(4),
       paddingRight: theme.spacing(1),
