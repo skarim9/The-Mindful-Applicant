@@ -50,11 +50,11 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       alignContent: 'column',
       backgroundColor: '#6B9BC0',
-      height: '100vh',
+      height: '100%',
     },
     container: {
-      height: '100vh',
-      width: '100vh'
+      height: '100%',
+      width: '100%'
     }
   }),
 );
@@ -81,7 +81,7 @@ function App() {
         </BrowserRouter>
 
         <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className={classes.root}>
           <Drawer />
           <MuiThemeProvider theme={theme}>
@@ -89,7 +89,7 @@ function App() {
             <div style = {{width:"100%", margin:'10px'}}>
               <Typography variant="h5" style={{color: "#FFFFFF", paddingTop: theme.spacing(1)}}>Overview</Typography>
               <Typography variant="h4" style={{color: "#FFFFFF", paddingBottom: theme.spacing(1)}}>Social Emotional Profile</Typography>
-              <Paper style={{width: '100%', height: '80%', alignContent: 'center', justifyContent: 'center', overflow: 'auto'}}>
+              <Paper style={{width: '90%', height:'80vh', alignContent: 'center', justifyContent: 'center', overflow: 'auto', borderRadius: '18px'}}>
                 <Quiz/>
               </Paper>
             </div>
