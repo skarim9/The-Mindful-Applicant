@@ -40,6 +40,7 @@ const useStyles = makeStyles((theme: Theme) =>
     title: {
       flexGrow: 1,
     },
+    
   }),
 );
 
@@ -49,15 +50,15 @@ export default function Navbar() {
   return (
     <div className={classes.root}>
       <MuiThemeProvider theme={theme}>
-        <AppBar position="static">
-          <Toolbar>
+        <AppBar position="static" style = {{height:"min-content"}}>
+          <Toolbar style = {{minHeight:"min-content", maxHeight: "min-content"}}>
             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
               <MenuIcon />
             </IconButton>
-            <Typography variant="h4" className={classes.title}>
+            <Typography variant="h4" className={classes.title} >
               The Mindful Applicant
             </Typography>
-            <Button color="inherit">Login</Button>
+            <button>LOGIN</button>
           </Toolbar>
         </AppBar>
       </MuiThemeProvider>
