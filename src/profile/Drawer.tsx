@@ -55,9 +55,9 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 export default function Drawer() {
-  const classes = useStyles();
+  const drawerClasses = useStyles();
  return (
-   <div style={{color: "white"}} className={classes.drawerPaper}>
+   <div style={{color: "white"}} className={drawerClasses.drawerPaper}>
       <MuiThemeProvider theme={theme}>
         <ListItem button>
           <ListItemIcon>
@@ -65,12 +65,16 @@ export default function Drawer() {
           </ListItemIcon>
           <ListItemText primary="Overview" style={{color: "white"}}/>
         </ListItem>
+        
+        <a href = "/quiz">
         <ListItem button>
           <ListItemIcon>
             <MenuBookIcon style={{color: "white"}}/>
           </ListItemIcon>
           <ListItemText primary="Quiz" />
         </ListItem>
+        </a>
+
         <ListItem button>
           <ListItemIcon>
             <LayersIcon style={{color: "white"}}/>

@@ -62,7 +62,7 @@ function App() {
 
   return (
     <div className="App">
-     
+     <BrowserRouter>
 
         <div>
       <Navbar />
@@ -76,7 +76,7 @@ function App() {
 
               <Paper style={{width: '100%', height:'80vh', alignContent: 'center', justifyContent: 'center', overflow: 'auto', borderRadius: '18px'}}>
                 
-        <BrowserRouter>
+        
           <div style = {{margin:'10px', color:'#6B9BC0'}}>
 
               <Switch>
@@ -88,7 +88,7 @@ function App() {
              </Switch>
              
           </div> 
-        </BrowserRouter>
+
               </Paper>
             </div>
           </MuiThemeProvider>
@@ -96,7 +96,7 @@ function App() {
     </div>
 
         
-       
+    </BrowserRouter>
       </div>
   
     );
