@@ -59,12 +59,15 @@ export default function Drawer() {
  return (
    <div style={{color: "white"}} className={drawerClasses.drawerPaper}>
       <MuiThemeProvider theme={theme}>
+        
+      <a href = "/">
         <ListItem button>
           <ListItemIcon>
             <DashboardIcon style={{color: "white"}}/>
           </ListItemIcon>
           <ListItemText primary="Overview" style={{color: "white"}}/>
         </ListItem>
+      </a>
         
         <a href = "/quiz">
         <ListItem button>
