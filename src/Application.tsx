@@ -1,22 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BrowserRouter, Route, Switch,Link } from 'react-router-dom';
 // database imports
+import {signInWithGoogle} from './firebase-db/config'
 
 import './App.css';
 import Quiz from './quiz/Quiz';
 
-import Dashboard from './profile/Dashboard';
-import PointsAllocation from './points-allocation/PointsAllocation';
-import SignIn from './login/login';
-import SignUp from './signup/Signup';
 
+import { UserContext } from "./providers/UserProvider";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 import Navbar from './profile/NavBar';
 import Drawer from './profile/Drawer';
 
 import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 
@@ -61,6 +58,7 @@ function Application() {
   const classes = useStyles();
 
   return (
+    
     <div >
      <BrowserRouter>
 
