@@ -1,7 +1,7 @@
 import React, { useContext }  from 'react';
 import { BrowserRouter, Route, Switch,Link } from 'react-router-dom';
 // database imports
-import { signInWithGoogle,auth } from "./firebase-db/config";
+import { signInWithGoogle,auth} from "./firebase-db/config";
 
 import './App.css';
 import Application from './Application'
@@ -14,11 +14,12 @@ function App(){
   const user = useContext(UserContext);
   return (
     
-    <div>{user?
+    <div>{
+      user?
     <div className="App">
       <Application />
 
-      <button onClick = {() => { console.log(`Signing out for user ${user}`);auth.signOut()}}>Sign Out</button>
+      <button onClick = {() => { auth.signOut()}}>Sign Out</button>
      
     </div>
     :
