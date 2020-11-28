@@ -38,7 +38,7 @@ export default class TickBar extends Component <IAppProps,IAppState>{
         const container = {
             display: 'flex',
             flexDirection:'row',
-            border: '2px solid white',
+            border: '2px solid #000000',
             borderRadius:'5px',
             padding: "0"
         } as React.CSSProperties;

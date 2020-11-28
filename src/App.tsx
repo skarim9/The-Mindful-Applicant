@@ -36,9 +36,7 @@ const theme = createMuiTheme({
     },
   },
   typography: {
-    fontFamily: [
-      'Palanquin',
-      'Montserra',
+    fontFamily: ['Montserrat'
     ].join(','),
   }
 });
@@ -64,33 +62,33 @@ function App() {
 
   return (
     <div className="App">
-     
-        <BrowserRouter>
-          <div>
+     <BrowserRouter>
+
+        <div>
+      <Navbar />
+      <div className={classes.root}>
+          <Drawer />
+          <MuiThemeProvider theme={theme}>
+            <CssBaseline />
+            <div style = {{width:"100%", marginRight:'10px'}}>
+              <Typography variant="h5" style={{color: "#FFFFFF"}}>Overview</Typography>
+              <Typography variant="h4" style={{color: "#FFFFFF"}}>Social Emotional Profile</Typography>
+
+              <Paper style={{width: '100%', height:'80vh', alignContent: 'center', justifyContent: 'center', overflow: 'auto', borderRadius: '18px'}}>
+                
+        
+          <div style = {{margin:'10px', color:'#6B9BC0'}}>
 
               <Switch>
                <Route path="/points-reallocation" component={PointsAllocation} />
                <Route path="/quiz" component={Quiz}/>
-               <Route path ="/profile" component={Dashboard}/>
                <Route path="/signin" component={SignIn}/>
                <Route path="/signup" component={SignUp}/>
                
              </Switch>
              
           </div> 
-        </BrowserRouter>
 
-        <div>
-      {/* <Navbar /> */}
-      <div className={classes.root}>
-          <Drawer />
-          <MuiThemeProvider theme={theme}>
-            <CssBaseline />
-            <div style = {{width:"100%", margin:'10px'}}>
-              <Typography variant="h5" style={{color: "#FFFFFF", paddingTop: theme.spacing(1)}}>Overview</Typography>
-              <Typography variant="h4" style={{color: "#FFFFFF", paddingBottom: theme.spacing(1)}}>Social Emotional Profile</Typography>
-              <Paper style={{width: '90%', height:'80vh', alignContent: 'center', justifyContent: 'center', overflow: 'auto', borderRadius: '18px'}}>
-                <Quiz/>
               </Paper>
             </div>
           </MuiThemeProvider>
@@ -98,7 +96,7 @@ function App() {
     </div>
 
         
-       
+    </BrowserRouter>
       </div>
   
     );
