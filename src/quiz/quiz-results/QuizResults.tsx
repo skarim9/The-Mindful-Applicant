@@ -31,6 +31,7 @@ export default class QuizResults extends Component <ResultsProps,IAppState>{
             console.log(`User is not null. Saving results now for user ${user}`);
             addOriginalQuizResult({
                 date: this.props.date,
+                typology: this.props.typology,
                 quiz:statToScore(this.props.stats)
             },user.uid);
         }
