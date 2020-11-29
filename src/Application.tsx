@@ -64,6 +64,7 @@ function Application() {
     
     <div >
 
+<BrowserRouter>
         <div>
       <Navbar />
       <div className={classes.root}>
@@ -72,7 +73,6 @@ function Application() {
             <CssBaseline />
                 <div style = {{width:"100%", marginRight:'10px'}}>
                     
-     <BrowserRouter>
                 <Switch>
 
                 <Route path="/profile" >
@@ -101,13 +101,13 @@ function Application() {
               </Route>
               
              </Switch>
-      </BrowserRouter>
             </div>
           </MuiThemeProvider>
       </div>
     </div>
 
         
+</BrowserRouter>
       </div>
   
     );
