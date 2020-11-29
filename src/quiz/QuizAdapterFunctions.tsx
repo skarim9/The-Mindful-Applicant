@@ -9,11 +9,13 @@ export const scoreToStat = (score:{
     social_awareness:number, 
     self_management:number
 }) =>{
-    if(score ==undefined){
-        return [];
-    }
+    
     let max = MAX_POINTS_PER_CATEGORY;
-    let arr = [];
+    let arr:{
+        category: string,
+        progress:number,
+        total:number
+    }[] = [];
     arr.push({
         category:Category.Decision_Making.toString(),
         progress:score.decision_making,
