@@ -29,14 +29,14 @@ export default class QuizResults extends Component <ResultsProps,IAppState>{
         //add result to user
         const user = auth.currentUser;
         if(user!=null){
+            console.log(`User is not null. Saving results now for user ${user}`);
             addOriginalQuizResult({
                 date: this.state.date,
                 quiz:statToScore(this.props.stats)
             },user.uid);
-            addReallocatedQuizResult({
-                date: this.state.date,
-                quiz:statToScore(this.props.stats)
-            },user.uid)
+        }
+        else{
+            console.log("User is null");
         }
 
         

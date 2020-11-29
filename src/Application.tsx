@@ -5,6 +5,9 @@ import {signInWithGoogle} from './firebase-db/config'
 
 import './App.css';
 import Quiz from './quiz/Quiz';
+import QuizResults from './quiz/quiz-results/QuizResults'
+import {scoreToStat} from './quiz/QuizAdapterFunctions';
+import {determineType} from './quiz/quiz-results/TypologyDeterminator'
 
 
 import { UserContext } from "./providers/UserProvider";
@@ -19,6 +22,7 @@ import Typography from '@material-ui/core/Typography';
 
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
+
 
 
 const theme = createMuiTheme({
@@ -56,6 +60,9 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function Application() {
   const classes = useStyles();
+  // const score = read from db ;
+  // const stats = scoreToStat(score);
+  // const type = determineType(score);
 
   return (
     
@@ -71,6 +78,20 @@ function Application() {
                     
      <BrowserRouter>
                 <Switch>
+
+                <Route path="/profile" >
+                    <Typography variant="h5" style={{color: "#FFFFFF"}}>Overview</Typography>
+                    <Typography variant="h4" style={{color: "#FFFFFF"}}>Social Emotional Profile</Typography>
+
+                    <Paper style={{width: '100%', height:'80vh', alignContent: 'center', justifyContent: 'center', overflow: 'auto', borderRadius: '18px'}}>
+                        {/* <QuizResults stats = {stats} typology = {type} /> */}
+                
+                    <div style = {{margin:'10px', color:'#6B9BC0'}}>
+    
+                    </div> 
+                    </Paper>
+              </Route>
+
                 <Route path="/quiz" >
                     {/* <Typography variant="h5" style={{color: "#FFFFFF"}}>Overview</Typography> */}
                     <Typography variant="h4" style={{color: "#FFFFFF"}}>Social Emotional Quiz</Typography>
@@ -85,7 +106,7 @@ function Application() {
               </Route>
               
              </Switch>
-             </BrowserRouter>
+      </BrowserRouter>
             </div>
           </MuiThemeProvider>
       </div>
