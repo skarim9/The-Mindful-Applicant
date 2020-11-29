@@ -39,6 +39,36 @@ export const scoreToStat = (score:{
     return arr;
 }
 
-export const statToScore=()=>{
-    
+export const statToScore=(stats:{
+    category: string,
+    progress:number,
+    total:number
+}[])=>{
+    let score = {
+        decision_making:0,
+        relationship_skills:0, 
+        self_awareness:0,
+        social_awareness:0, 
+        self_management:0
+    }
+    for(let i = 0 ; i< stats.length; i++){
+        switch(stats[i].category){
+            case Category.Decision_Making:
+                score.decision_making = stats[i].progress;
+                break;
+            case Category.Relationship_Skills:
+                score.relationship_skills = stats[i].progress;
+                break;
+            case Category.Self_Awareness:
+                score.self_awareness = stats[i].progress;
+                break;
+            case Category.Self_Management:
+                score.self_management = stats[i].progress;
+                break;
+            case Category.Social_Awareness:
+                score.social_awareness = stats[i].progress;
+                break;
+        }
+    }
+    return score;
 }

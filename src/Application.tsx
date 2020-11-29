@@ -60,7 +60,6 @@ function Application() {
   return (
     
     <div >
-     <BrowserRouter>
 
         <div>
       <Navbar />
@@ -70,6 +69,7 @@ function Application() {
             <CssBaseline />
                 <div style = {{width:"100%", marginRight:'10px'}}>
                     
+     <BrowserRouter>
                 <Switch>
                 <Route path="/quiz" >
                     {/* <Typography variant="h5" style={{color: "#FFFFFF"}}>Overview</Typography> */}
@@ -85,13 +85,13 @@ function Application() {
               </Route>
               
              </Switch>
+             </BrowserRouter>
             </div>
           </MuiThemeProvider>
       </div>
     </div>
 
         
-    </BrowserRouter>
       </div>
   
     );

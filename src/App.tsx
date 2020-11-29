@@ -7,6 +7,7 @@ import './App.css';
 import Application from './Application'
 import {addNewUser,addOriginalQuizResult,addReallocatedQuizResult} from './firebase-db/firestore/db-functions'
 import { UserContext } from './providers/UserProvider';
+import SignIn from './login/login';
 
 
 
@@ -24,9 +25,7 @@ function App(){
     </div>
     :
     
-    <div>Sign up to continue.
-            Put link to login page here.
-            Put link to signup page here.
+    <div>
             <button
             onClick={() => {
               signInWithGoogle();
