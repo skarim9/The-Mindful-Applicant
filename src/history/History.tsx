@@ -1,6 +1,6 @@
 import React from 'react'
 import {auth,db} from '../firebase-db/config'
-import QuizResults from '../quiz/quiz-results/typologies/TypologyDisplay';
+import QuizResults from '../quiz/quiz-results/QuizResults';
 import {scoreToStat} from '../quiz/QuizAdapterFunctions'
 import {determineType} from '../quiz/quiz-results/TypologyDeterminator'
 export default class History extends React.Component<ResultsProps,IAppState>{
@@ -48,7 +48,7 @@ export default class History extends React.Component<ResultsProps,IAppState>{
             const score = this.state.scores[i];
             console.log(`Score is \ndec_mak: ${score.decision_making}\n social_awareness: ${score.social_awareness} \nrelation: ${score.relationship_skills} \n self_aware: ${score.self_awareness} \n self_manage: ${score.self_management}`)
             result.push(
-                <QuizResults key = {i+"QuizResult"} typology = {determineType(score)}/>)
+                <div key = {i+"QuizResultHIstory"}><QuizResults stats = {scoreToStat(score)} typology = {determineType(score)}/></div>)
         }
         return result;
     }
