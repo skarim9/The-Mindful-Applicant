@@ -10,6 +10,7 @@ import TimelineIcon from '@material-ui/icons/Timeline';
 import SettingsIcon from '@material-ui/icons/Settings';
 import RecentActorsIcon from '@material-ui/icons/RecentActors';
 
+import { BrowserRouter, Route, Switch,Link } from 'react-router-dom';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
@@ -60,23 +61,23 @@ export default function Drawer() {
    <div style={{color: "white"}} className={drawerClasses.drawerPaper}>
       <MuiThemeProvider theme={theme}>
         
-      <a href = "/profile">
+      <Link to="/profile">
         <ListItem button>
           <ListItemIcon>
             <DashboardIcon style={{color: "white"}}/>
           </ListItemIcon>
           <ListItemText primary="Overview" style={{color: "white"}}/>
         </ListItem>
-      </a>
+        </Link>
         
-        <a href = "/quiz">
+        <Link to="/quiz">
         <ListItem button>
           <ListItemIcon>
             <MenuBookIcon style={{color: "white"}}/>
           </ListItemIcon>
           <ListItemText primary="Quiz" />
         </ListItem>
-        </a>
+        </Link>
 
         <ListItem button>
           <ListItemIcon>
