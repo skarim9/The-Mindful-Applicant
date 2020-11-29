@@ -1,27 +1,31 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BrowserRouter, Route, Switch,Link } from 'react-router-dom';
 // database imports
+import {signInWithGoogle} from './firebase-db/config'
 
 import './App.css';
 import Quiz from './quiz/Quiz';
+import QuizResults from './quiz/quiz-results/QuizResults'
+import {scoreToStat} from './quiz/QuizAdapterFunctions';
+import {determineType} from './quiz/quiz-results/TypologyDeterminator';
+import {getQuizReallocationResults} from './firebase-db/firestore/db-functions'
 
-import Dashboard from './profile/Dashboard';
-import PointsAllocation from './points-allocation/PointsAllocation';
-import SignIn from './login/login';
-import SignUp from './signup/Signup';
 
+import { UserContext } from "./providers/UserProvider";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 import Navbar from './profile/NavBar';
 import Drawer from './profile/Drawer';
 
 import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+
+import History from './history/History'
 
 
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
+
 
 
 const theme = createMuiTheme({
@@ -61,8 +65,8 @@ function Application() {
   const classes = useStyles();
 
   return (
+    
     <div >
-     <BrowserRouter>
 
         <div>
       <Navbar />
@@ -72,7 +76,21 @@ function Application() {
             <CssBaseline />
                 <div style = {{width:"100%", marginRight:'10px'}}>
                     
+     <BrowserRouter>
                 <Switch>
+
+                <Route path="/profile" >
+                    <Typography variant="h5" style={{color: "#FFFFFF"}}>Overview</Typography>
+                    <Typography variant="h4" style={{color: "#FFFFFF"}}>Social Emotional Profile</Typography>
+
+                    <Paper style={{width: '100%', height:'80vh', alignContent: 'center', justifyContent: 'center', overflow: 'auto', borderRadius: '18px'}}>
+                        <History />
+                    <div style = {{margin:'10px', color:'#6B9BC0'}}>
+    
+                    </div> 
+                    </Paper>
+              </Route>
+
                 <Route path="/quiz" >
                     {/* <Typography variant="h5" style={{color: "#FFFFFF"}}>Overview</Typography> */}
                     <Typography variant="h4" style={{color: "#FFFFFF"}}>Social Emotional Quiz</Typography>
@@ -87,13 +105,13 @@ function Application() {
               </Route>
               
              </Switch>
+      </BrowserRouter>
             </div>
           </MuiThemeProvider>
       </div>
     </div>
 
         
-    </BrowserRouter>
       </div>
   
     );

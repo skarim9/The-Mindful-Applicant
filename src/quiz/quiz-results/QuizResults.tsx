@@ -1,10 +1,13 @@
-import React, { Component } from 'react';
-import PolarAreaChart from '../../components/PolarAreaChart'
-
+import React, { Component, useContext } from 'react';
+import PolarAreaChart from '../../components/PolarAreaChart';
+import {addOriginalQuizResult,addReallocatedQuizResult} from '../../firebase-db/firestore/db-functions'
+import {statToScore} from '../QuizAdapterFunctions'
 import './quiz-results.scss'
 import PointsAllocation from '../../points-allocation/PointsAllocation';
 import { Typology } from './TypologyDeterminator';
-import TypologyDisplay from './typologies/TypologyDisplay'
+import TypologyDisplay from './typologies/TypologyDisplay';
+import { UserContext } from '../../providers/UserProvider';
+import {auth} from '../../firebase-db/config'
 export const colors = ["#ab8de0","#d34545","#45b0d3","#8fe891","#eac567","ac88ef"]
 
 export default class QuizResults extends Component <ResultsProps,IAppState>{
@@ -13,7 +16,7 @@ export default class QuizResults extends Component <ResultsProps,IAppState>{
         super(props);
         this.state = {
             isAllocatePoints:false,
-            
+            date: new Date()
         }
     }
     componentDidMount(){
@@ -23,6 +26,20 @@ export default class QuizResults extends Component <ResultsProps,IAppState>{
             a+="\n"+this.props.stats[k].category+":"+this.props.stats[k].progress;
             
         }
+        //add result to user
+        const user = auth.currentUser;
+        if(user!=null){
+            console.log(`User is not null. Saving results now for user ${user}`);
+            addOriginalQuizResult({
+                date: this.state.date,
+                quiz:statToScore(this.props.stats)
+            },user.uid);
+        }
+        else{
+            console.log("User is null");
+        }
+
+        
 
         
         console.log(`Quiz Results are  is ${a}`);
@@ -85,5 +102,7 @@ interface ResultsProps{
 }
 interface IAppState{
     isAllocatePoints:boolean,
+    
+    date: Date,
     
 }
