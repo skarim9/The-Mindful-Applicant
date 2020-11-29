@@ -48,6 +48,7 @@ const addQuizResult = async (quiz_result:{date:Date,quiz:Quiz}, user_id:string,d
 			} else {//doc.data() here will be undefined in this case
 				//console.log("initializing quiz " + quiz.title)
 				await quizDataRef.set({
+					date: quiz_result.date,
 					quiz: quiz_result.quiz,
 					isReallocated: isReallocated
 				})

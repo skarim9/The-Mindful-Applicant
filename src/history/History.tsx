@@ -13,7 +13,7 @@ export default class History extends React.Component<ResultsProps,IAppState>{
     componentDidMount(){
         let user = auth.currentUser;
     if(user!=null){
-      db.collection(`users/${user.uid}/quiz_results`).get().then(
+      db.collection(`users/${user.uid}/quiz_results`).orderBy('date','desc').get().then(
         snapshot =>{
           const quiz_results:{
             decision_making:number
