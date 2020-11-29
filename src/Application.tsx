@@ -5,10 +5,6 @@ import {signInWithGoogle} from './firebase-db/config'
 
 import './App.css';
 import Quiz from './quiz/Quiz';
-import QuizResults from './quiz/quiz-results/QuizResults'
-import {scoreToStat} from './quiz/QuizAdapterFunctions';
-import {determineType} from './quiz/quiz-results/TypologyDeterminator';
-import {getQuizReallocationResults} from './firebase-db/firestore/db-functions'
 
 
 import { UserContext } from "./providers/UserProvider";

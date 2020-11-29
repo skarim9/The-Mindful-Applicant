@@ -7,16 +7,15 @@ import PointsAllocation from '../../points-allocation/PointsAllocation';
 import { Typology } from './TypologyDeterminator';
 import TypologyDisplay from './typologies/TypologyDisplay';
 import { UserContext } from '../../providers/UserProvider';
-import {auth} from '../../firebase-db/config'
-export const colors = ["#ab8de0","#d34545","#45b0d3","#8fe891","#eac567","ac88ef"]
-
+import {auth} from '../../firebase-db/config';
+import ScrollToTop from '../../utils/ScrollToTop'
+export const colors = ["#ab8de0","#d34545","#45b0d3","#8fe891","#eac567","ac88ef"];
 export default class QuizResults extends Component <ResultsProps,IAppState>{
   
     constructor(props: ResultsProps){
         super(props);
         this.state = {
             isAllocatePoints:false,
-            date: new Date()
         }
     }
     componentDidMount(){
@@ -28,10 +27,10 @@ export default class QuizResults extends Component <ResultsProps,IAppState>{
         }
         //add result to user
         const user = auth.currentUser;
-        if(user!=null){
+        if(user!=null&&this.props.date!=null){
             console.log(`User is not null. Saving results now for user ${user}`);
             addOriginalQuizResult({
-                date: this.state.date,
+                date: this.props.date,
                 quiz:statToScore(this.props.stats)
             },user.uid);
         }
@@ -67,9 +66,10 @@ export default class QuizResults extends Component <ResultsProps,IAppState>{
 
     render() {
         let data = this.polarChartData(this.props.stats);
-
+        
         return (
             <div>
+                <ScrollToTop />
                 { this.state.isAllocatePoints?
                 
                 <PointsAllocation polarChartData = {this.polarChartData}stats = {this.props.stats}/>:
@@ -85,7 +85,12 @@ export default class QuizResults extends Component <ResultsProps,IAppState>{
 
                         </div>
                     </div>
+                    {
+                        this.props.canReallocatePoints?
                     <button onClick={(e)=>{this.setState({isAllocatePoints:true})}}>Reallocate Points</button>
+                    :
+                    <div></div>
+                    }   
                 </div>
                 }
             </div>
@@ -98,11 +103,12 @@ interface ResultsProps{
         progress:number,
         total:number
     }[],
-    typology: Typology
+    typology: Typology,
+    canReallocatePoints:boolean,
+    date: Date | null
 }
 interface IAppState{
     isAllocatePoints:boolean,
     
-    date: Date,
     
 }

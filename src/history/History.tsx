@@ -27,6 +27,8 @@ export default class History extends React.Component<ResultsProps,IAppState>{
             let quizResult = doc.get(`quiz`);
             quiz_results.push(quizResult);
             })
+
+
             this.setState({scores:quiz_results});
             }
         )
@@ -48,7 +50,7 @@ export default class History extends React.Component<ResultsProps,IAppState>{
             const score = this.state.scores[i];
             console.log(`Score is \ndec_mak: ${score.decision_making}\n social_awareness: ${score.social_awareness} \nrelation: ${score.relationship_skills} \n self_aware: ${score.self_awareness} \n self_manage: ${score.self_management}`)
             result.push(
-                <div key = {i+"QuizResultHIstory"}><QuizResults stats = {scoreToStat(score)} typology = {determineType(score)}/></div>)
+                <div key = {i+"QuizResultHIstory"}><QuizResults date = {null} stats = {scoreToStat(score)} typology = {determineType(score)} canReallocatePoints = {false}/></div>)
         }
         return result;
     }

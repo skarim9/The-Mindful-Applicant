@@ -59,30 +59,3 @@ const addQuizResult = async (quiz_result:{date:Date,quiz:Quiz}, user_id:string,d
 		})
 }
 
-
-export const getQuizReallocationResults = async (user_id:string) => {//returns an array of quiz objects for user from firestore.
-	//console.log("updating profile with quizs from " + user_id)
-	let quizs: Quiz[] = [];
-	const quizDataRef = db.collection(`users/${user_id}/quiz_results`)
-	await quizDataRef.get()
-		.then(async (snapshot) => {
-			
-			console.log("iterating through user: " + user_id + " quizData")
-			await snapshot.docs.forEach(quiz => {
-				
-				let quiz_result = {
-					
-					decision_making:quiz.get('decision_making'),
-					relationship_skills:quiz.get('relationship_skills'), 
-					self_awareness:quiz.get('self_awareness'),
-					social_awareness:quiz.get('social_awareness'), 
-					self_management:quiz.get('self_management')
-				};
-				quizs.push(quiz_result)
-			})
-			return quizs;
-		}, e => {
-			return e
-		})
-	return quizs;
-}
