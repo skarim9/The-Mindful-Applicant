@@ -4,8 +4,11 @@ import PromptBox from './prompt-box/PromptBox'
 import './point-allocation.scss'
 import PolarAreaChart  from "../components/PolarAreaChart";
 import {colors} from "../quiz/quiz-results/QuizResults";
-
-
+import {addReallocatedQuizResult} from '../firebase-db/firestore/db-functions';
+import {statToScore} from '../quiz/QuizAdapterFunctions';
+import {determineType} from '../quiz/quiz-results/TypologyDeterminator';
+import {auth} from '../firebase-db/config'
+ 
 export default class PointsAllocation extends Component <IAppProps,IAppState>{
   
     constructor(props: IAppProps){
@@ -51,6 +54,21 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
     }
     saveResults(){
         alert("Results will be saved");
+                //add result to user
+                const user = auth.currentUser;
+                if(user!=null&&this.props.date!=null){
+                    console.log(`User is not null. Saving results now for user ${user}`);
+                    addReallocatedQuizResult({
+                        date: this.props.date,
+                        typology: determineType(statToScore(this.props.stats)),
+                        quiz:statToScore(this.props.stats)
+                    },user.uid);
+                }
+                else{
+                    console.log("User is null");
+                }
+        
+
     }
 
     
@@ -134,7 +152,8 @@ interface IAppProps{
         progress:number,
         total:number
     }[],
-    polarChartData:Function
+    polarChartData:Function,
+    date: Date | null
 }
 interface IAppState{
     
