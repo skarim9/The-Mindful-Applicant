@@ -20,6 +20,8 @@ import Drawer from './profile/Drawer';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
+import History from './history/History'
+
 
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
@@ -82,8 +84,7 @@ function Application() {
                     <Typography variant="h4" style={{color: "#FFFFFF"}}>Social Emotional Profile</Typography>
 
                     <Paper style={{width: '100%', height:'80vh', alignContent: 'center', justifyContent: 'center', overflow: 'auto', borderRadius: '18px'}}>
-                        {/* <QuizResults stats = {stats} typology = {type} /> */}
-                
+                        <History />
                     <div style = {{margin:'10px', color:'#6B9BC0'}}>
     
                     </div> 

@@ -23,13 +23,8 @@ export default class History extends React.Component<ResultsProps,IAppState>{
             self_management:number
           }[] = [];
           snapshot.forEach(doc=>{
-            let quizResult = {
-              decision_making:doc.get(`decision_making`),
-              relationship_skills:doc.get(`relationship_skills`), 
-              self_awareness:doc.get(`self_awareness`),
-              social_awareness:doc.get(`social_awareness`), 
-              self_management:doc.get(`self_management`)   
-            };
+              console.log(`Doc data in history is \n${doc.data().decision_making}`)
+            let quizResult = doc.get(`quiz`);
             quiz_results.push(quizResult);
             })
             this.setState({scores:quiz_results});
@@ -51,8 +46,9 @@ export default class History extends React.Component<ResultsProps,IAppState>{
         let result = [];
         for(let i = 0; i<this.state.scores.length;i++){
             const score = this.state.scores[i];
+            console.log(`Score is \ndec_mak: ${score.decision_making}\n social_awareness: ${score.social_awareness} \nrelation: ${score.relationship_skills} \n self_aware: ${score.self_awareness} \n self_manage: ${score.self_management}`)
             result.push(
-                <QuizResults stats = {scoreToStat(score)} typology = {determineType(score)}/>)
+                <QuizResults key = {i+"QuizResult"} typology = {determineType(score)}/>)
         }
         return result;
     }

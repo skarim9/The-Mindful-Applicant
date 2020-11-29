@@ -60,7 +60,7 @@ export default function Drawer() {
    <div style={{color: "white"}} className={drawerClasses.drawerPaper}>
       <MuiThemeProvider theme={theme}>
         
-      <a href = "/">
+      <a href = "/profile">
         <ListItem button>
           <ListItemIcon>
             <DashboardIcon style={{color: "white"}}/>
