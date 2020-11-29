@@ -9,30 +9,33 @@ export const scoreToStat = (score:{
     social_awareness:number, 
     self_management:number
 }) =>{
+    if(score ==undefined){
+        return [];
+    }
     let max = MAX_POINTS_PER_CATEGORY;
     let arr = [];
     arr.push({
-        category:Category.Decision_Making,
+        category:Category.Decision_Making.toString(),
         progress:score.decision_making,
         total:max
     });
     arr.push({
-        category:Category.Relationship_Skills,
+        category:Category.Relationship_Skills.toString(),
         progress:score.relationship_skills,
         total:max
     });
     arr.push({
-        category:Category.Self_Awareness,
+        category:Category.Self_Awareness.toString(),
         progress:score.self_awareness,
         total:max
     });
     arr.push({
-        category:Category.Self_Management,
+        category:Category.Self_Management.toString(),
         progress:score.self_management,
         total:max
     });
     arr.push({
-        category:Category.Social_Awareness,
+        category:Category.Social_Awareness.toString(),
         progress:score.social_awareness,
         total:max
     });
@@ -53,19 +56,19 @@ export const statToScore=(stats:{
     }
     for(let i = 0 ; i< stats.length; i++){
         switch(stats[i].category){
-            case Category.Decision_Making:
+            case Category.Decision_Making.toString():
                 score.decision_making = stats[i].progress;
                 break;
-            case Category.Relationship_Skills:
+            case Category.Relationship_Skills.toString():
                 score.relationship_skills = stats[i].progress;
                 break;
-            case Category.Self_Awareness:
+            case Category.Self_Awareness.toString():
                 score.self_awareness = stats[i].progress;
                 break;
-            case Category.Self_Management:
+            case Category.Self_Management.toString():
                 score.self_management = stats[i].progress;
                 break;
-            case Category.Social_Awareness:
+            case Category.Social_Awareness.toString():
                 score.social_awareness = stats[i].progress;
                 break;
         }

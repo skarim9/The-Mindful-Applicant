@@ -1,7 +1,10 @@
 import {db} from '../config'
 interface Quiz{
-	decision_making:number,
-
+	decision_making:number
+	relationship_skills:number 
+	self_awareness:number
+	social_awareness:number 
+	self_management:number
 }
 export const addNewUser = async(school_email:string) => {
 	const data = {
@@ -38,6 +41,10 @@ const addQuizResult = async (quiz_result:{date:Date,quiz:Quiz}, user_id:string,d
 				console.log("quiz data already exists")
 				console.log(snapshot.id)//gets the docs id
 				console.log(snapshot.data())//gets the docs data
+				await quizDataRef.update({
+					quiz: quiz_result.quiz,
+					isReallocated: isReallocated
+				})
 			} else {//doc.data() here will be undefined in this case
 				//console.log("initializing quiz " + quiz.title)
 				await quizDataRef.set({
@@ -53,20 +60,29 @@ const addQuizResult = async (quiz_result:{date:Date,quiz:Quiz}, user_id:string,d
 }
 
 
-// export const getQuizReallocationResults = async (user_id:string) => {//returns an array of quiz objects for user from firestore.
-// 	//console.log("updating profile with quizs from " + user_id)
-// 	let quizs: Quiz[];
-// 	const quizDataRef = db.collection(`users/${user_id}/quiz_results`)
-// 	await quizDataRef.get()
-// 		.then(async (snapshot) => {
-// 			//console.log("iterating through user: " + user_id + " quizData")
-// 			await snapshot.docs.forEach(quiz => {
-// 				const quizResultRef = quizDataRef.doc(`${quiz.id}/reallocation_results`);
+export const getQuizReallocationResults = async (user_id:string) => {//returns an array of quiz objects for user from firestore.
+	//console.log("updating profile with quizs from " + user_id)
+	let quizs: Quiz[] = [];
+	const quizDataRef = db.collection(`users/${user_id}/quiz_results`)
+	await quizDataRef.get()
+		.then(async (snapshot) => {
+			
+			console.log("iterating through user: " + user_id + " quizData")
+			await snapshot.docs.forEach(quiz => {
 				
-// 			})
-// 			return quizs;
-// 		}, e => {
-// 			return e
-// 		})
-// 	return quizs;
-// }
+				let quiz_result = {
+					
+					decision_making:quiz.get('decision_making'),
+					relationship_skills:quiz.get('relationship_skills'), 
+					self_awareness:quiz.get('self_awareness'),
+					social_awareness:quiz.get('social_awareness'), 
+					self_management:quiz.get('self_management')
+				};
+				quizs.push(quiz_result)
+			})
+			return quizs;
+		}, e => {
+			return e
+		})
+	return quizs;
+}
