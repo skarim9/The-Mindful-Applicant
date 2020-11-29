@@ -2,12 +2,15 @@ import React from 'react'
 import {auth,db} from '../firebase-db/config'
 import QuizResults from '../quiz/quiz-results/QuizResults';
 import {scoreToStat} from '../quiz/QuizAdapterFunctions'
-import {determineType} from '../quiz/quiz-results/TypologyDeterminator'
+import {determineType, Typology} from '../quiz/quiz-results/TypologyDeterminator'
+import { TransferWithinAStationSharp } from '@material-ui/icons';
 export default class History extends React.Component<ResultsProps,IAppState>{
     constructor(props:ResultsProps){
         super(props);
         this.state = {
-            scores:[]
+            scores:[],
+            scoreDates:[],
+            typologies:[]
         }
     }
     componentDidMount(){
@@ -22,14 +25,22 @@ export default class History extends React.Component<ResultsProps,IAppState>{
             social_awareness:number 
             self_management:number
           }[] = [];
+          const dates:Date[] = [];
+          const types:Typology[] = [];
           snapshot.forEach(doc=>{
               console.log(`Doc data in history is \n${doc.data().decision_making}`)
             let quizResult = doc.get(`quiz`);
             quiz_results.push(quizResult);
+            
+            let type = doc.get(`typology`);
+            types.push(type);
+
+            let date = doc.get(`date`);
+            dates.push(date);
             })
 
 
-            this.setState({scores:quiz_results});
+            this.setState({scores:quiz_results,typologies:types,scoreDates:dates});
             }
         )
         }
@@ -48,9 +59,14 @@ export default class History extends React.Component<ResultsProps,IAppState>{
         let result = [];
         for(let i = 0; i<this.state.scores.length;i++){
             const score = this.state.scores[i];
+            const date = this.state.scoreDates[i].toString();
+            
             console.log(`Score is \ndec_mak: ${score.decision_making}\n social_awareness: ${score.social_awareness} \nrelation: ${score.relationship_skills} \n self_aware: ${score.self_awareness} \n self_manage: ${score.self_management}`)
             result.push(
-                <div key = {i+"QuizResultHIstory"}><QuizResults date = {null} stats = {scoreToStat(score)} typology = {determineType(score)} canReallocatePoints = {false}/></div>)
+                <div key = {i+"QuizResultHIstory"}>
+                    <h3>{date}</h3>
+                    <QuizResults date = {null} stats = {scoreToStat(score)} typology = {this.state.typologies[i]} canReallocatePoints = {false}/>
+                    </div>)
         }
         return result;
     }
@@ -67,6 +83,8 @@ interface IAppState{
         self_awareness:number
         social_awareness:number 
         self_management:number
-    }[]
+    }[],
+    scoreDates:Date[],
+    typologies:Typology[]
     
 }
