@@ -6,17 +6,35 @@ import PolarAreaChart  from "../components/PolarAreaChart";
 import {colors} from "../quiz/quiz-results/QuizResults";
 import {addReallocatedQuizResult} from '../firebase-db/firestore/db-functions';
 import {statToScore} from '../quiz/QuizAdapterFunctions';
-import {determineType} from '../quiz/quiz-results/TypologyDeterminator';
+import {determineType, Typology} from '../quiz/quiz-results/TypologyDeterminator';
 import {auth} from '../firebase-db/config'
+import TypologyDisplay from '../quiz/quiz-results/typologies/TypologyDisplay'
  
 export default class PointsAllocation extends Component <IAppProps,IAppState>{
   
     constructor(props: IAppProps){
         super(props);
-        
+        const initStats:{
+            category: string,
+            progress:number,
+            total:number
+        }[] = [];
+        for(let i = 0; i<this.props.stats.length;i++){
+            const statCopy:{
+                category: string,
+                progress:number,
+                total:number
+            } = {
+                category: this.props.stats[i].category,
+                progress: this.props.stats[i].progress,
+                total: this.props.stats[i].total
+            }
+            initStats.push(statCopy);
+        }
         this.state = {
-            
-        pointsToAllocate:0
+        oldStats:initStats,
+        pointsToAllocate:0,
+        newTypology: this.props.initTypology
             
         }
     }
@@ -42,7 +60,10 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
                 </div>
                         
                 </div>
-
+                <div>
+                    <h3>New Typology</h3>
+                    <TypologyDisplay typology = {this.state.newTypology}/>
+                </div>
                 {/* Points bank */
                     this.createPointsBank(this.state.pointsToAllocate)
                 }
@@ -60,7 +81,7 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
                     console.log(`User is not null. Saving results now for user ${user}`);
                     addReallocatedQuizResult({
                         date: this.props.date,
-                        typology: determineType(statToScore(this.props.stats)),
+                        typology: this.state.newTypology,
                         quiz:statToScore(this.props.stats)
                     },user.uid);
                 }
@@ -81,7 +102,8 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
             stat.progress = stat.progress-1;
             console.log("Clicked on stat. Progress is now "+this.props.stats[0].progress)
             this.setState({
-                pointsToAllocate:this.state.pointsToAllocate+1
+                pointsToAllocate:this.state.pointsToAllocate+1,
+                newTypology: determineType(statToScore(this.props.stats))
             })
         }
     }
@@ -94,7 +116,8 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
             stat.progress = stat.progress+1;
             console.log("Clicked on stat. Progress is now "+this.props.stats[0].progress)
             this.setState({
-                pointsToAllocate:this.state.pointsToAllocate-1
+                pointsToAllocate:this.state.pointsToAllocate-1,
+                newTypology:determineType(statToScore(this.props.stats))
             })
         }
         
@@ -153,10 +176,16 @@ interface IAppProps{
         total:number
     }[],
     polarChartData:Function,
-    date: Date | null
+    date: Date | null,
+    initTypology:Typology
 }
 interface IAppState{
-    
+    oldStats:{
+        category: string,
+        progress:number,
+        total:number
+    }[],
+    newTypology:Typology,
     pointsToAllocate:number
 }
 

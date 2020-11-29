@@ -73,7 +73,7 @@ export default class QuizResults extends Component <ResultsProps,IAppState>{
                 <ScrollToTop />
                 { this.state.isAllocatePoints?
                 
-                <PointsAllocation date = {this.props.date} polarChartData = {this.polarChartData}stats = {this.props.stats}/>:
+                <PointsAllocation date = {this.props.date} polarChartData = {this.polarChartData}stats = {this.props.stats}initTypology={this.props.typology}/>:
                 <div>
                     <div className="quiz-results-container">
                         <div className = "snapshot">
