@@ -36,7 +36,7 @@ export default class History extends React.Component<ResultsProps,IAppState>{
             types.push(type);
 
             let date = doc.get(`date`);
-            dates.push(date);
+            dates.push(date.toDate());
             })
 
 
