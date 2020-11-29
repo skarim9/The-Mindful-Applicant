@@ -31,7 +31,7 @@ export default class Quiz extends Component <IAppProps,IAppState>{
             <div>
                 
               {  this.state.isShowResults?
-              <div><QuizResults stats = {scoreToStat(this.state.score)} typology = {determineType(this.state.score)}/></div>
+              <div><QuizResults date = {new Date()} stats = {scoreToStat(this.state.score)} typology = {determineType(this.state.score)} canReallocatePoints = {true}/></div>
               :
                 <div className = "quiz-container">
                     
