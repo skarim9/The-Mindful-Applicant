@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { BrowserRouter, Route, Switch,Link } from 'react-router-dom';
+import { BrowserRouter, Route, Switch,Link,Redirect } from 'react-router-dom';
 // database imports
 import {signInWithGoogle} from './firebase-db/config'
 
@@ -104,6 +104,12 @@ function Application() {
                     
                     </Paper>
               </Route>
+
+
+              <Route path="/" >
+                <Redirect to="/profile" />
+              </Route>
+
              </Switch>
             </div>
           </MuiThemeProvider>
