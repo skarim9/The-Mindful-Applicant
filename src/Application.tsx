@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch,Link } from 'react-router-dom';
 import {signInWithGoogle} from './firebase-db/config'
 
 import './App.css';
+import Profile from './profile/Profile'
 import Quiz from './quiz/Quiz';
 
 
@@ -79,11 +80,8 @@ function Application() {
                     <Typography variant="h5" style={{color: "#FFFFFF"}}>Overview</Typography>
                     <Typography variant="h4" style={{color: "#FFFFFF"}}>Social Emotional Profile</Typography>
 
-                    <Paper style={{width: '100%', height:'80vh', alignContent: 'center', justifyContent: 'center', overflow: 'auto', borderRadius: '18px'}}>
-                        <History />
-                    <div style = {{margin:'10px', color:'#6B9BC0'}}>
-    
-                    </div> 
+                    <Paper style={{width: '100%', height:'80vh', alignContent: 'center', justifyContent: 'center', overflow: 'auto', borderRadius: '18px',color:'#6B9BC0'}}>
+                        <Profile/>
                     </Paper>
               </Route>
 
@@ -91,15 +89,21 @@ function Application() {
                     {/* <Typography variant="h5" style={{color: "#FFFFFF"}}>Overview</Typography> */}
                     <Typography variant="h4" style={{color: "#FFFFFF"}}>Social Emotional Quiz</Typography>
 
-                    <Paper style={{width: '100%', height:'80vh', alignContent: 'center', justifyContent: 'center', overflow: 'auto', borderRadius: '18px'}}>
+                    <Paper style={{width: '100%', height:'80vh', alignContent: 'center', justifyContent: 'center', overflow: 'auto', borderRadius: '18px',color:'#6B9BC0'}}>
                         <Quiz/>
                 
-                    <div style = {{margin:'10px', color:'#6B9BC0'}}>
-    
-                    </div> 
                     </Paper>
               </Route>
               
+              <Route path="/history" >
+                    <Typography variant="h5" style={{color: "#FFFFFF"}}>Overview</Typography>
+                    <Typography variant="h4" style={{color: "#FFFFFF"}}>Social Emotional Profile</Typography>
+
+                    <Paper style={{width: '100%', height:'80vh', alignContent: 'center', justifyContent: 'center', overflow: 'auto', borderRadius: '18px',color:'#6B9BC0'}}>
+                        <History />
+                    
+                    </Paper>
+              </Route>
              </Switch>
             </div>
           </MuiThemeProvider>
