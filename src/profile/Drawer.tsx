@@ -97,12 +97,18 @@ export default function Drawer() {
           </ListItemIcon>
           <ListItemText primary="Library" />
         </ListItem>
+
+        
+      <Link to="/history">
         <ListItem button>
           <ListItemIcon>
             <TimelineIcon style={{color: "white"}}/>
           </ListItemIcon>
           <ListItemText primary="History" />
         </ListItem>
+        </Link>
+
+
         <ListItem button>
           <ListItemIcon>
             <SettingsIcon style={{color: "white"}}/>
