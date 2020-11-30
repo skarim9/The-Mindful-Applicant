@@ -62,58 +62,44 @@ function Application() {
   const classes = useStyles();
 
   return (
-    
     <div >
-
-<BrowserRouter>
-        <div>
-      <Navbar />
-      <div className={classes.root}>
+      <BrowserRouter>
+      <div>
+        <Navbar />
+        <div className={classes.root}>
           <Drawer />
           <MuiThemeProvider theme={theme}>
             <CssBaseline />
-                <div style = {{width:"100%", marginRight:'10px'}}>
-                    
-                <Switch>
-
+            <div style = {{width:"100%", marginRight:'10px'}}>   
+              <Switch>
                 <Route path="/profile" >
-                    <Typography variant="h5" style={{color: "#FFFFFF"}}>Overview</Typography>
-                    <Typography variant="h4" style={{color: "#FFFFFF"}}>Social Emotional Profile</Typography>
-
-                    <Paper style={{width: '100%', height:'80vh', alignContent: 'center', justifyContent: 'center', overflow: 'auto', borderRadius: '18px',color:'#6B9BC0'}}>
-                        <Profile/>
-                    </Paper>
+                  <Typography variant="h4" style={{color: "#FFFFFF", paddingTop: theme.spacing(1)}}>Social Emotional Profile</Typography>
+                  <Typography variant="h5" style={{color: "#FFFFFF", paddingBottom: theme.spacing(1)}}>Overview</Typography>
+                  <Paper style={{width: '100%', height:'80vh', alignContent: 'center', justifyContent: 'center', overflow: 'auto', borderRadius: '18px',color:'#6B9BC0'}}>
+                    <Profile />
+                  </Paper>
               </Route>
-
-                <Route path="/quiz" >
-                    {/* <Typography variant="h5" style={{color: "#FFFFFF"}}>Overview</Typography> */}
-                    <Typography variant="h4" style={{color: "#FFFFFF"}}>Social Emotional Quiz</Typography>
-
-                    <Paper style={{width: '100%', height:'80vh', alignContent: 'center', justifyContent: 'center', overflow: 'auto', borderRadius: '18px',color:'#6B9BC0'}}>
-                        <Quiz/>
-                
-                    </Paper>
+              <Route path="/quiz" >
+                <Typography variant="h4" style={{color: "#FFFFFF", paddingTop: theme.spacing(1)}}>Social Emotional Profile</Typography>
+                <Typography variant="h5" style={{color: "#FFFFFF", paddingBottom: theme.spacing(1)}}>Quiz</Typography>
+                <Paper style={{width: '100%', height:'80vh', alignContent: 'center', justifyContent: 'center', overflow: 'auto', borderRadius: '18px',color:'#6B9BC0'}}>
+                    <Quiz/>
+                </Paper>
               </Route>
-              
               <Route path="/history" >
-                    <Typography variant="h5" style={{color: "#FFFFFF"}}>Overview</Typography>
-                    <Typography variant="h4" style={{color: "#FFFFFF"}}>Social Emotional Profile</Typography>
-
-                    <Paper style={{width: '100%', height:'80vh', alignContent: 'center', justifyContent: 'center', overflow: 'auto', borderRadius: '18px',color:'#6B9BC0'}}>
-                        <History />
-                    
-                    </Paper>
+                <Typography variant="h4" style={{color: "#FFFFFF", paddingTop: theme.spacing(1)}}>Social Emotional Profile</Typography>
+                <Typography variant="h5" style={{color: "#FFFFFF", paddingBottom: theme.spacing(1)}}>History</Typography>
+                <Paper style={{width: '100%', height:'80vh', alignContent: 'center', justifyContent: 'center', overflow: 'auto', borderRadius: '18px',color:'#6B9BC0'}}>
+                  <History />
+                </Paper>
               </Route>
-             </Switch>
+              </Switch>
             </div>
-          </MuiThemeProvider>
-      </div>
+            </MuiThemeProvider>
+          </div>
+        </div>        
+      </BrowserRouter>
     </div>
-
-        
-</BrowserRouter>
-      </div>
-  
     );
   }
 

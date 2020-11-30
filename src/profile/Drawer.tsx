@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme: Theme) =>
       position: 'relative',
       paddingTop: theme.spacing(20),
       paddingBottom: theme.spacing(4),
-      paddingRight: theme.spacing(1),
+      paddingRight: theme.spacing(10),
     },
   }),
 );
@@ -61,29 +61,29 @@ export default function Drawer() {
    <div style={{color: "white"}} className={drawerClasses.drawerPaper}>
       <MuiThemeProvider theme={theme}>
         
-      <Link to="/profile">
+      <Link to="/profile" style={{ textDecoration: 'none' }}>
         <ListItem button>
           <ListItemIcon>
             <DashboardIcon style={{color: "white"}}/>
           </ListItemIcon>
           <ListItemText primary="Overview" style={{color: "white"}}/>
         </ListItem>
-        </Link>
+      </Link>
         
-        <Link to="/quiz">
+      <Link to="/quiz" style={{ textDecoration: 'none' }}>
         <ListItem button>
           <ListItemIcon>
             <MenuBookIcon style={{color: "white"}}/>
           </ListItemIcon>
           <ListItemText primary="Quiz" />
         </ListItem>
-        </Link>
+      </Link>
 
-        <ListItem button>
-          <ListItemIcon>
-            <LayersIcon style={{color: "white"}}/>
-          </ListItemIcon>
-          <ListItemText primary="Layers" />
+      <ListItem button>
+        <ListItemIcon>
+          <LayersIcon style={{color: "white"}}/>
+        </ListItemIcon>
+        <ListItemText primary="Layers" />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
@@ -99,22 +99,22 @@ export default function Drawer() {
         </ListItem>
 
         
-      <Link to="/history">
+      <Link to="/history" style={{ textDecoration: 'none' }}>
         <ListItem button>
           <ListItemIcon>
             <TimelineIcon style={{color: "white"}}/>
           </ListItemIcon>
           <ListItemText primary="History" />
         </ListItem>
-        </Link>
+      </Link>
 
-
-        <ListItem button>
-          <ListItemIcon>
-            <SettingsIcon style={{color: "white"}}/>
-          </ListItemIcon>
-          <ListItemText primary="Settings" />
-        </ListItem>
+      <ListItem button>
+        <ListItemIcon>
+          <SettingsIcon style={{color: "white"}}/>
+        </ListItemIcon>
+        <ListItemText primary="Settings" />
+      </ListItem>
+      
       </MuiThemeProvider>
       </div>
   );
