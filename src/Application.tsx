@@ -72,7 +72,7 @@ function Application() {
             <CssBaseline />
             <div style = {{width:"100%", marginRight:'10px'}}>   
               <Switch>
-                <Route path="/profile" >
+                <Route path={["/profile", ""]}>
                   <Typography variant="h4" style={{color: "#FFFFFF", paddingTop: theme.spacing(1)}}>Social Emotional Profile</Typography>
                   <Typography variant="h5" style={{color: "#FFFFFF", paddingBottom: theme.spacing(1)}}>Overview</Typography>
                   <Paper style={{width: '100%', height:'80vh', alignContent: 'center', justifyContent: 'center', overflow: 'auto', borderRadius: '18px',color:'#6B9BC0'}}>
