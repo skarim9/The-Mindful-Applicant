@@ -50,15 +50,20 @@ export default function Navbar() {
   return (
     <div className={classes.root}>
       <MuiThemeProvider theme={theme}>
-        <AppBar position="static" style = {{height:"min-content"}}>
-          <Toolbar style = {{minHeight:"min-content", maxHeight: "min-content"}}>
+        <AppBar
+          position = "static" 
+          // style = {{height:"min-content"}}
+        >
+          <Toolbar
+            // style = {{minHeight:"min-content", maxHeight: "min-content"}}
+          >
             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
               <MenuIcon />
             </IconButton>
             <Typography variant="h4" className={classes.title} >
               The Mindful Applicant
             </Typography>
-            <button>LOGIN</button>
+            <button>Login</button>
           </Toolbar>
         </AppBar>
       </MuiThemeProvider>
