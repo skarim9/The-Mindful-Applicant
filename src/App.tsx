@@ -14,28 +14,18 @@ import SignIn from './login/login';
 function App(){
   const user = useContext(UserContext);
   return (
-    
-    <div>{
+    <div> {
       user?
-    <div className="App">
-      <Application />
-
-      <button onClick = {() => { auth.signOut()}}>Sign Out</button>
-     
-    </div>
-    :
-    
-    <div>
-            <button
-            onClick={() => {
-              signInWithGoogle();
-            }}
-          >
-            Sign in with Google
-          </button>
-    </div>}
-    </div>
-
+      <div className="App">
+        <Application />
+        <button onClick = {() => { auth.signOut()}}>Sign Out</button>
+      </div>:
+      <div>
+        <button onClick = {() => { signInWithGoogle(); } }>
+          Sign in with Google
+        </button>
+      </div>
+    } </div>
   );
 }
 
