@@ -6,7 +6,7 @@ cache:
   - node_modules
 
 env:
-  CI: ""
+  CI: false
 
 before_install:
   
