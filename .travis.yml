@@ -20,3 +20,4 @@ branches:
 
 after_success:
   - ./travis_merge_script.sh
+  
