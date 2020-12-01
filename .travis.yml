@@ -4,6 +4,10 @@ node_js:
 cache:
   directories:
   - node_modules
+
+env:
+  CI: ""
+
 before_install:
   
 script:
