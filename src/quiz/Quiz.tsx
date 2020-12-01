@@ -63,6 +63,7 @@ export default class Quiz extends Component <IAppProps,IAppState>{
      * @param _showResults 
      */
     showResults(_showResults:boolean){
+        console.log(`Answered ${this.state.answeredCount} out of ${questionsData.length} questions`)
         if(this.state.answeredCount<questionsData.length){
             alert('Not all questions have been answered.');
         }
