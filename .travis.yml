@@ -1,3 +1,5 @@
+# Credit to the Travis documentation
+
 language: node_js
 node_js:
   - node

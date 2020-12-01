@@ -1,3 +1,5 @@
+# Credit to: https://medium.com/@allmonty/automerge-with-travis-ci-and-coveralls-to-elixir-248d1c6d2531
+
 if [ "$TRAVIS_BRANCH" != "feature_" ]; then 
     exit 0;
 fi
@@ -8,3 +10,4 @@ git fetch --all || exit
 git checkout main || exit
 git merge --no-ff "$TRAVIS_COMMIT" || exit
 git push @github.com/">https://${GITHUB_TOKEN}@github.com/skarim9/The-Mindful-Applicant.git
+
