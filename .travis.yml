@@ -14,10 +14,6 @@ script:
   - npm test
   - npm run build
 
-# branches:
-#   only:
-#     - feature_*
-
-# after_success:
-#   - ./travis_merge_script.sh
+after_success:
+  - ./travis_merge_script.sh
   
