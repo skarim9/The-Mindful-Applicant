@@ -1,8 +1,8 @@
 if [ "$TRAVIS_BRANCH" != "feature_" ]; then 
     exit 0;
 fi
-export GIT_COMMITTER_EMAIL="<your-email>"
-export GIT_COMMITTER_NAME="<your-name>"
+export GIT_COMMITTER_EMAIL="shihabkarim6@gmail.com"
+export GIT_COMMITTER_NAME="Shihab Karim"
 git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* || exit
 git fetch --all || exit
 git checkout main || exit
