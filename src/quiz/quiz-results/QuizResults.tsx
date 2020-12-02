@@ -53,14 +53,17 @@ export default class QuizResults extends Component <ResultsProps,IAppState>{
     }[]){
         let values=[];
         let categories=[];
+        let categoriesDescription=[];
         for(let i = 0; i<stats.length;i++){
             values.push(stats[i].progress);
             categories.push(stats[i].category);
+            categoriesDescription.push(stats[i].category+"Custom text haha "+i);
         }
         
         let data  = {
             datasets: [{data:values,backgroundColor:colors,label: 'Results', borderColor:'#ffffff', borderWidth: 1}],
-            labels:categories
+            labels:categories,
+            customLabelCaption:categoriesDescription
         };
         return data;
     }
