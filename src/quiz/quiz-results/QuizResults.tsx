@@ -9,7 +9,7 @@ import TypologyDisplay from './typologies/TypologyDisplay';
 import { UserContext } from '../../providers/UserProvider';
 import {auth} from '../../firebase-db/config';
 import ScrollToTop from '../../utils/ScrollToTop';
-import {getCategoryDefinition} from '../quiz-questions-data'
+import {Category, getCategoryDefinition} from '../quiz-questions-data'
 
 // export const colors = ["#b4a7d6","#97B695 ","#6B9BC0","#FCD4bD","#F37F7F","#b4a7d6"];
 export const colors = ["#ab8de0","#d34545","#45b0d3","#8fe891","#eac567","ac88ef"];
@@ -85,6 +85,9 @@ export default class QuizResults extends Component <ResultsProps,IAppState>{
                         <div className = "snapshot">
                             <h2>Your Elements</h2>
                         <PolarAreaChart data={data}/>
+                        {
+                            this.renderDefinitions()
+                        }
                         </div>
                         <div className = "snapshot">
                             <h2>Your Type</h2>
@@ -102,6 +105,13 @@ export default class QuizResults extends Component <ResultsProps,IAppState>{
                 }
             </div>
         )
+    }
+    renderDefinitions(){
+        let defs = [];
+        for(const category of Object.values(Category)){
+            defs.push(<p>{category+": "+getCategoryDefinition(category)}</p>)
+        }
+    return <div>{defs}</div>
     }
 }
 interface ResultsProps{

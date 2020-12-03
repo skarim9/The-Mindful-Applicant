@@ -15,12 +15,12 @@ export default class PolarAreaChart extends Component{
                 
                 tooltips:{
                     enabled: true,
-                    callbacks: {
-                        titleColor:'#000000',
-                        title: (toolTipItem, data) => {return data.labels[0]},//data.datasets[items[0].datasetIndex].data[items[0].index].title,
-                        label: (toolTipItem, data) => {return data.customLabelCaption[toolTipItem.index]}//data.datasets[item.datasetIndex].data[item.index],
+                    // callbacks: {
+                    //     titleColor:'#000000',
+                    //     title: (toolTipItem, data) => {return data.labels[0]},//data.datasets[items[0].datasetIndex].data[items[0].index].title,
+                    //     label: (toolTipItem, data) => {return data.customLabelCaption[toolTipItem.index]}//data.datasets[item.datasetIndex].data[item.index],
                         
-                      },
+                    //   },
                 //     custom: function(tooltipModel) {
                 //         // https://www.chartjs.org/docs/latest/configuration/tooltip.html#external-custom-tooltips
                 //         // Tooltip Element
