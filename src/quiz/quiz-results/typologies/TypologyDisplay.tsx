@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Typology } from '../TypologyDeterminator';
 import './typology.scss'
-export const colors = ["#ab8de0","#d34545","#45b0d3","#8fe891","#eac567","ac88ef"]
 
 export default class QuizResults extends Component <ResultsProps,IAppState>{
   

@@ -8,7 +8,10 @@ import { Typology } from './TypologyDeterminator';
 import TypologyDisplay from './typologies/TypologyDisplay';
 import { UserContext } from '../../providers/UserProvider';
 import {auth} from '../../firebase-db/config';
-import ScrollToTop from '../../utils/ScrollToTop'
+import ScrollToTop from '../../utils/ScrollToTop';
+import {getCategoryDefinition} from '../quiz-questions-data'
+
+// export const colors = ["#b4a7d6","#97B695 ","#6B9BC0","#FCD4bD","#F37F7F","#b4a7d6"];
 export const colors = ["#ab8de0","#d34545","#45b0d3","#8fe891","#eac567","ac88ef"];
 export default class QuizResults extends Component <ResultsProps,IAppState>{
   
@@ -57,7 +60,7 @@ export default class QuizResults extends Component <ResultsProps,IAppState>{
         for(let i = 0; i<stats.length;i++){
             values.push(stats[i].progress);
             categories.push(stats[i].category);
-            categoriesDescription.push(stats[i].category+"Custom text haha "+i);
+            categoriesDescription.push(getCategoryDefinition(stats[i].category));
         }
         
         let data  = {
