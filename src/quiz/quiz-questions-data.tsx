@@ -5,7 +5,22 @@ export enum Category {
     Social_Awareness = "Social Awareness",
     Relationship_Skills = "Relationship Skills"
   }
+export const getCategoryDefinition = (category:string)=>{
+    switch(category){
+        case Category.Self_Awareness:
+            return "The ability to accurately recognize one’s own emotions, thoughts, and values and how they influence behavior. The ability to accurately assess one’s strengths and limitations, with a well-grounded sense of confidence, optimism, and a “growth mindset."
+        case Category.Decision_Making:
+            return "The ability to make constructive choices about personal behavior and social interactions based on ethical standards, safety concerns, and social norms. The realistic evaluation of consequences of various actions, and a consideration of the well-being of oneself and others."
+        case Category.Self_Management:
+            return "The ability to successfully regulate one’s emotions, thoughts, and behaviors in different situations — effectively managing stress, controlling impulses, and motivating oneself. The ability to set and work toward personal and academic goals."
+        case Category.Social_Awareness:
+            return "The ability to take the perspective of and empathize with others, including those from diverse backgrounds and cultures. The ability to understand social and ethical norms for behavior and to recognize family, school, and community resources and supports."
+        case Category.Relationship_Skills:
+            return "The ability to establish and maintain healthy and rewarding relationships with diverse individuals and groups. The ability to communicate clearly, listen well, cooperate with others, resist inappropriate social pressure, negotiate conflict constructively, and seek and offer help when needed."
 
+    }
+    return "";
+}
 export const questionsData = [
     {
         option1:
