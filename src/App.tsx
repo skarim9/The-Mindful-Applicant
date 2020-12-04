@@ -18,7 +18,6 @@ function App(){
       user?
       <div className="App">
         <Application />
-        <button onClick = {() => { auth.signOut()}}>Sign Out</button>
       </div>:
       <div>
         <button onClick = {() => { signInWithGoogle(); } }>

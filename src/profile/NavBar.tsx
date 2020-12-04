@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import {auth} from '../firebase-db/config'
 
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
@@ -63,7 +64,8 @@ export default function Navbar() {
             <Typography variant="h4" className={classes.title} >
               The Mindful Applicant
             </Typography>
-            <button>Login</button>
+            
+            <button onClick = {() => { auth.signOut()}}>Sign Out</button>
           </Toolbar>
         </AppBar>
       </MuiThemeProvider>
