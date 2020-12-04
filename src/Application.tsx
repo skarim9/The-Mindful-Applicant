@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import { BrowserRouter, Route, Switch,Link,Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Link, Redirect } from 'react-router-dom';
 // database imports
-import {signInWithGoogle} from './firebase-db/config'
+import { signInWithGoogle } from './firebase-db/config'
 
 import './App.css';
 import Profile from './profile/Profile'
@@ -31,14 +31,13 @@ const theme = createMuiTheme({
       main: '#6B9BC0',
       contrastText: '#fff',
     },
-    secondary: {      
+    secondary: {
       main: '#97B695',
       contrastText: '#fff',
     },
   },
   typography: {
-    fontFamily: ['Montserrat'
-    ].join(','),
+    fontFamily: ['Montserrat',].join(','),
   }
 });
 
@@ -62,65 +61,48 @@ function Application() {
   const classes = useStyles();
 
   return (
-    
-    <div >
-
-<BrowserRouter>
+    <div>
+      <BrowserRouter>
         <div>
-      <Navbar />
-      <div className={classes.root}>
-          <Drawer />
-          <MuiThemeProvider theme={theme}>
-            <CssBaseline />
-                <div style = {{width:"100%", marginRight:'10px'}}>
-                    
+          <Navbar />
+          <div className={classes.root}>
+            <Drawer />
+            <MuiThemeProvider theme={theme}>
+              <CssBaseline />
+              <div style={{ width: "100%", marginRight: '10px' }}>
+                <Typography variant="h4" style={{ color: "#FFFFFF", paddingTop: 5, paddingBottom: 5 }}>Social Emotional Profile</Typography>
                 <Switch>
 
-                <Route path="/profile" >
-                    <Typography variant="h5" style={{color: "#FFFFFF"}}>Overview</Typography>
-                    <Typography variant="h4" style={{color: "#FFFFFF"}}>Social Emotional Profile</Typography>
-
-                    <Paper style={{width: '100%', height:'80vh', alignContent: 'center', justifyContent: 'center', overflow: 'auto', borderRadius: '18px',color:'#6B9BC0'}}>
-                        <Profile/>
+                  <Route path="/profile" >
+                    <Paper style={{ width: '100%', height: '80vh', alignContent: 'center', justifyContent: 'center', overflow: 'auto', borderRadius: '18px', color: '#6B9BC0' }}>
+                      <Profile />
                     </Paper>
-              </Route>
+                  </Route>
 
-                <Route path="/quiz" >
-                    {/* <Typography variant="h5" style={{color: "#FFFFFF"}}>Overview</Typography> */}
-                    <Typography variant="h4" style={{color: "#FFFFFF"}}>Social Emotional Quiz</Typography>
-
-                    <Paper style={{width: '100%', height:'80vh', alignContent: 'center', justifyContent: 'center', overflow: 'auto', borderRadius: '18px',color:'#6B9BC0'}}>
-                        <Quiz/>
-                
+                  <Route path="/quiz" >
+                    <Paper style={{ width: '100%', height: '80vh', alignContent: 'center', justifyContent: 'center', overflow: 'auto', borderRadius: '18px', color: '#6B9BC0' }}>
+                      <Quiz />
                     </Paper>
-              </Route>
-              
-              <Route path="/history" >
-                    <Typography variant="h5" style={{color: "#FFFFFF"}}>Overview</Typography>
-                    <Typography variant="h4" style={{color: "#FFFFFF"}}>Social Emotional Profile</Typography>
+                  </Route>
 
-                    <Paper style={{width: '100%', height:'80vh', alignContent: 'center', justifyContent: 'center', overflow: 'auto', borderRadius: '18px',color:'#6B9BC0'}}>
-                        <History />
-                    
+                  <Route path="/history" >
+                    <Paper style={{ width: '100%', height: '80vh', alignContent: 'center', justifyContent: 'center', overflow: 'auto', borderRadius: '18px', color: '#6B9BC0' }}>
+                      <History />
                     </Paper>
-              </Route>
+                  </Route>
 
+                  <Route path="/" >
+                    <Redirect to="/profile" />
+                  </Route>
 
-              <Route path="/" >
-                <Redirect to="/profile" />
-              </Route>
-
-             </Switch>
-            </div>
-          </MuiThemeProvider>
-      </div>
+                </Switch>
+              </div>
+            </MuiThemeProvider>
+          </div>
+        </div>
+      </BrowserRouter>
     </div>
-
-        
-</BrowserRouter>
-      </div>
-  
-    );
-  }
+  );
+}
 
 export default Application;
