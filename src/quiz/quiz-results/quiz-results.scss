@@ -3,13 +3,15 @@
     flex-direction: row;
     justify-content: space-between;
     background-color: #FFFFFF;
+    margin-right: 1%;
+    margin-left: 1%;
 }
 
 .snapshot {
-    width:50%;
-    padding-left: 1px;
-    padding-right: 1px;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+    padding-bottom: 2.5%;
+    // width:50%;
     // border: 2px solid #6B9BC0;
     // border-radius: 5px;
 }
-
