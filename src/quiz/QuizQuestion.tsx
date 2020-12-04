@@ -40,8 +40,10 @@ constructor(props: IAppProps){
         // await this.props.updateCategoryScore(this.props.question.option1.category,maxValue-(selectedValue));
         // await this.props.updateCategoryScore(this.props.question.option2.category,selectedValue);
       }
-        this.setState({isAnswered:true})
-        this.props.updateAnsweredCount();
+      if(!this.state.isAnswered){
+        this.setState({isAnswered:true},
+          this.props.updateAnsweredCount());
+      }
     // }    
     // else{
     //   console.log( `This question has already been answered.`);

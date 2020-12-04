@@ -14,6 +14,7 @@ export default class Quiz extends Component <IAppProps,IAppState>{
             name:"",
             isShowResults:false, 
             answeredCount:0,
+            isFinishedQuiz: false,
             score:{
                 decision_making:0,
                 relationship_skills:0,
@@ -45,11 +46,21 @@ export default class Quiz extends Component <IAppProps,IAppState>{
         </div>
         )
     }
+    getResults = () =>{
+        this.setState({
+            isFinishedQuiz: this.state.answeredCount>=questionsData.length
+        },this.calculateResults);
+        
+    }
     /**
      * Calculates the results of the quiz
      * WARNING: fragile code, might cause mismatching of question and selected answer if anything changes
      */
-    getResults=async()=>{
+    calculateResults=async()=>{
+        if(!this.state.isFinishedQuiz){
+            alert('Not all questions have been answered.');
+            return;
+        }
         for(let i in this.state.selectedAnswers){
             let selectedValue = this.state.selectedAnswers[i];
             await this.updateCategoryScore(questionsData[i].option1.category,this.state.maxScorePerQuestion-(selectedValue));
@@ -63,7 +74,8 @@ export default class Quiz extends Component <IAppProps,IAppState>{
      * @param _showResults 
      */
     showResults(_showResults:boolean){
-        if(this.state.answeredCount<questionsData.length){
+        console.log(`Answered ${this.state.answeredCount} out of ${questionsData.length} questions`)
+        if(!this.state.isFinishedQuiz){
             alert('Not all questions have been answered.');
         }
         else{
@@ -193,6 +205,7 @@ interface IAppState{
     
     name:string;
     answeredCount:number;
+    isFinishedQuiz:boolean;
     selectedAnswers:number[];
     score:{
         decision_making:number

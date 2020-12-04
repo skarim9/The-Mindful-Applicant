@@ -1,11 +1,21 @@
+# Credit to the Travis documentation
+
 language: node_js
 node_js:
   - node
 cache:
   directories:
   - node_modules
+
+env:
+  CI: false
+
 before_install:
   
 script:
   - npm test
   - npm run build
+
+after_success:
+  - ./travis_merge_script.sh
+  
