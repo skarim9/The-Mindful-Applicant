@@ -53,6 +53,16 @@ const useStyles = makeStyles((theme: Theme) =>
     container: {
       height: '100%',
       width: '100%'
+    },
+    paper: {
+      width: '100%',
+      height: '80vh',
+
+      alignContent: 'center',
+      justifyContent: 'center',
+      overflow: 'auto',
+      borderRadius: '10px',
+      color: '#6B9BC0'
     }
   }),
 );
@@ -66,27 +76,27 @@ function Application() {
         <div>
           <Navbar />
           <div className={classes.root}>
-            <Drawer />
+            {/* <Drawer /> */}
             <MuiThemeProvider theme={theme}>
               <CssBaseline />
-              <div style={{ width: "100%", marginRight: '10px' }}>
-                <Typography variant="h4" style={{ color: "#FFFFFF", paddingTop: 5, paddingBottom: 5 }}>Social Emotional Profile</Typography>
+              <div style={{ width: "100%", marginLeft: '5%', marginRight: '5%'}}>
+                <Typography variant="h4" style={{ color: "#FFFFFF", paddingTop: '1%', paddingBottom: '1%'}}>Social Emotional Profile</Typography>
                 <Switch>
 
                   <Route path="/profile" >
-                    <Paper style={{ width: '100%', height: '80vh', alignContent: 'center', justifyContent: 'center', overflow: 'auto', borderRadius: '18px', color: '#6B9BC0' }}>
+                    <Paper className={classes.paper}>
                       <Profile />
                     </Paper>
                   </Route>
 
                   <Route path="/quiz" >
-                    <Paper style={{ width: '100%', height: '80vh', alignContent: 'center', justifyContent: 'center', overflow: 'auto', borderRadius: '18px', color: '#6B9BC0' }}>
+                    <Paper className={classes.paper}>
                       <Quiz />
                     </Paper>
                   </Route>
 
                   <Route path="/history" >
-                    <Paper style={{ width: '100%', height: '80vh', alignContent: 'center', justifyContent: 'center', overflow: 'auto', borderRadius: '18px', color: '#6B9BC0' }}>
+                    <Paper className={classes.paper}>
                       <History />
                     </Paper>
                   </Route>
