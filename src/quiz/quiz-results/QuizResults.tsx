@@ -82,19 +82,13 @@ export default class QuizResults extends Component<ResultsProps, IAppState>{
         { this.state.isAllocatePoints ?
 
           <PointsAllocation date={this.props.date} polarChartData={this.polarChartData} stats={this.props.stats} initTypology={this.props.typology} /> :
-          <div>
-              <div className="snapshot">
-                <h2>Your Type</h2>
-                <TypologyDisplay typology={this.props.typology} />
-              </div>
-
+          <div className="quiz-results-container">
               <div className="snapshot">
                 {/* <Grid container>
                   <Grid item xs={6}>
                     {this.renderDefinitions()}
                   </Grid> */}
 
-                  <div></div>
 
                   {/* <Grid item xs={6}> */}
                     <h2>Your Elements</h2>
@@ -102,6 +96,12 @@ export default class QuizResults extends Component<ResultsProps, IAppState>{
                   {/* </Grid>
                 </Grid> */}
               </div>
+              <div className="snapshot">
+                <h2>Your Type</h2>
+                <TypologyDisplay typology={this.props.typology} />
+              </div>
+
+              
             {
               this.props.canReallocatePoints ?
                 <button onClick={(e) => { this.setState({ isAllocatePoints: true }) }}>Reallocate Points</button>

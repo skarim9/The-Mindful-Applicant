@@ -170,7 +170,8 @@ export default class PolarAreaChart extends Component{
                     
                     onClick: this.handleLegendClick
                 },
-                
+                responsive:true,
+                maintainAspectRatio: true,
     //   legendCallback: (chart) => {
     //     const renderLabels = (chart) => {
     //       const { data } = chart;
@@ -248,7 +249,7 @@ export default class PolarAreaChart extends Component{
     render(){
         // const htmlToReactParser = new HtmlToReactParser();
         
-        return (<div>
+        return (<div >
             <Polar data = {this.props.data} options = {this.state.options}   /* ref={(element) => this.setTextInputRef(element)}*/></Polar>
             {/* <div dangerouslySetInnerHTML={this.createMarkup()} /> */}
         <div>{this.state.selectedLegendItem>=0?this.renderSelectedLegendItem():<div></div>}</div>

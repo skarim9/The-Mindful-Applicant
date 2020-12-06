@@ -19,13 +19,15 @@ export default class QuizResults extends Component <ResultsProps,IAppState>{
             <div>
               <Grid container className = "typology-container">
                 <Grid item xs={6}>
-                  <h1>{this.props.typology}</h1>
+                  <h3>{this.props.typology}</h3>
                   <div className = "typology-img-container">
                     {this.getTypologyImage(this.props.typology)}
                   </div>
                 </Grid>
                 <Grid item xs={6}>
+                  <div style={{maxHeight:'50vh', overflow:'auto'}}>
                   {this.renderTypology(this.props.typology)}
+                  </div>
                 </Grid>
               </Grid>
             </div>

@@ -79,7 +79,7 @@ function Application() {
             {/* <Drawer /> */}
             <MuiThemeProvider theme={theme}>
               <CssBaseline />
-              <div style={{ width: "100%", marginLeft: '5%', marginRight: '5%'}}>
+              <div style={{ width: "100%", marginLeft: '5%', marginRight: '5%', paddingBottom:'5%'}}>
                 <Typography variant="h4" style={{ color: "#FFFFFF", paddingTop: '1%', paddingBottom: '1%'}}>Social Emotional Profile</Typography>
                 <Switch>
 
