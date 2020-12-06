@@ -1,17 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
+import Select from '@material-ui/core/Select';
 import { makeStyles, 
   ThemeProvider, 
   createMuiTheme,
@@ -28,7 +25,7 @@ import {  } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 import '../App.css';
 import InputLabel from '@material-ui/core/InputLabel';
-import {signInWithGoogle} from '../firebase-db/config'
+import {auth, generateUserDocument, signInWithGoogle} from '../firebase-db/config';
 
 
 // function Copyright() {
@@ -244,6 +241,26 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
   const classes = useStyles();
 
+  const [newUser,setUSer] = useState<{displayName:string,email:string,password:string, grade: string | number, school: string}>({displayName:"",email:"",password:"", grade:"", school:""});
+
+  const {displayName,email,password, grade, school}=newUser;
+
+
+  const onChange =(e:React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setUSer({ ...newUser,[name]:value });
+  }
+
+  const onSubmit = async (e:React.FormEvent<EventTarget>) => {
+    e.preventDefault();
+    const {user} =  await auth.createUserWithEmailAndPassword(newUser?.email,newUser.password);
+    if(user) {
+      await generateUserDocument(user,{ displayName:newUser.displayName });
+      setUSer({displayName:"",email:"",password:"", grade:"", school:""});
+    }
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <Grid container component="main" className={classes.root}>
@@ -268,43 +285,59 @@ export default function SignUp() {
             <Typography component="h1" variant="h5" className={classes.signinMargin}>
               Sign Up
             </Typography>
-            <form className={classes.form} noValidate>
+            <form className={classes.form} noValidate onSubmit={onSubmit}>
               <FormControl className={classes.margin}>
                 <InputLabel shrink htmlFor="bootstrap-input" className={classes.inputLabel} >
                   Your Name
                 </InputLabel>
-                <BootstrapInput id="name" placeholder="Enter your full name" autoComplete="off" type="text"/>
+                <BootstrapInput id="name" placeholder="Enter your full name" autoComplete="off" type="text" onChange={onChange} fullWidth value={displayName}/>
               </FormControl>
               <FormControl className={classes.margin}>
                 <InputLabel shrink htmlFor="bootstrap-input" className={classes.inputLabel} >
                   Email
                 </InputLabel>
-                <BootstrapInput id="email" placeholder="Enter your email address" autoComplete="off"/>
+                <BootstrapInput id="email" placeholder="Enter your email address" autoComplete="off" type="email" onChange={onChange} fullWidth value={email}/>
               </FormControl>
               <FormControl className={classes.margin}>
                 <InputLabel shrink htmlFor="bootstrap-input" className={classes.inputLabel} >
                   Your School
                 </InputLabel>
-                <BootstrapInput id="school" placeholder="Enter your current school" autoComplete="off"/>
+                <BootstrapInput id="school" placeholder="Enter your current school" autoComplete="off" onChange={onChange} fullWidth value={school}/>
               </FormControl>
               <FormControl className={classes.margin}>
+              {/* <InputLabel htmlFor="grade-native">Grade</InputLabel>
+                <Select
+                  native
+                  value={state.grade}
+                  onChange={handleChange}
+                  inputProps={{
+                    name: 'grade',
+                    id: 'grade-native',
+                  }}
+                >
+                  <option aria-label="None" value="Please Select a Grade" />
+                  <option value={9}>9th Grade/Freshamn</option>
+                  <option value={10}>10th Grade/Sophomore</option>
+                  <option value={11}>11th Grade/Junior</option>
+                  <option value={12}>12th Grade/Senior</option>
+                </Select> */}
                 <InputLabel shrink htmlFor="bootstrap-input" className={classes.inputLabel} >
                   Your Grade
                 </InputLabel>
-                <BootstrapInput id="grade" placeholder="Enter your current grade"/>
+                <BootstrapInput id="grade" placeholder="Enter your current grade" onChange={onChange} fullWidth value={grade}/>
               </FormControl>
               <FormControl className={classes.margin}>
                 <InputLabel shrink htmlFor="bootstrap-input" className={classes.inputLabel} >
                   Choose a Password
                 </InputLabel>
-                <BootstrapInput id="password" placeholder="Enter desired password" autoComplete="off" type="password"/>
+                <BootstrapInput id="password" placeholder="Enter desired password" autoComplete="off" type="password" onChange={onChange} fullWidth value={password}/>
               </FormControl>
-              <FormControl className={classes.margin}>
+              {/* <FormControl className={classes.margin}>
                 <InputLabel shrink htmlFor="bootstrap-input" className={classes.inputLabel} >
                   Confirm your password
                 </InputLabel>
                 <BootstrapInput id="password_confirm" placeholder="Re-type your password" autoComplete="off" type="password"/>
-              </FormControl>
+              </FormControl> */}
               {/* <TextField
                 className={classes.textField}
                 variant="outlined"

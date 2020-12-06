@@ -1,16 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, 
   ThemeProvider, 
@@ -29,6 +26,7 @@ import InputBase from '@material-ui/core/InputBase';
 import '../App.css';
 import InputLabel from '@material-ui/core/InputLabel';
 import { withWidth } from '@material-ui/core';
+import { auth } from "../firebase";
 
 // function Copyright() {
 //   return (
@@ -241,6 +239,27 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn() {
   const classes = useStyles();
 
+  const [user, setUser] = useState<{ email: string; password: string }>({
+    email: "",
+    password: "",
+  });
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setUser({ ...user, [name]: value });
+  };
+
+  const onSubmit = async (e: React.FormEvent<EventTarget>) => {
+    e.preventDefault();
+    const { email, password } = user;
+    await auth.signInWithEmailAndPassword(email, password);
+    setUser({
+      email: "",
+      password: "",
+    });
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Grid container component="main" className={classes.root}>
@@ -265,18 +284,18 @@ export default function SignIn() {
             <Typography component="h1" variant="h5" className={classes.signinMargin}>
               Sign in
             </Typography>
-            <form className={classes.form} noValidate>
+            <form className={classes.form} noValidate autoComplete="off" onSubmit={onSubmit}>
               <FormControl className={classes.margin}>
                 <InputLabel shrink htmlFor="bootstrap-input" className={classes.inputLabel} >
                   Email
                 </InputLabel>
-                <BootstrapInput id="email" placeholder="Enter your email address" autoComplete="None"/>
+                <BootstrapInput id="email" placeholder="Enter your email address" autoComplete="None" fullWidth name="email" type="email" onChange={onChange}/>
               </FormControl>
               <FormControl className={classes.margin}>
                 <InputLabel shrink htmlFor="bootstrap-input" className={classes.inputLabel} >
                   Password
                 </InputLabel>
-                <BootstrapInput id="password" placeholder="Enter your password" autoComplete="None"/>
+                <BootstrapInput id="password" placeholder="Enter your password" autoComplete="None" fullWidth name="password" type="password" onChange={onChange}/>
               </FormControl>
               {/* <TextField
                 className={classes.textField}
