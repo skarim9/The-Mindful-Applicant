@@ -89,18 +89,18 @@ export default class QuizResults extends Component<ResultsProps, IAppState>{
               </div>
 
               <div className="snapshot">
-                <Grid container>
+                {/* <Grid container>
                   <Grid item xs={6}>
                     {this.renderDefinitions()}
-                  </Grid>
+                  </Grid> */}
 
                   <div></div>
 
-                  <Grid item xs={6}>
+                  {/* <Grid item xs={6}> */}
                     <h2>Your Elements</h2>
                     <PolarAreaChart data={data} />
-                  </Grid>
-                </Grid>
+                  {/* </Grid>
+                </Grid> */}
               </div>
             {
               this.props.canReallocatePoints ?
