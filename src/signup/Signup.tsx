@@ -28,6 +28,7 @@ import {  } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 import '../App.css';
 import InputLabel from '@material-ui/core/InputLabel';
+import {signInWithGoogle} from '../firebase-db/config'
 
 
 // function Copyright() {
@@ -345,6 +346,7 @@ export default function SignUp() {
                   <Link href="#" variant="body2" underline="none">
                     Forgot your password?
                   </Link>
+                  
 
                   <p className={classes.signupP}>Already have an account? 
                   <Link href="/signin" variant="body2" className={classes.signupLink} underline="none">
@@ -356,6 +358,7 @@ export default function SignUp() {
             </form>
           </div>
         </Grid>
+        
       </Grid>
     </ThemeProvider>
       

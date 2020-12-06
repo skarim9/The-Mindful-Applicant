@@ -8,34 +8,24 @@ import Application from './Application'
 import {addNewUser,addOriginalQuizResult,addReallocatedQuizResult} from './firebase-db/firestore/db-functions'
 import { UserContext } from './providers/UserProvider';
 import SignIn from './login/login';
+import SignUp from './signup/Signup';
 
 
 
 function App(){
   const user = useContext(UserContext);
   return (
-    
-    <div>{
+    <div> {
       user?
-    <div className="App">
-      <Application />
-
-      <button onClick = {() => { auth.signOut()}}>Sign Out</button>
-     
-    </div>
-    :
-    
-    <div>
-            <button
-            onClick={() => {
-              signInWithGoogle();
-            }}
-          >
-            Sign in with Google
-          </button>
-    </div>}
-    </div>
-
+      <div className="App">
+        <Application />
+      </div>:<div>
+      <SignUp/>
+      <button onClick = {() => { signInWithGoogle(); } }>
+          Sign in with Google
+        </button>
+        </div>
+    } </div>
   );
 }
 

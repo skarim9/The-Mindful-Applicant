@@ -60,13 +60,14 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
                 </div>
                         
                 </div>
-                <div>
-                    <h3>New Typology</h3>
-                    <TypologyDisplay typology = {this.state.newTypology}/>
-                </div>
+               
                 {/* Points bank */
                     this.createPointsBank(this.state.pointsToAllocate)
                 }
+                 <div>
+                    <h3>New Typology</h3>
+                </div>
+                <TypologyDisplay typology = {this.state.newTypology}/>
                 <PromptBox/>
                 <button onClick = {()=>{this.saveResults()}} className = "button">Submit</button>
             

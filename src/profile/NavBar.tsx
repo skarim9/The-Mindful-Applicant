@@ -6,8 +6,12 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import {auth} from '../firebase-db/config'
+
+import Grid from '@material-ui/core/Grid'
 
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import { Title } from '@material-ui/icons';
 
 const theme = createMuiTheme({
   palette: {
@@ -34,13 +38,13 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       flexGrow: 1,
     },
+    login: {
+      flexGrow: 1,
+      marginLeft: 'auto'
+    },
     menuButton: {
       marginRight: theme.spacing(2),
     },
-    title: {
-      flexGrow: 1,
-    },
-    
   }),
 );
 
@@ -50,18 +54,18 @@ export default function Navbar() {
   return (
     <div className={classes.root}>
       <MuiThemeProvider theme={theme}>
-        <AppBar position="static" style = {{height:"min-content"}}>
-          <Toolbar style = {{minHeight:"min-content", maxHeight: "min-content"}}>
-            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+        <AppBar position="static" style={{height:"min-content"}}>
+          <Toolbar>
+            <IconButton>
               <MenuIcon />
             </IconButton>
-            <Typography variant="h4" className={classes.title} >
-              The Mindful Applicant
-            </Typography>
-            <button>LOGIN</button>
+
+            <Button onClick = {() => { auth.signOut()}}>Sign Out</Button>
+
           </Toolbar>
         </AppBar>
       </MuiThemeProvider>
     </div>
+
   );
 }

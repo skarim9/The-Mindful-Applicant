@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).        
+
+[![Build Status](https://travis-ci.com/skarim9/The-Mindful-Applicant.svg?token=EQsqRwKgMytt4RipPrDc&branch=main)](https://travis-ci.com/skarim9/The-Mindful-Applicant)
 
 ## Available Scripts
 

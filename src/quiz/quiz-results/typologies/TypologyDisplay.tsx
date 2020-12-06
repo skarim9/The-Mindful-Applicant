@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import Grid from '@material-ui/core/Grid'
 import { Typology } from '../TypologyDeterminator';
 import './typology.scss'
-export const colors = ["#ab8de0","#d34545","#45b0d3","#8fe891","#eac567","ac88ef"]
 
 export default class QuizResults extends Component <ResultsProps,IAppState>{
   
@@ -16,14 +16,20 @@ export default class QuizResults extends Component <ResultsProps,IAppState>{
     render() {
         
         return (
-            <div >
-                <h1>{this.props.typology}</h1>
-                <div className = "typology-container">
+            <div>
+              <Grid container className = "typology-container">
+                <Grid item xs={6}>
+                  <h3>{this.props.typology}</h3>
                   <div className = "typology-img-container">
-                {this.getTypologyImage(this.props.typology)}
-                </div>
-                {this.renderTypology(this.props.typology)}
-                </div>
+                    {this.getTypologyImage(this.props.typology)}
+                  </div>
+                </Grid>
+                <Grid item xs={6}>
+                  <div style={{maxHeight:'50vh', overflow:'auto'}}>
+                  {this.renderTypology(this.props.typology)}
+                  </div>
+                </Grid>
+              </Grid>
             </div>
         )
     }
