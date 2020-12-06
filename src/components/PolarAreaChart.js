@@ -7,18 +7,28 @@ import { Parser as HtmlToReactParser } from 'html-to-react';
  * Polar Area Chart specially customized for Mindful Applicant. 
  * Not for generic use. (need to modify the default state options otherwise)
  */
+const alertWoah = () =>{alert("WOAHDLFJDSL")}
 export default class PolarAreaChart extends Component{
-    myRef;
+     handleLegendClick = (event, legendItem)=> {
+        console.log(`item ${legendItem.text} was clicked `);
+        // alertWoah();
+        this.setState({
+            selectedLegendItem:legendItem.index
+        });
+        console.log("Selected item is "+this.state.selectedLegendItem)
+      }
+    // myRef;
     constructor(props){
         super(props);
-        this.myRef = null;
+        // this.myRef = null;
         
 
-        this.createMarkup = this.createMarkup.bind(this);
-    this.myRef = null;
+        // this.createMarkup = this.createMarkup.bind(this);
+    // this.myRef = null;
+   
         this.state = {
             legend: <>no legend</>,
-            
+            selectedLegendItem:-1,
             options:{
                 
                 tooltips:{
@@ -110,38 +120,84 @@ export default class PolarAreaChart extends Component{
                     bodyAlign:'center',
                 },
                 legend:{
-                    display:false,
+                    display:true,
                     position:'bottom',
+                    tooltips:{
+                        mode:'label'
+                    },
+                    labels:{
+                        usePointStyle:true,
+                        fontColor:'#6b9bc0',
+                        // generateLabels: function(chart){
+                        //     // https://stackoverflow.com/questions/39454586/pie-chart-legend-chart-js
+                        //     const data = chart.data;
+                        //     if (data.labels.length && data.datasets.length) {
+                        //         return data.labels.map(function(label, i) {
+                        //             const meta = chart.getDatasetMeta(0);
+                        //             const ds = data.datasets[0];
+                        //             const arc = meta.data[i];
+                        //             const custom = arc && arc.custom || {};
+                        //             const getValueAtIndexOrDefault = Chart.helpers.getValueAtIndexOrDefault;
+                        //             const arcOpts = chart.options.elements.arc;
+                        //             const fill = custom.backgroundColor ? custom.backgroundColor : getValueAtIndexOrDefault(ds.backgroundColor, i, arcOpts.backgroundColor);
+                        //             const stroke = custom.borderColor ? custom.borderColor : getValueAtIndexOrDefault(ds.borderColor, i, arcOpts.borderColor);
+                        //             const bw = custom.borderWidth ? custom.borderWidth : getValueAtIndexOrDefault(ds.borderWidth, i, arcOpts.borderWidth);
+        
+                        //             // We get the value of the current label
+                        //             const value = chart.config.data.datasets[arc._datasetIndex].data[arc._index];
+        
+                        //             return {
+                        //                 // Instead of `text: label,`
+                        //                 // We add the value to the string
+                        //                 text: label + " : " + value+"",
+                        //                 fillStyle: fill,
+                        //                 strokeStyle: stroke,
+                        //                 lineWidth: bw,
+                        //                 hidden: isNaN(ds.data[i]) || meta.data[i].hidden,
+                        //                 index: i
+                        //             };
+                        //         });
+                        //     } else {
+                        //         return [];
+                        //     }
+                        
+                        // }
+                    },
+                    onHover:function(e, item){
+                        // alert(`Item with text ${item.text} and index ${item.index} hovered`);
+                        
+                    },
                     
+                    onClick: this.handleLegendClick
                 },
                 
-      legendCallback: (chart) => {
-        const renderLabels = (chart) => {
-          const { data } = chart;
-          return data.datasets[0].data
-            .map(
-              (_, i) =>
-                `<div>
-                    <div id="legend-${i}-item" class="legend-item">
-                      <span style="background-color:
-                        ${data.datasets[0].backgroundColor[i]};border-radius:15px">
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                      </span>
-                      ${
-                        data.labels[i] &&
-                        `<span class="label">${data.labels[i]}: Ok${data.datasets[0].data[i]}</span>`
-                      }
-                    </div>
-                </div>
-              `
-            )
-            .join("");
-        };
-        return `
-          <ul class="chartjs-legend">
-            ${renderLabels(chart)}
-          </ul>`;
-      },
+    //   legendCallback: (chart) => {
+    //     const renderLabels = (chart) => {
+    //       const { data } = chart;
+        //   return data.datasets[0].data
+        //     .map(
+        //       (_, i) =>
+        //         `<div>
+        //             <div id="legend-${i}-item" class="legend-item">
+        //               <span style="background-color:
+        //                 ${data.datasets[0].backgroundColor[i]};border-radius:15px">
+        //                 &nbsp;&nbsp;&nbsp;&nbsp;
+        //               </span>
+        //               ${
+        //                 data.labels[i] &&
+        //                 `<span class="label">${data.labels[i]}: Ok${data.datasets[0].data[i]}</span>`
+        //               }
+        //             </div>
+        //         </div>
+        //       `
+        //     )
+        //     .join("");
+    //     };
+    //     return `
+    //       <ul class="chartjs-legend">
+    //         ${renderLabels(chart)}
+    //       </ul>`;
+    //   },
                 scale:{
                     
                     ticks: {
@@ -165,36 +221,40 @@ export default class PolarAreaChart extends Component{
         }
     }
     
-    setTextInputRef(element){
+    // setTextInputRef(element){
 
-        this.myRef = element;
-    }
-    componentDidMount() {
+    //     this.myRef = element;
+    // }
+    // componentDidMount() {
         
-    const leg = this.generateLegend();
-    this.setState({legend:leg});
-      }
+    // const leg = this.generateLegend();
+    // this.setState({legend:leg});
+    //   }
       
-setTextInputRef(element){
+// setTextInputRef(element){
 
-    this.myRef = element;
-}
-      generateLegend(){
-        if(!this.myRef) return null;
-        return (this.myRef).chartInstance.generateLegend();
+//     this.myRef = element;
+// }
+    //   generateLegend(){
+    //     if(!this.myRef) return null;
+    //     return (this.myRef).chartInstance.generateLegend();
     
-    }
-      createMarkup() { 
+    // }
+    //   createMarkup() { 
      
-        return {__html: this.state.legend}; 
+    //     return {__html: this.state.legend}; 
     
-    };
+    // };
     render(){
-        const htmlToReactParser = new HtmlToReactParser();
+        // const htmlToReactParser = new HtmlToReactParser();
         
         return (<div>
-            <Polar data = {this.props.data} options = {this.state.options}    ref={(element) => this.setTextInputRef(element)}></Polar>
-            <div dangerouslySetInnerHTML={this.createMarkup()} />
+            <Polar data = {this.props.data} options = {this.state.options}   /* ref={(element) => this.setTextInputRef(element)}*/></Polar>
+            {/* <div dangerouslySetInnerHTML={this.createMarkup()} /> */}
+        <div>{this.state.selectedLegendItem>=0?this.renderSelectedLegendItem():<div></div>}</div>
        </div>);
+    }
+    renderSelectedLegendItem(){
+    return <div>{this.props.data.labels[this.state.selectedLegendItem]}: {this.props.data.customLabelCaption[this.state.selectedLegendItem]}</div>
     }
 }
