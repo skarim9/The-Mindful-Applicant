@@ -171,7 +171,7 @@ export default class PolarAreaChart extends Component{
                     onClick: this.handleLegendClick
                 },
                 responsive:true,
-                maintainAspectRatio: window.innerWidth>600,
+                maintainAspectRatio: true,
     //   legendCallback: (chart) => {
     //     const renderLabels = (chart) => {
     //       const { data } = chart;
