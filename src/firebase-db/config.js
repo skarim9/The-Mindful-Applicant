@@ -19,11 +19,6 @@ const auth = firebase.auth();
 export { db, auth };
 
 
-const provider = new firebase.auth.GoogleAuthProvider();
-export const signInWithGoogle = () => {
-  auth.signInWithPopup(provider);
-};
-
 export const generateUserDocument = async (user, additionalData) => {
   if (!user) return;
 
@@ -31,11 +26,13 @@ export const generateUserDocument = async (user, additionalData) => {
   const snapshot = await userRef.get();
 
   if (!snapshot.exists) {
-    const { email, displayName, photoURL } = user;
+    const { email, displayName, photoURL, school, grade} = user;
     try {
       await userRef.set({
         displayName,
         email,
+        school,
+        grade,
         photoURL,
         ...additionalData
       });
@@ -43,7 +40,7 @@ export const generateUserDocument = async (user, additionalData) => {
       console.error("Error creating user document", error);
     }
   }
-  return getUserDocument(user.uid);
+  return userRef;
 };
 
 const getUserDocument = async uid => {
@@ -58,4 +55,9 @@ const getUserDocument = async uid => {
   } catch (error) {
     console.error("Error fetching user", error);
   }
+};
+
+const provider = new firebase.auth.GoogleAuthProvider();
+export const signInWithGoogle = () => {
+  auth.signInWithPopup(provider);
 };
