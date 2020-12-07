@@ -109,8 +109,7 @@ export default class QuizResults extends Component<ResultsProps, IAppState>{
                       </AccordionSummary>
                       <AccordionDetails>
                         <Typography>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                          sit amet blandit leo lobortis eget.
+                            {getCategoryDefinition(Category.Decision_Making)}
                         </Typography>
                       </AccordionDetails>
                     </Accordion>
@@ -124,8 +123,8 @@ export default class QuizResults extends Component<ResultsProps, IAppState>{
                       </AccordionSummary>
                       <AccordionDetails>
                         <Typography>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                          sit amet blandit leo lobortis eget.
+                            
+                        {getCategoryDefinition(Category.Relationship_Skills)}
                         </Typography>
                       </AccordionDetails>
                     </Accordion>
@@ -139,8 +138,8 @@ export default class QuizResults extends Component<ResultsProps, IAppState>{
                       </AccordionSummary>
                       <AccordionDetails>
                         <Typography>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                          sit amet blandit leo lobortis eget.
+                            
+                        {getCategoryDefinition(Category.Self_Awareness)}
                         </Typography>
                       </AccordionDetails>
                     </Accordion>
@@ -154,8 +153,8 @@ export default class QuizResults extends Component<ResultsProps, IAppState>{
                       </AccordionSummary>
                       <AccordionDetails>
                         <Typography>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                          sit amet blandit leo lobortis eget.
+                            
+                        {getCategoryDefinition(Category.Self_Management)}
                         </Typography>
                       </AccordionDetails>
                     </Accordion>
@@ -169,8 +168,8 @@ export default class QuizResults extends Component<ResultsProps, IAppState>{
                       </AccordionSummary>
                       <AccordionDetails>
                         <Typography>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                          sit amet blandit leo lobortis eget.
+                            
+                        {getCategoryDefinition(Category.Social_Awareness)}
                         </Typography>
                       </AccordionDetails>
                     </Accordion>
