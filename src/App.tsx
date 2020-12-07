@@ -1,4 +1,4 @@
-import React, { useContext }  from 'react';
+import React, { useContext, useState }  from 'react';
 import { BrowserRouter, Route, Switch,Link } from 'react-router-dom';
 // database imports
 import { signInWithGoogle,auth} from "./firebase-db/config";
@@ -14,6 +14,7 @@ import SignUp from './signup/Signup';
 
 function App(){
   const user = useContext(UserContext);
+  const [currentUser,setCurrentUser] = useState(null);
   return (
     <div> {
       user?
