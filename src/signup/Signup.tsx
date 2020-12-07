@@ -1,4 +1,7 @@
-import React, {useState} from 'react';
+import React, {FC, useState, FormEvent, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { signup, setError } from "../store/actions/authActions";
+import { RootState } from "../store";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -8,7 +11,6 @@ import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Select from '@material-ui/core/Select';
 import { makeStyles, 
   ThemeProvider, 
   createMuiTheme,
@@ -16,8 +18,6 @@ import { makeStyles,
   Theme,
   fade,
   createStyles } from '@material-ui/core/styles';
-import { relative } from 'path';
-import { url } from 'inspector';
 import logo from '../icons/welcome_logo.png';
 import {ReactComponent as Mlogo} from '../icons/logo_black.svg';
 import {ReactComponent as Titlelogo} from '../icons/mindfulwordmarkwhite.svg';
@@ -26,20 +26,10 @@ import InputBase from '@material-ui/core/InputBase';
 import '../App.css';
 import InputLabel from '@material-ui/core/InputLabel';
 import {auth, generateUserDocument, signInWithGoogle} from '../firebase-db/config';
+import firebase from 'firebase/app';
+import { strictEqual } from 'assert';
+import { stat } from 'fs';
 
-
-// function Copyright() {
-//   return (
-//     <Typography variant="body2" color="textSecondary" align="center">
-//       {'Copyright © '}
-//       <Link color="inherit" href="https://www.mindfulapplicant.com/">
-//         The Mindful Applicant
-//       </Link>{' '}
-//       {new Date().getFullYear()}
-//       {'.'}
-//     </Typography>
-//   );
-// }
 
 const theme = createMuiTheme({
   typography: {
@@ -241,30 +231,49 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
   const classes = useStyles();
 
-  const [newUser,setUSer] = useState<{displayName:string,email:string,password:string, grade: string | number, school: string}>({displayName:"",email:"",password:"", grade:"", school:""});
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [Name, setName] = useState('');
+  const [school, setSchool] = useState('');
+  const [grade, setGrade] = useState('');
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  // const { error } = useSelector((state: RootState) => state.auth);
 
-  const {displayName,email,password, grade, school}=newUser;
+  // useEffect(() => {
+  //   return () => {
+  //     if(error) {
+  //       dispatch(setError(''));
+  //     }
+  //   }
+  // }, [error, dispatch]);
 
-
-  const onChange =(e:React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-
-    setUSer({ ...newUser,[name]:value });
-  }
-
-  const onSubmit = async (e:React.FormEvent<EventTarget>) => {
+  const submitHandler = (e: FormEvent) => {
     e.preventDefault();
-    const {user} =  await auth.createUserWithEmailAndPassword(newUser?.email,newUser.password);
-    if(user) {
-      await generateUserDocument(user,{ displayName:newUser.displayName });
-      setUSer({displayName:"",email:"",password:"", grade:"", school:""});
-    }
+    setLoading(true);
+    dispatch(signup({ email, password, Name, school, grade }, () => setLoading(false)));
   }
+
+
+  // const onChange =(e:React.ChangeEvent<HTMLInputElement>) => {
+  //   const { name, value } = e.target;
+
+  //   setUSer({ ...newUser,[name]:value });
+  // }
+
+  // const onSubmit = async (e:React.FormEvent<EventTarget>) => {
+  //   e.preventDefault();
+  //   const {user} =  await auth.createUserWithEmailAndPassword(newUser?.email,newUser.password);
+  //   if(user) {
+  //     await generateUserDocument(user,{ displayName:newUser.displayName });
+  //     setUSer({displayName:"",email:"",password:"", grade:"", school:""});
+  //   }
 
   return (
     <ThemeProvider theme={theme}>
       <Grid container component="main" className={classes.root}>
         <CssBaseline />
+
         <Grid item xs={false} sm={6} md={9} className={classes.image} >
           <div className={classes.title}>
             {/* <p className={classes.titleText}>The Mindful Applicant</p> */}
@@ -274,9 +283,17 @@ export default function SignUp() {
             <img src={logo} alt="Welcome logo" className= {classes.logo}/>
           </div>
           <div className={classes.captionLogo}>
-            <p className= {classes.captionText}><span className= {classes.captionBlock}>Helping students pave intentional,</span><span className= {classes.captionBlock}>joyful paths to college and career</span></p>
+            <p className= {classes.captionText}>
+              <span className= {classes.captionBlock}>
+                Helping students pave intentional,
+              </span>
+              <span className= {classes.captionBlock}>
+                joyful paths to college and career
+              </span>
+            </p>
           </div>
         </Grid>
+
         <Grid item xs={12} sm={6} md={3} component={Paper} elevation={6} square className={classes.right}>
           <div className={classes.paper}>
             <Avatar className={`${classes.avatar} ${classes.large}`}>
@@ -285,24 +302,47 @@ export default function SignUp() {
             <Typography component="h1" variant="h5" className={classes.signinMargin}>
               Sign Up
             </Typography>
-            <form className={classes.form} noValidate onSubmit={onSubmit}>
+            <form className={classes.form} onSubmit={submitHandler}>
               <FormControl className={classes.margin}>
                 <InputLabel shrink htmlFor="bootstrap-input" className={classes.inputLabel} >
                   Your Name
                 </InputLabel>
-                <BootstrapInput id="name" placeholder="Enter your full name" autoComplete="off" type="text" onChange={onChange} fullWidth value={displayName}/>
+                <BootstrapInput 
+                  placeholder="Enter your full name" 
+                  autoComplete="off" 
+                  type="text" 
+                  name="Name" 
+                  onChange={(e) => setName(e.currentTarget.value)} 
+                  fullWidth 
+                  value={Name}
+                  />
               </FormControl>
               <FormControl className={classes.margin}>
                 <InputLabel shrink htmlFor="bootstrap-input" className={classes.inputLabel} >
                   Email
                 </InputLabel>
-                <BootstrapInput id="email" placeholder="Enter your email address" autoComplete="off" type="email" onChange={onChange} fullWidth value={email}/>
+                <BootstrapInput 
+                placeholder="Enter your email address" 
+                autoComplete="off" 
+                type="email" 
+                name="email" 
+                onChange={(e) => setEmail(e.currentTarget.value)}
+                fullWidth 
+                value={email}
+                />
               </FormControl>
               <FormControl className={classes.margin}>
                 <InputLabel shrink htmlFor="bootstrap-input" className={classes.inputLabel} >
                   Your School
                 </InputLabel>
-                <BootstrapInput id="school" placeholder="Enter your current school" autoComplete="off" onChange={onChange} fullWidth value={school}/>
+                <BootstrapInput 
+                placeholder="Enter your current school" 
+                autoComplete="off" 
+                name="school" 
+                onChange={(e) => setSchool(e.currentTarget.value)}
+                fullWidth 
+                value={school}
+                />
               </FormControl>
               <FormControl className={classes.margin}>
               {/* <InputLabel htmlFor="grade-native">Grade</InputLabel>
@@ -324,13 +364,27 @@ export default function SignUp() {
                 <InputLabel shrink htmlFor="bootstrap-input" className={classes.inputLabel} >
                   Your Grade
                 </InputLabel>
-                <BootstrapInput id="grade" placeholder="Enter your current grade" onChange={onChange} fullWidth value={grade}/>
+                <BootstrapInput 
+                placeholder="Enter your current grade" 
+                name="grade" 
+                onChange={(e) => setGrade(e.currentTarget.value)}   
+                fullWidth 
+                value={grade}
+                />
               </FormControl>
               <FormControl className={classes.margin}>
                 <InputLabel shrink htmlFor="bootstrap-input" className={classes.inputLabel} >
                   Choose a Password
                 </InputLabel>
-                <BootstrapInput id="password" placeholder="Enter desired password" autoComplete="off" type="password" onChange={onChange} fullWidth value={password}/>
+                <BootstrapInput 
+                placeholder="Enter desired password" 
+                autoComplete="off"
+                type="password" 
+                name="password" 
+                onChange={(e) => setPassword(e.currentTarget.value)}
+                fullWidth 
+                value={password}
+                />
               </FormControl>
               {/* <FormControl className={classes.margin}>
                 <InputLabel shrink htmlFor="bootstrap-input" className={classes.inputLabel} >

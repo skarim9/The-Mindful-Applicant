@@ -1,11 +1,15 @@
-import React, {useState} from 'react';
+import React, { FC, useState, FormEvent, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { signin, setError } from '../store/actions/authActions';
+import { RootState } from '../store';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Link from '@material-ui/core/Link';
+// import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -26,7 +30,7 @@ import InputBase from '@material-ui/core/InputBase';
 import '../App.css';
 import InputLabel from '@material-ui/core/InputLabel';
 import { withWidth } from '@material-ui/core';
-import { auth } from "../firebase";
+import {auth, generateUserDocument, signInWithGoogle} from '../firebase-db/config';
 
 // function Copyright() {
 //   return (
@@ -238,27 +242,27 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const classes = useStyles();
+  
+  
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  // const { error } = useSelector((state: RootState) => state.auth);
 
-  const [user, setUser] = useState<{ email: string; password: string }>({
-    email: "",
-    password: "",
-  });
+  // useEffect(() => {
+  //   return () => {
+  //     if(error) {
+  //       dispatch(setError(''));
+  //     }
+  //   }
+  // }, [error, dispatch]);
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-
-    setUser({ ...user, [name]: value });
-  };
-
-  const onSubmit = async (e: React.FormEvent<EventTarget>) => {
+  const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
-    const { email, password } = user;
-    await auth.signInWithEmailAndPassword(email, password);
-    setUser({
-      email: "",
-      password: "",
-    });
-  };
+    setLoading(true);
+    dispatch(signin({ email, password }, () => setLoading(false)));
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -284,18 +288,34 @@ export default function SignIn() {
             <Typography component="h1" variant="h5" className={classes.signinMargin}>
               Sign in
             </Typography>
-            <form className={classes.form} noValidate autoComplete="off" onSubmit={onSubmit}>
+            <form className={classes.form} autoComplete="off" onSubmit={submitHandler}>
               <FormControl className={classes.margin}>
                 <InputLabel shrink htmlFor="bootstrap-input" className={classes.inputLabel} >
                   Email
                 </InputLabel>
-                <BootstrapInput id="email" placeholder="Enter your email address" autoComplete="None" fullWidth name="email" type="email" onChange={onChange}/>
+                <BootstrapInput 
+                placeholder="Enter your email address" 
+                autoComplete="None" 
+                fullWidth 
+                name="email" 
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.currentTarget.value)}
+                />
               </FormControl>
               <FormControl className={classes.margin}>
                 <InputLabel shrink htmlFor="bootstrap-input" className={classes.inputLabel} >
                   Password
                 </InputLabel>
-                <BootstrapInput id="password" placeholder="Enter your password" autoComplete="None" fullWidth name="password" type="password" onChange={onChange}/>
+                <BootstrapInput 
+                placeholder="Enter your password" 
+                autoComplete="None" 
+                fullWidth 
+                name="password" 
+                type="password" 
+                value={password}
+                onChange={(e) => setPassword(e.currentTarget.value)}
+                />
               </FormControl>
               {/* <TextField
                 className={classes.textField}
@@ -330,19 +350,20 @@ export default function SignIn() {
                 color="primary"
                 className={classes.submit}
                 href="/profile"
+                
               >
                 Sign In
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2" underline="none">
+                  {/* <Link href="#" variant="body2" underline="none">
                     Forgot your password?
                   </Link>
                   <p className={classes.signupP}>Don't have an account? 
                   <Link href="/signup" variant="body2" className={classes.signupLink} underline="none">
                     {" Sign Up"}
                   </Link>
-                </p>
+                </p> */}
                 </Grid>
               </Grid>
             </form>
