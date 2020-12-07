@@ -153,7 +153,7 @@ export default function Navbar() {
         </AppBar>
         <Drawer
           className={classes.drawer}
-          variant="persistent"
+          // variant="persistent"
           anchor="left"
           open={open}
           classes={{
@@ -168,22 +168,22 @@ export default function Navbar() {
           <Divider />
           <List>
             <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-              <ListItem button>
+              <ListItem button onClick={handleDrawerClose}>
                 <ListItemText>Home</ListItemText>
               </ListItem>
             </Link>
             <Link to="/profile" style={{ textDecoration: 'none', color: 'inherit' }}>
-              <ListItem button>
+              <ListItem button onClick={handleDrawerClose}>
                 <ListItemText>Profile</ListItemText>
               </ListItem>
             </Link>
             <Link to="/quiz" style={{ textDecoration: 'none', color: 'inherit' }}>
-              <ListItem button>
+              <ListItem button onClick={handleDrawerClose}>
                 <ListItemText>Quiz</ListItemText>
               </ListItem>
             </Link>
             <Link to="/history" style={{ textDecoration: 'none', color: 'inherit' }}>
-              <ListItem button>
+              <ListItem button onClick={handleDrawerClose}>
                 <ListItemText>History</ListItemText>
               </ListItem>
             </Link>

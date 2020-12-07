@@ -20,13 +20,13 @@ function App(){
       user?
       <div className="App">
         <Application />
-      </div>:<div>
-      <SignUp/>
-      <button onClick = {() => { signInWithGoogle(); } }>
+        </div>:<div>
+        <SignUp/>
+        <button onClick = {() => { signInWithGoogle(); } }>
           Sign in with Google
         </button>
-        </div>
-    } </div>
+      </div>
+  }</div>
   );
 }
 
