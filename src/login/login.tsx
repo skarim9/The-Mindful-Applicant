@@ -80,27 +80,29 @@ const theme = createMuiTheme({
 
 export default function SignIn() {
   const classes = useStyles();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
 
-  const [user, setUser] = useState<{ email: string; password: string }>({
-    email: "",
-    password: "",
-  });
-
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-
-    setUser({ ...user, [name]: value });
-  };
-
-  const onSubmit = async (e: React.FormEvent<EventTarget>) => {
-    e.preventDefault();
-    const { email, password } = user;
-    await auth.signInWithEmailAndPassword(email, password);
-    setUser({
-      email: "",
-      password: "",
-    });
-  };
+  const signInWithEmailAndPasswordHandler = (event:any,email:string, password:string) => {
+      event.preventDefault();
+      auth.signInWithEmailAndPassword(email, password).catch(error => {
+     
+        console.log(`Error signing in with password and email ${error}`);
+      });
+    };
+    
+    const onChangeHandler = (event: { currentTarget: { name: any; value: any; }; }) => {
+        const {name, value} = event.currentTarget;
+      
+        if(name === 'email') {
+            setEmail(value);
+        }
+        else if(name === 'password'){
+          setPassword(value);
+        }
+    };
+ 
 
   return (
     <ThemeProvider theme={theme}>
@@ -126,7 +128,7 @@ export default function SignIn() {
             <Typography component="h1" variant="h5" className={classes.signinMargin}>
               Sign in
             </Typography>
-            <form className={classes.form} noValidate onSubmit={onSubmit}>
+            <form className={classes.form} noValidate >
               {/* <FormControl className={classes.margin}>
                 <InputLabel shrink htmlFor="bootstrap-input" className={classes.inputLabel} >
                   Email
@@ -150,7 +152,7 @@ export default function SignIn() {
                 placeholder="Enter your email address"
                 name="email"
                 autoComplete="email"
-                onChange={onChange}
+                onChange={onChangeHandler}
                 autoFocus
               />
               <TextField
@@ -163,15 +165,14 @@ export default function SignIn() {
                 label="Password"
                 type="password"
                 autoComplete="current-password"
-                onChange={onChange}
+                onChange={onChangeHandler}
               />
               <Button
-                type="submit"
+                onClick = {(event) => {signInWithEmailAndPasswordHandler(event, email, password)}}
                 fullWidth
                 variant="contained"
                 color="primary"
                 className={classes.submit}
-                href="/profile"
               >
                 Sign In
               </Button>
