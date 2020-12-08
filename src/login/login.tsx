@@ -89,6 +89,7 @@ export default function SignIn() {
       auth.signInWithEmailAndPassword(email, password).catch(error => {
      
         console.log(`Error signing in with password and email ${error}`);
+        alert('Incorrect password')
       });
     };
     

@@ -1,5 +1,5 @@
 import React, { useContext, useState }  from 'react';
-import { BrowserRouter, Route, Switch,Link, Router } from 'react-router-dom';
+import { BrowserRouter, Route, Switch,Link, Router, Redirect } from 'react-router-dom';
 // database imports
 import { signInWithGoogle,auth} from "./firebase-db/config";
 
@@ -29,6 +29,9 @@ function App(){
         <Route path="/signin" >
           <SignIn  />
         </Route>
+        <Route path="/" >
+                    <Redirect to="/signin" />
+                  </Route>
           </Switch>
         </BrowserRouter>
         <button onClick = {() => { signInWithGoogle(); } }>
