@@ -11,13 +11,7 @@ import { auth } from '../../firebase-db/config';
 import ScrollToTop from '../../utils/ScrollToTop';
 import { Category, getCategoryDefinition } from '../quiz-questions-data'
 
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
-import Grid from '@material-ui/core/Grid'
+import ElementsAccordion from './ElementsAccordion'
 
 // export const colors = ["#b4a7d6","#97B695 ","#6B9BC0","#FCD4bD","#F37F7F","#b4a7d6"];
 export const colors = ["#ab8de0", "#d34545", "#45b0d3", "#8fe891", "#eac567", "ac88ef"];
@@ -95,84 +89,11 @@ export default class QuizResults extends Component<ResultsProps, IAppState>{
                     {this.renderDefinitions()}
                   </Grid> */}
 
-
                   {/* <Grid item xs={6}> */}
                     <h2>Your Elements</h2>
                     <PolarAreaChart data={data} />
-                    <Accordion>
-                      <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel1a-content"
-                        id="panel1a-header"
-                      >
-                        <Typography>Decision Making</Typography>
-                      </AccordionSummary>
-                      <AccordionDetails>
-                        <Typography>
-                            {getCategoryDefinition(Category.Decision_Making)}
-                        </Typography>
-                      </AccordionDetails>
-                    </Accordion>
-                    <Accordion>
-                      <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel1a-content"
-                        id="panel1a-header"
-                      >
-                        <Typography>Relationship Skills</Typography>
-                      </AccordionSummary>
-                      <AccordionDetails>
-                        <Typography>
-                            
-                        {getCategoryDefinition(Category.Relationship_Skills)}
-                        </Typography>
-                      </AccordionDetails>
-                    </Accordion>
-                    <Accordion>
-                      <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel1a-content"
-                        id="panel1a-header"
-                      >
-                        <Typography>Self Awareness</Typography>
-                      </AccordionSummary>
-                      <AccordionDetails>
-                        <Typography>
-                            
-                        {getCategoryDefinition(Category.Self_Awareness)}
-                        </Typography>
-                      </AccordionDetails>
-                    </Accordion>
-                    <Accordion>
-                      <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel1a-content"
-                        id="panel1a-header"
-                      >
-                        <Typography>Self Management</Typography>
-                      </AccordionSummary>
-                      <AccordionDetails>
-                        <Typography>
-                            
-                        {getCategoryDefinition(Category.Self_Management)}
-                        </Typography>
-                      </AccordionDetails>
-                    </Accordion>
-                    <Accordion>
-                      <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel1a-content"
-                        id="panel1a-header"
-                      >
-                        <Typography>Social Awareness</Typography>
-                      </AccordionSummary>
-                      <AccordionDetails>
-                        <Typography>
-                            
-                        {getCategoryDefinition(Category.Social_Awareness)}
-                        </Typography>
-                      </AccordionDetails>
-                    </Accordion>
+
+                    <ElementsAccordion />
 
                   {/* </Grid>
                 </Grid> */}
