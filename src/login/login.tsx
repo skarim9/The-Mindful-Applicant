@@ -80,27 +80,30 @@ const theme = createMuiTheme({
 
 export default function SignIn() {
   const classes = useStyles();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
 
-  const [user, setUser] = useState<{ email: string; password: string }>({
-    email: "",
-    password: "",
-  });
-
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-
-    setUser({ ...user, [name]: value });
-  };
-
-  const onSubmit = async (e: React.FormEvent<EventTarget>) => {
-    e.preventDefault();
-    const { email, password } = user;
-    await auth.signInWithEmailAndPassword(email, password);
-    setUser({
-      email: "",
-      password: "",
-    });
-  };
+  const signInWithEmailAndPasswordHandler = (event:any,email:string, password:string) => {
+      event.preventDefault();
+      auth.signInWithEmailAndPassword(email, password).catch(error => {
+     
+        console.log(`Error signing in with password and email ${error}`);
+        alert('Incorrect password')
+      });
+    };
+    
+    const onChangeHandler = (event: { currentTarget: { name: any; value: any; }; }) => {
+        const {name, value} = event.currentTarget;
+      
+        if(name === 'email') {
+            setEmail(value);
+        }
+        else if(name === 'password'){
+          setPassword(value);
+        }
+    };
+ 
 
   return (
     <ThemeProvider theme={theme}>
@@ -126,7 +129,7 @@ export default function SignIn() {
             <Typography component="h1" variant="h5" className={classes.signinMargin}>
               Sign in
             </Typography>
-            <form className={classes.form} noValidate onSubmit={onSubmit}>
+            <form className={classes.form} noValidate >
               {/* <FormControl className={classes.margin}>
                 <InputLabel shrink htmlFor="bootstrap-input" className={classes.inputLabel} >
                   Email
@@ -139,7 +142,6 @@ export default function SignIn() {
                 </InputLabel>
                 <BootstrapInput id="password" placeholder="Enter your password" autoComplete="None"/>
               </FormControl> */}
-              
               <Grid container direction={"column"} spacing={2}>
                 <Grid item>
                   <TextField
@@ -186,6 +188,7 @@ export default function SignIn() {
                 </Grid>
               </Grid>
               
+                
               <Grid container>
                 <Grid item xs>
                   <p className={classes.signupP}>Don't have an account? 

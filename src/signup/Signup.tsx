@@ -115,7 +115,6 @@ export default function SignUp() {
             </Typography>
             <form className={classes.form} noValidate onSubmit={onSubmit}>
               {/* <FormControl className={classes.margin}> */}
-
               <Grid container direction={"column"} spacing={2}>
                 <Grid item>
                   <TextField
@@ -213,6 +212,10 @@ export default function SignUp() {
                 </Grid>
               </Grid>
               
+              
+              
+              
+              
 
                 {/* <InputLabel shrink htmlFor="bootstrap-input" className={classes.inputLabel} >
                   Your Name
@@ -249,6 +252,7 @@ export default function SignUp() {
                 </InputLabel>
                 <BootstrapInput id="password_confirm" placeholder="Re-type your password" autoComplete="off" type="password"/>
               </FormControl> */}
+              
               
               <Grid container>
                 <Grid item xs>
