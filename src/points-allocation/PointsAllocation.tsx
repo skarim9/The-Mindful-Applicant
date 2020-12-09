@@ -34,7 +34,8 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
         this.state = {
         oldStats:initStats,
         pointsToAllocate:0,
-        newTypology: this.props.initTypology
+        newTypology: this.props.initTypology,
+        reallocationReason:""
             
         }
     }
@@ -68,7 +69,7 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
                     <h3>New Typology</h3>
                 </div>
                 <TypologyDisplay typology = {this.state.newTypology}/>
-                <PromptBox/>
+                <PromptBox callback = {this.setReallocationReason}/>
                 <button onClick = {()=>{this.saveResults()}} className = "button">Submit</button>
             
             </div>
@@ -84,13 +85,18 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
                         date: this.props.date,
                         typology: this.state.newTypology,
                         quiz:statToScore(this.props.stats)
-                    },user.uid);
+                    },user.uid,this.state.reallocationReason);
                 }
                 else{
                     console.log("User is null");
                 }
         
 
+    }
+    setReallocationReason=(reason:string)=>{
+        this.setState({
+            reallocationReason:reason
+        })
     }
 
     
@@ -187,6 +193,7 @@ interface IAppState{
         total:number
     }[],
     newTypology:Typology,
-    pointsToAllocate:number
+    pointsToAllocate:number,
+    reallocationReason:string
 }
 
