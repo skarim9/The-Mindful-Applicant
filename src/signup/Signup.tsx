@@ -1,4 +1,4 @@
-import React, { useContext,useState } from 'react';
+import React, { useState } from 'react';
 import {useStyles} from './SignupStyles';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -69,46 +69,26 @@ const theme = createMuiTheme({
 
 export default function SignUp() {
   const classes = useStyles();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [displayName, setDisplayName] = useState("");
-  const [grade, setGrade] = useState("");
-  const [school, setSchool] = useState("");
-  const [error, setError] = useState(null);
 
-  const createUserWithEmailAndPasswordHandler = async (event: { preventDefault: () => void; }, email: string, password: string) => {
-    event.preventDefault();
-    try{
-      const {user} = await auth.createUserWithEmailAndPassword(email, password);
-      generateUserDocument(user, {displayName,email,school,grade});
-    }
-    catch(error){
-      console.log(`Error Signing up with email and password ${error}`);
-    }
-      
-    setEmail("");
-    setPassword("");
-    setDisplayName("");
-    setSchool("");
-    setGrade("");
-  };
-  const onChangeHandler = (event: any) => {
-    const { name, value } = event.currentTarget;
+  const [newUser,setUSer] = useState<{displayName:string,email:string,password:string, school:string, grade: string}>({displayName:"",email:"",password:"", school:"", grade:""});
 
-    if (name === "email") {
-      setEmail(value);
-    } else if (name === "password") {
-      setPassword(value);
-    } else if (name === "displayName") {
-      setDisplayName(value);
-    } else if (name=== "school"){
-      setSchool(value);
+  const {displayName,email,password,school, grade}=newUser;
+
+
+  const onChange =(e:React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setUSer({ ...newUser,[name]:value });
+  }
+
+  const onSubmit = async (e:React.FormEvent<EventTarget>) => {
+    e.preventDefault();
+    const {user} =  await auth.createUserWithEmailAndPassword(newUser?.email,newUser.password);
+    if(user) {
+      await generateUserDocument(user,{ displayName:newUser.displayName });
+      setUSer({displayName:"",email:"",password:"", school:"", grade:""});
     }
-    else if (name==="grade"){
-      setGrade(value);
-    }
-  };
-  
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -116,7 +96,6 @@ export default function SignUp() {
         <CssBaseline />
         <Grid item xs={false} sm={6} md={9} className={classes.image} >
           <div className={classes.title}>
-            {/* <p className={classes.titleText}>The Mindful Applicant</p> */}
             <Titlelogo/>
           </div>
           <div className={classes.ellipse}>
@@ -134,71 +113,109 @@ export default function SignUp() {
             <Typography component="h1" variant="h5" className={classes.signinMargin}>
               Sign Up
             </Typography>
-            <form className={classes.form} noValidate >
+            <form className={classes.form} noValidate onSubmit={onSubmit}>
               {/* <FormControl className={classes.margin}> */}
-              <TextField
-                className={classes.textField}
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                size="small"
-                label="Your Name"
-                placeholder="Enter your name"
-                name="displayName"
-                value={displayName}
-                onChange={onChangeHandler}
-                autoFocus
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                size="small"
-                name="email"
-                label="Your email"
-                type="email"
-                value={email}
-                onChange={onChangeHandler}
-              />
-              <TextField
-                className={classes.textField}
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                size="small"
-                label="Your school"
-                placeholder="Enter your school"
-                name="school"
-                value={school}
-                onChange={onChangeHandler}
-                autoFocus
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                size="small"
-                name="grade"
-                label="Your Grade"
-                value={grade}
-                onChange={onChangeHandler}
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                size="small"
-                name="password"
-                label="Your Password"
-                type="password"
-                value={password}
-                onChange={onChangeHandler}
-              />
+              <Grid container direction={"column"} spacing={2}>
+                <Grid item>
+                  <TextField
+                    className={classes.textField}
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    size="small"
+                    label="Your Name"
+                    placeholder="Enter your name"
+                    name="displayName"
+                    value={displayName}
+                    onChange={onChange}
+                    autoFocus
+                  />
+                </Grid>
+                  
+                <Grid item>
+                  <TextField
+                    className={classes.textField}
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    size="small"
+                    name="email"
+                    label="Your email"
+                    placeholder="Enter your name"
+                    type="email"
+                    value={email}
+                    onChange={onChange}
+                  />
+                </Grid>
+
+                <Grid item>
+                  <TextField
+                    className={classes.textField}
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    size="small"
+                    label="Your school"
+                    placeholder="Enter your school"
+                    name="school"
+                    value={school}
+                    onChange={onChange}
+                    autoFocus
+                  />
+                </Grid>
+
+                <Grid item>
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    size="small"
+                    name="grade"
+                    label="Your Grade"
+                    placeholder="Enter your grade"
+                    value={grade}
+                    onChange={onChange}
+                  />
+                </Grid>
+
+                <Grid item>
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    size="small"
+                    name="password"
+                    label="Your Password"
+                    type="password"
+                    placeholder="Enter your password"
+                    value={password}
+                    onChange={onChange}
+                  />
+                </Grid>
+                
+                <Grid item>
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}
+                    href="/profile"
+                  >
+                    Sign Up
+                  </Button>
+                </Grid>
+              </Grid>
+              
+              
+              
+              
+              
 
                 {/* <InputLabel shrink htmlFor="bootstrap-input" className={classes.inputLabel} >
                   Your Name
@@ -236,41 +253,18 @@ export default function SignUp() {
                 <BootstrapInput id="password_confirm" placeholder="Re-type your password" autoComplete="off" type="password"/>
               </FormControl> */}
               
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-                onClick={event => {
-                  createUserWithEmailAndPasswordHandler(event, email, password);
-                }}
-                href="/profile"
-              >
-                Sign Up
-              </Button>
+              
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2" underline="none">
-                    Forgot your password?
-                  </Link>
-                  
-
                   <p className={classes.signupP}>Already have an account? 
                   <Link href="/signin" variant="body2" className={classes.signupLink} underline="none">
                     {" Sign In"}
                   </Link>
-                  
                 </p>
                 </Grid>
-                
               </Grid>
-              <button onClick = {() => { signInWithGoogle(); } }>
-          Sign in with Google
-        </button>
             </form>
           </div>
-          
         </Grid>
         
       </Grid>

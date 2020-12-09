@@ -74,7 +74,8 @@ export const useStyles = makeStyles((theme) => ({
       borderRadius: '100%',
     },
     captionLogo: {
-      marginTop: "6%",
+      marginTop: "8%",
+      textAlign: "center",
       position:'relative',
       top: '70%',
       left: '50%',
@@ -142,7 +143,6 @@ export const useStyles = makeStyles((theme) => ({
       backgroundColor: '#6B9BC0',
       fontFamily: "Montserrat",
       borderRadius: 6,
-      width: '90%',
       '&:hover': {
         backgroundColor: "#DBD8D4",
         color: "#6B9BC0",
