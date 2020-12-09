@@ -11,7 +11,7 @@ import { auth } from '../../firebase-db/config';
 import ScrollToTop from '../../utils/ScrollToTop';
 import { Category, getCategoryDefinition } from '../quiz-questions-data'
 
-import Grid from '@material-ui/core/Grid'
+import ElementsAccordion from './ElementsAccordion'
 
 // export const colors = ["#b4a7d6","#97B695 ","#6B9BC0","#FCD4bD","#F37F7F","#b4a7d6"];
 export const colors = ["#ab8de0", "#d34545", "#45b0d3", "#8fe891", "#eac567", "ac88ef"];
@@ -89,10 +89,12 @@ export default class QuizResults extends Component<ResultsProps, IAppState>{
                     {this.renderDefinitions()}
                   </Grid> */}
 
-
                   {/* <Grid item xs={6}> */}
                     <h2>Your Elements</h2>
                     <PolarAreaChart data={data} />
+
+                    <ElementsAccordion />
+
                   {/* </Grid>
                 </Grid> */}
               </div>

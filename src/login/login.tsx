@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {auth, signInWithGoogle} from '../firebase-db/config'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -29,6 +30,7 @@ import InputBase from '@material-ui/core/InputBase';
 import '../App.css';
 import InputLabel from '@material-ui/core/InputLabel';
 import { withWidth } from '@material-ui/core';
+import { useStyles } from './LoginStyles';
 
 // function Copyright() {
 //   return (
@@ -76,170 +78,32 @@ const theme = createMuiTheme({
 )(InputBase);
 
 
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    height: '100vh',
-    overflowX: "hidden",
-  },
-  image: {
-    [theme.breakpoints.down('xs')]: {
-      display: "none",
-    },
-    backgroundRepeat: 'no-repeat',
-    backgroundColor: '#6B9BC0',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    color: "#FFFFFF",
-    position: 'relative',
-  },
-  right: {
-    width: "100%",
-    position: "relative",
-  },
-  paper: {
-    margin: theme.spacing(9, 3),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  title: {
-    position: 'absolute',
-    left: '1.5vw',
-    [theme.breakpoints.down('sm')]: {
-      top: '-1.5vh',
-    },
-    [theme.breakpoints.up('md')]: {
-      top: '-2.6vh',
-    },
-    [theme.breakpoints.up('lg')]: {
-      top: '-3.5vh'
-    },
-    [theme.breakpoints.up('xl')]: {
-      top: '-2vh',
-    },
-    
-  },
-  titleSize: {
-    width: "65em",
-  },
-  ellipse: {
-    borderRadius: '100%',
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-  },
-  logo: {
-    [theme.breakpoints.down('sm')]: {
-      height: "282px",
-      width: "244.6px",
-    },
-    [theme.breakpoints.up('md')]: {
-      height: "364px",
-      width: "315.75px",
-    },
-    [theme.breakpoints.up('lg')]: {
-      height: "440px",
-      width: "381.7px",
-    },
-    [theme.breakpoints.up('xl')]: {
-      height: "480px",
-      width: "427px",
-    },
-    borderRadius: '100%',
-  },
-  captionLogo: {
-    marginTop: "6%",
-    position:'relative',
-    top: '70%',
-    left: '50%',
-    transform: 'translate(-50%, 8%)',
-  },
-  captionText: {
-    [theme.breakpoints.down('sm')]: {
-      lineHeight: '1.2',
-      fontSize: '26px',
-    },
-    [theme.breakpoints.up('md')]: {
-      lineHeight: '1.4',
-      fontSize: '28px',
-    },
-    [theme.breakpoints.up('lg')]: {
-      lineHeight: '1.6',
-      fontSize: '31px',
-    },
-    [theme.breakpoints.up('xl')]: {
-      lineHeight: '1.8',
-      fontSize: '35px',
-    },
-    
-  },
-  captionBlock: {
-    display: 'block',
-  },
-  margin: {
-    margin: theme.spacing(1),
-    marginBottom: theme.spacing(2),
-  },
-  avatar: {
-    margin: theme.spacing(3),
-    borderRadius: '0',
-    border: '4px solid #252525',
-    boxSizing: 'border-box',
-    color: "#252525",
-    backgroundColor: "#FFFFFF",
-  },
-  large: {
-    width: theme.spacing(15),
-    height: theme.spacing(15),
-  },
-  signinMargin: {
-    marginTop: theme.spacing(-1),
-    marginBottom: theme.spacing(4),
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  textField: {
-    'label + &': {
-      marginTop: theme.spacing(3),
-    },
-    "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-      borderColor: "#252525"
-    },
-  },
-  inputLabel: {
-    fontSize: 20,
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-    backgroundColor: '#6B9BC0',
-    fontFamily: "Montserrat",
-    borderRadius: 6,
-    width: '90%',
-    '&:hover': {
-      backgroundColor: "#DBD8D4",
-      color: "#6B9BC0",
-    },
-  },
-  signupP: {
-    textAlign: 'center',
-    fontSize: 16,
-    lineHeight: '17px',
-    marginTop: "55%",
-  },
-  signupLink: {
-    fontSize: 16,
-  },
-  box: {
-    position: "relative",
-  },
-}));
-
 export default function SignIn() {
   const classes = useStyles();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+
+  const signInWithEmailAndPasswordHandler = (event:any,email:string, password:string) => {
+      event.preventDefault();
+      auth.signInWithEmailAndPassword(email, password).catch(error => {
+     
+        console.log(`Error signing in with password and email ${error}`);
+        alert('Incorrect password')
+      });
+    };
+    
+    const onChangeHandler = (event: { currentTarget: { name: any; value: any; }; }) => {
+        const {name, value} = event.currentTarget;
+      
+        if(name === 'email') {
+            setEmail(value);
+        }
+        else if(name === 'password'){
+          setPassword(value);
+        }
+    };
+ 
 
   return (
     <ThemeProvider theme={theme}>
@@ -265,8 +129,8 @@ export default function SignIn() {
             <Typography component="h1" variant="h5" className={classes.signinMargin}>
               Sign in
             </Typography>
-            <form className={classes.form} noValidate>
-              <FormControl className={classes.margin}>
+            <form className={classes.form} noValidate >
+              {/* <FormControl className={classes.margin}>
                 <InputLabel shrink htmlFor="bootstrap-input" className={classes.inputLabel} >
                   Email
                 </InputLabel>
@@ -277,48 +141,56 @@ export default function SignIn() {
                   Password
                 </InputLabel>
                 <BootstrapInput id="password" placeholder="Enter your password" autoComplete="None"/>
-              </FormControl>
-              {/* <TextField
-                className={classes.textField}
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                size="small"
-                id="email"
-                label="Email Address"
-                placeholder="Enter your email address"
-                name="email"
-                autoComplete="email"
-                autoFocus
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                size="small"
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              /> */}
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-                href="/profile"
-              >
-                Sign In
-              </Button>
+              </FormControl> */}
+              <Grid container direction={"column"} spacing={2}>
+                <Grid item>
+                  <TextField
+                    className={classes.textField}
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    size="small"
+                    label="Email Address"
+                    placeholder="Enter your email address"
+                    name="email"
+                    autoComplete="email"
+                    type="email"
+                    onChange={onChangeHandler}
+                    autoFocus
+                  />
+                </Grid>
+                <Grid item>
+                  <TextField
+                    className={classes.textField}
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    size="small"
+                    name="password"
+                    label="Password"
+                    type="password"
+                    autoComplete="current-password"
+                    onChange={onChangeHandler}
+                  />
+                </Grid>
+                <Grid item>
+                  <Button
+                    onClick = {(event) => {signInWithEmailAndPasswordHandler(event, email, password)}}
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}
+                  >
+                    Sign In
+                  </Button>
+                </Grid>
+              </Grid>
+              
+                
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2" underline="none">
-                    Forgot your password?
-                  </Link>
                   <p className={classes.signupP}>Don't have an account? 
                   <Link href="/signup" variant="body2" className={classes.signupLink} underline="none">
                     {" Sign Up"}
