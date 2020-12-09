@@ -29,8 +29,27 @@ export const addNewUser = async(school_email:string) => {
 export const addOriginalQuizResult = async(quiz_result:{date:Date,quiz:Quiz,typology:Typology}, user_id:string)=>{
 	addQuizResult(quiz_result,user_id,`users/${user_id}/quiz_results/${quiz_result.date.toString()}`,false);
 }
-export const addReallocatedQuizResult = async(quiz_result:{date:Date,quiz:Quiz,typology:Typology}, user_id:string)=>{
+export const addReallocatedQuizResult = async(quiz_result:{date:Date,quiz:Quiz,typology:Typology}, user_id:string, allocation_reason:string)=>{
 	addQuizResult(quiz_result,user_id,`users/${user_id}/quiz_results/${quiz_result.date.toString()}`,true);
+	const quizDataRef = db.doc(`users/${user_id}/quiz_results/${quiz_result.date.toString()}`);
+	
+	await quizDataRef.get()
+		.then(async (snapshot: { exists: any; id: any; data: () => any }) => {//needs to check if the snapshot exists or not
+			if (snapshot.exists) {
+				await quizDataRef.update({
+					reallocation_reason:allocation_reason
+				})
+			} else {//doc.data() here will be undefined in this case
+				//console.log("initializing quiz " + quiz.title)
+				await quizDataRef.set({
+					reallocation_reason:allocation_reason
+				})
+			}
+			return true
+		}).catch((e: string) => {
+			console.log("Error getting from storing quiz: " + e)
+			return false
+		})
 }
 
 const addQuizResult = async (quiz_result:{date:Date,quiz:Quiz,typology:Typology}, user_id:string,db_path:string, isReallocated:boolean) => {//takes in a quiz object and a users special uid to create a quiz under the uid.
