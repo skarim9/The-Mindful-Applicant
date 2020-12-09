@@ -1,3 +1,6 @@
+# The Mindful Applicant 
+This app contains a personality quiz that assesses its user in five core categories: Decision Making, Self-Management, Social-Awareness, Self-Awareness, and Relationship Skills. 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).        
 
 [![Build Status](https://travis-ci.com/skarim9/The-Mindful-Applicant.svg?token=EQsqRwKgMytt4RipPrDc&branch=main)](https://travis-ci.com/skarim9/The-Mindful-Applicant)
@@ -48,3 +51,9 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 
 If you decide to change any comparative questions, go to the quiz-questions-data.tsx file
+
+
+
+## Known Issues:
+* When user first submits the quiz, there is a lag between when they press the submit button and when the quiz results page comes up. This is due to the async nature of the write-to-database operations. Possible future fixes include making a loading button when it is pressed. 
+* The user's 'reason for point reallocation' that they type into the prompt box when reallocating their points is not displayed. In the future, there will be a place that displays the text that they entered as well (It is currently only stored in the database)
