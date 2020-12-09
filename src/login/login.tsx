@@ -139,47 +139,55 @@ export default function SignIn() {
                 </InputLabel>
                 <BootstrapInput id="password" placeholder="Enter your password" autoComplete="None"/>
               </FormControl> */}
-              <TextField
-                className={classes.textField}
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                size="small"
-                label="Email Address"
-                placeholder="Enter your email address"
-                name="email"
-                autoComplete="email"
-                onChange={onChange}
-                autoFocus
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                size="small"
-                name="password"
-                label="Password"
-                type="password"
-                autoComplete="current-password"
-                onChange={onChange}
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-                href="/profile"
-              >
-                Sign In
-              </Button>
+              
+              <Grid container direction={"column"} spacing={2}>
+                <Grid item>
+                  <TextField
+                    className={classes.textField}
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    size="small"
+                    label="Email Address"
+                    placeholder="Enter your email address"
+                    name="email"
+                    autoComplete="email"
+                    type="email"
+                    onChange={onChangeHandler}
+                    autoFocus
+                  />
+                </Grid>
+                <Grid item>
+                  <TextField
+                    className={classes.textField}
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    size="small"
+                    name="password"
+                    label="Password"
+                    type="password"
+                    autoComplete="current-password"
+                    onChange={onChangeHandler}
+                  />
+                </Grid>
+                <Grid item>
+                  <Button
+                    onClick = {(event) => {signInWithEmailAndPasswordHandler(event, email, password)}}
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}
+                  >
+                    Sign In
+                  </Button>
+                </Grid>
+              </Grid>
+              
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2" underline="none">
-                    Forgot your password?
-                  </Link>
                   <p className={classes.signupP}>Don't have an account? 
                   <Link href="/signup" variant="body2" className={classes.signupLink} underline="none">
                     {" Sign Up"}

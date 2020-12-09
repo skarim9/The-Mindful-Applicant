@@ -77,6 +77,7 @@ export const useStyles = makeStyles((theme) => ({
     captionLogo: {
       marginTop: "8%",
       position:'relative',
+      textAlign: "center",
       top: '70%',
       left: '50%',
       transform: 'translate(-50%, 8%)',
@@ -142,7 +143,6 @@ export const useStyles = makeStyles((theme) => ({
       backgroundColor: '#6B9BC0',
       fontFamily: "Montserrat",
       borderRadius: 6,
-      width: '90%',
       '&:hover': {
         backgroundColor: "#DBD8D4",
         color: "#6B9BC0",
@@ -153,9 +153,7 @@ export const useStyles = makeStyles((theme) => ({
       fontSize: 16,
       lineHeight: '17px',
       position: "relative",
-      bottom: '-0.5vh',
-      justifyContent: 'center',
-      marginBottom: "25px",
+      marginTop: "12%"
     },
     signupLink: {
       fontSize: 16,
