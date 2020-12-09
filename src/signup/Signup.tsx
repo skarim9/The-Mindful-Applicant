@@ -1,4 +1,4 @@
-import React, { useContext,useState } from 'react';
+import React, { useState } from 'react';
 import {useStyles} from './SignupStyles';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -69,46 +69,26 @@ const theme = createMuiTheme({
 
 export default function SignUp() {
   const classes = useStyles();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [displayName, setDisplayName] = useState("");
-  const [grade, setGrade] = useState("");
-  const [school, setSchool] = useState("");
-  const [error, setError] = useState(null);
 
-  const createUserWithEmailAndPasswordHandler = async (event: { preventDefault: () => void; }, email: string, password: string) => {
-    event.preventDefault();
-    try{
-      const {user} = await auth.createUserWithEmailAndPassword(email, password);
-      generateUserDocument(user, {displayName,email,school,grade});
-    }
-    catch(error){
-      console.log(`Error Signing up with email and password ${error}`);
-    }
-      
-    setEmail("");
-    setPassword("");
-    setDisplayName("");
-    setSchool("");
-    setGrade("");
-  };
-  const onChangeHandler = (event: any) => {
-    const { name, value } = event.currentTarget;
+  const [newUser,setUSer] = useState<{displayName:string,email:string,password:string, school:string, grade: string}>({displayName:"",email:"",password:"", school:"", grade:""});
 
-    if (name === "email") {
-      setEmail(value);
-    } else if (name === "password") {
-      setPassword(value);
-    } else if (name === "displayName") {
-      setDisplayName(value);
-    } else if (name=== "school"){
-      setSchool(value);
+  const {displayName,email,password,school, grade}=newUser;
+
+
+  const onChange =(e:React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setUSer({ ...newUser,[name]:value });
+  }
+
+  const onSubmit = async (e:React.FormEvent<EventTarget>) => {
+    e.preventDefault();
+    const {user} =  await auth.createUserWithEmailAndPassword(newUser?.email,newUser.password);
+    if(user) {
+      await generateUserDocument(user,{ displayName:newUser.displayName });
+      setUSer({displayName:"",email:"",password:"", school:"", grade:""});
     }
-    else if (name==="grade"){
-      setGrade(value);
-    }
-  };
-  
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -134,7 +114,7 @@ export default function SignUp() {
             <Typography component="h1" variant="h5" className={classes.signinMargin}>
               Sign Up
             </Typography>
-            <form className={classes.form} noValidate >
+            <form className={classes.form} noValidate onSubmit={onSubmit}>
               {/* <FormControl className={classes.margin}> */}
               <TextField
                 className={classes.textField}
@@ -147,7 +127,7 @@ export default function SignUp() {
                 placeholder="Enter your name"
                 name="displayName"
                 value={displayName}
-                onChange={onChangeHandler}
+                onChange={onChange}
                 autoFocus
               />
               <TextField
@@ -160,7 +140,7 @@ export default function SignUp() {
                 label="Your email"
                 type="email"
                 value={email}
-                onChange={onChangeHandler}
+                onChange={onChange}
               />
               <TextField
                 className={classes.textField}
@@ -173,7 +153,7 @@ export default function SignUp() {
                 placeholder="Enter your school"
                 name="school"
                 value={school}
-                onChange={onChangeHandler}
+                onChange={onChange}
                 autoFocus
               />
               <TextField
@@ -185,7 +165,7 @@ export default function SignUp() {
                 name="grade"
                 label="Your Grade"
                 value={grade}
-                onChange={onChangeHandler}
+                onChange={onChange}
               />
               <TextField
                 variant="outlined"
@@ -197,7 +177,7 @@ export default function SignUp() {
                 label="Your Password"
                 type="password"
                 value={password}
-                onChange={onChangeHandler}
+                onChange={onChange}
               />
 
                 {/* <InputLabel shrink htmlFor="bootstrap-input" className={classes.inputLabel} >
@@ -242,9 +222,6 @@ export default function SignUp() {
                 variant="contained"
                 color="primary"
                 className={classes.submit}
-                onClick={event => {
-                  createUserWithEmailAndPasswordHandler(event, email, password);
-                }}
                 href="/profile"
               >
                 Sign Up
@@ -260,17 +237,11 @@ export default function SignUp() {
                   <Link href="/signin" variant="body2" className={classes.signupLink} underline="none">
                     {" Sign In"}
                   </Link>
-                  
                 </p>
                 </Grid>
-                
               </Grid>
-              <button onClick = {() => { signInWithGoogle(); } }>
-          Sign in with Google
-        </button>
             </form>
           </div>
-          
         </Grid>
         
       </Grid>
