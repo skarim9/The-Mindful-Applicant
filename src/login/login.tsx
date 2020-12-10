@@ -185,14 +185,14 @@ export default function SignIn() {
                   >
                     Sign In
                   </Button>
-                  <Button
+                  {/* <Button
                     onClick = {() => { signInWithGoogle(); } }
                     fullWidth
                     variant="contained"
                     className={classes.submit}
                   >
                     Sign in with Google
-                  </Button>
+                  </Button> */}
                 </Grid>
               </Grid>
               
