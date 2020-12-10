@@ -65,5 +65,6 @@ If you decide to change any comparative questions, go to the quiz-questions-data
 * [reactChartJS2](https://www.npmjs.com/package/react-chartjs-2)
 * [reactChartJS2 Sample Code](https://github.com/jerairrest/react-chartjs-2/blob/master/example/src/components/polar.js)
 * [firebase docs](https://firebase.google.com/docs)
+* [Firebase OAuth Tutorial](https://github.com/GoZaddy/Firebase-auth-article/blob/master/src/providers/UserProvider.jsx)
 
 ## [Our App is Deployed] (https://quickstart-1573950019598.web.app/)
