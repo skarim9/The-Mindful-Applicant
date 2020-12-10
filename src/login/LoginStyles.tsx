@@ -74,7 +74,7 @@ export const useStyles = makeStyles((theme) => ({
       borderRadius: '100%',
     },
     captionLogo: {
-      marginTop: "8%",
+      marginTop: "6%",
       textAlign: "center",
       position:'relative',
       top: '70%',
@@ -98,17 +98,17 @@ export const useStyles = makeStyles((theme) => ({
         lineHeight: '1.8',
         fontSize: '35px',
       },
-      
     },
     captionBlock: {
       display: 'block',
     },
     margin: {
       margin: theme.spacing(1),
-      marginBottom: theme.spacing(2),
+      marginBottom: theme.spacing(1),
     },
     avatar: {
-      margin: theme.spacing(3),
+      margin: theme.spacing(2),
+      marginBottom: theme.spacing(3),
       borderRadius: '0',
       border: '4px solid #252525',
       boxSizing: 'border-box',
@@ -121,7 +121,7 @@ export const useStyles = makeStyles((theme) => ({
     },
     signinMargin: {
       marginTop: theme.spacing(-1),
-      marginBottom: theme.spacing(4),
+      marginBottom: theme.spacing(3),
     },
     form: {
       width: '100%', // Fix IE 11 issue.
@@ -141,6 +141,7 @@ export const useStyles = makeStyles((theme) => ({
     submit: {
       margin: theme.spacing(3, 0, 2),
       backgroundColor: '#6B9BC0',
+      color: '#ffffff',
       fontFamily: "Montserrat",
       borderRadius: 6,
       '&:hover': {

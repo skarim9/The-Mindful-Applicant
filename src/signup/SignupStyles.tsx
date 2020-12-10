@@ -1,7 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 
 
-
 export const useStyles = makeStyles((theme) => ({
     root: {
       height: '100vh',
@@ -30,7 +29,7 @@ export const useStyles = makeStyles((theme) => ({
     },
     title: {
       position: 'absolute',
-      left: '2.5vw',
+      left: '1.5vw',
       [theme.breakpoints.down('sm')]: {
         top: '-1.5vh',
       },
@@ -41,7 +40,7 @@ export const useStyles = makeStyles((theme) => ({
         top: '-3.5vh'
       },
       [theme.breakpoints.up('xl')]: {
-        top: '-2.5vh',
+        top: '-2vh',
       },
       
     },
@@ -75,7 +74,7 @@ export const useStyles = makeStyles((theme) => ({
       borderRadius: '100%',
     },
     captionLogo: {
-      marginTop: "8%",
+      marginTop: "6%",
       position:'relative',
       textAlign: "center",
       top: '70%',
@@ -109,6 +108,7 @@ export const useStyles = makeStyles((theme) => ({
     },
     avatar: {
       margin: theme.spacing(2),
+      marginBottom: theme.spacing(3),
       borderRadius: '0',
       border: '4px solid #252525',
       boxSizing: 'border-box',

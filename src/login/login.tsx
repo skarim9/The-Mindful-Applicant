@@ -171,6 +171,7 @@ export default function SignIn() {
                     name="password"
                     label="Password"
                     type="password"
+                    placeholder="Enter your password"
                     autoComplete="current-password"
                     onChange={onChangeHandler}
                   />
@@ -180,10 +181,17 @@ export default function SignIn() {
                     onClick = {(event) => {signInWithEmailAndPasswordHandler(event, email, password)}}
                     fullWidth
                     variant="contained"
-                    color="primary"
                     className={classes.submit}
                   >
                     Sign In
+                  </Button>
+                  <Button
+                    onClick = {() => { signInWithGoogle(); } }
+                    fullWidth
+                    variant="contained"
+                    className={classes.submit}
+                  >
+                    Sign in with Google
                   </Button>
                 </Grid>
               </Grid>

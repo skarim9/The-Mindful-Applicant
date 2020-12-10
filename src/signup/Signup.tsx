@@ -143,7 +143,7 @@ export default function SignUp() {
                     size="small"
                     name="email"
                     label="Your email"
-                    placeholder="Enter your name"
+                    placeholder="Enter your email"
                     type="email"
                     value={email}
                     onChange={onChange}
