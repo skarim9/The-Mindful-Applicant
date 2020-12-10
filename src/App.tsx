@@ -34,9 +34,6 @@ function App(){
                   </Route>
           </Switch>
         </BrowserRouter>
-        <button onClick = {() => { signInWithGoogle(); } }>
-          Sign in with Google
-        </button>
       </div>
   }</div>
   );
