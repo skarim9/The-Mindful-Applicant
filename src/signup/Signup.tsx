@@ -85,6 +85,7 @@ export default function SignUp() {
     }
     catch(error){
       console.log(`Error Signing up with email and password ${error}`);
+      alert("User already exists. Please log in!");
     }
 
     setEmail("");
@@ -136,7 +137,6 @@ export default function SignUp() {
               <Grid container direction={"column"} spacing={2}>
                 <Grid item>
                   <TextField
-                    className={classes.textField}
                     variant="outlined"
                     margin="normal"
                     required
@@ -153,7 +153,6 @@ export default function SignUp() {
                   
                 <Grid item>
                   <TextField
-                    className={classes.textField}
                     variant="outlined"
                     margin="normal"
                     required
@@ -170,7 +169,6 @@ export default function SignUp() {
 
                 <Grid item>
                   <TextField
-                    className={classes.textField}
                     variant="outlined"
                     margin="normal"
                     required

@@ -145,7 +145,6 @@ export default function SignIn() {
               <Grid container direction={"column"} spacing={2}>
                 <Grid item>
                   <TextField
-                    className={classes.textField}
                     variant="outlined"
                     margin="normal"
                     required
@@ -162,7 +161,6 @@ export default function SignIn() {
                 </Grid>
                 <Grid item>
                   <TextField
-                    className={classes.textField}
                     variant="outlined"
                     margin="normal"
                     required
