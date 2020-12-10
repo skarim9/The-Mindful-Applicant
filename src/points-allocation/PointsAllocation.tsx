@@ -50,7 +50,6 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
                 </h1>
                 
                 <div className = "resultsContainer">
-                    
                 
                 {
                     /*Tick buttons */
