@@ -55,7 +55,8 @@ If you decide to change any comparative questions, go to the quiz-questions-data
 
 
 ## Known Issues:
-* When user first submits the quiz, there is a lag between when they press the submit button and when the quiz results page comes up. This is due to the async nature of the write-to-database operations. Possible future fixes include making a loading button when it is pressed. 
+* When user first submits the quiz, there is a lag between when they press the submit button and when the quiz results page comes up. This is due to the async nature of the write-to-database operations. Possible future fixes include making a loading button when it is pressed.
+* Points Allocation page with Polar Chart are not entirely responsive - when polar chart is squished too small by a small window, it does not display at all. (There will be an error in the log about negative radius)
 * The user's 'reason for point reallocation' that they type into the prompt box when reallocating their points is not displayed. In the future, there will be a place that displays the text that they entered as well (It is currently only stored in the database)
 
 ## Sources
