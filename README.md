@@ -59,8 +59,11 @@ If you decide to change any comparative questions, go to the quiz-questions-data
 * Points Allocation page with Polar Chart are not entirely responsive - when polar chart is squished too small by a small window, it does not display at all. (There will be an error in the log about negative radius)
 * The user's 'reason for point reallocation' that they type into the prompt box when reallocating their points is not displayed. In the future, there will be a place that displays the text that they entered as well (It is currently only stored in the database)
 
-## Sources
-
-
+## Sources/ Modules Used
+* [text-area-autosize](https://www.npmjs.com/package/react-textarea-autosize)
+* [chartJS](https://www.chartjs.org/)
+* [reactChartJS2](https://www.npmjs.com/package/react-chartjs-2)
+* [reactChartJS2 Sample Code](https://github.com/jerairrest/react-chartjs-2/blob/master/example/src/components/polar.js)
+* [firebase docs](https://firebase.google.com/docs)
 
 ## [Our App is Deployed] (https://quickstart-1573950019598.web.app/)
