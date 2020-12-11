@@ -95,7 +95,7 @@ export default class QuizResults extends Component<ResultsProps, IAppState>{
                     <h2>Your Elements</h2>
                     <PolarAreaChart data={data} />
 
-                    <ElementsAccordion />
+                    {/* <ElementsAccordion /> */}
 
                   {/* </Grid>
                 </Grid> */}
