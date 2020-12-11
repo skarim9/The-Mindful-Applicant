@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {useStyles} from './SignupStyles';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -69,27 +69,46 @@ const theme = createMuiTheme({
 
 export default function SignUp() {
   const classes = useStyles();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [displayName, setDisplayName] = useState("");
+  const [grade, setGrade] = useState("");
+  const [school, setSchool] = useState("");
+  const [error, setError] = useState(null);
 
-  const [newUser,setUSer] = useState<{displayName:string,email:string,password:string, school:string, grade: string}>({displayName:"",email:"",password:"", school:"", grade:""});
 
-  const {displayName,email,password,school, grade}=newUser;
-
-
-  const onChange =(e:React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-
-    setUSer({ ...newUser,[name]:value });
-  }
-
-  const onSubmit = async (e:React.FormEvent<EventTarget>) => {
-    e.preventDefault();
-    const {user} =  await auth.createUserWithEmailAndPassword(newUser?.email,newUser.password);
-    if(user) {
-      await generateUserDocument(user,{ displayName:newUser.displayName });
-      setUSer({displayName:"",email:"",password:"", school:"", grade:""});
+  const createUserWithEmailAndPasswordHandler = async (event: { preventDefault: () => void; }, email: string, password: string) => {
+    event.preventDefault();
+    try{
+      const {user} = await auth.createUserWithEmailAndPassword(email, password);
+      generateUserDocument(user, {displayName,email,school,grade});
     }
-  }
+    catch(error){
+      console.log(`Error Signing up with email and password ${error}`);
+      alert("User already exists. Please log in!");
+    }
 
+    setEmail("");
+    setPassword("");
+    setDisplayName("");
+    setSchool("");
+    setGrade("");
+  };
+  const onChangeHandler = (event: any) => {
+    const { name, value } = event.currentTarget;
+    if (name === "email") {
+      setEmail(value);
+    } else if (name === "password") {
+      setPassword(value);
+    } else if (name === "displayName") {
+      setDisplayName(value);
+    } else if (name=== "school"){
+      setSchool(value);
+    }
+    else if (name==="grade"){
+      setGrade(value);
+    }
+  };
   return (
     <ThemeProvider theme={theme}>
       <Grid container component="main" className={classes.root}>
@@ -113,12 +132,11 @@ export default function SignUp() {
             <Typography component="h1" variant="h5" className={classes.signinMargin}>
               Sign Up
             </Typography>
-            <form className={classes.form} noValidate onSubmit={onSubmit}>
+            <form className={classes.form} noValidate>
               {/* <FormControl className={classes.margin}> */}
               <Grid container direction={"column"} spacing={2}>
                 <Grid item>
                   <TextField
-                    className={classes.textField}
                     variant="outlined"
                     margin="normal"
                     required
@@ -128,14 +146,13 @@ export default function SignUp() {
                     placeholder="Enter your name"
                     name="displayName"
                     value={displayName}
-                    onChange={onChange}
+                    onChange={onChangeHandler}
                     autoFocus
                   />
                 </Grid>
                   
                 <Grid item>
                   <TextField
-                    className={classes.textField}
                     variant="outlined"
                     margin="normal"
                     required
@@ -143,16 +160,15 @@ export default function SignUp() {
                     size="small"
                     name="email"
                     label="Your email"
-                    placeholder="Enter your name"
+                    placeholder="Enter your email"
                     type="email"
                     value={email}
-                    onChange={onChange}
+                    onChange={onChangeHandler}
                   />
                 </Grid>
 
                 <Grid item>
                   <TextField
-                    className={classes.textField}
                     variant="outlined"
                     margin="normal"
                     required
@@ -162,7 +178,7 @@ export default function SignUp() {
                     placeholder="Enter your school"
                     name="school"
                     value={school}
-                    onChange={onChange}
+                    onChange={onChangeHandler}
                     autoFocus
                   />
                 </Grid>
@@ -178,7 +194,7 @@ export default function SignUp() {
                     label="Your Grade"
                     placeholder="Enter your grade"
                     value={grade}
-                    onChange={onChange}
+                    onChange={onChangeHandler}
                   />
                 </Grid>
 
@@ -194,7 +210,7 @@ export default function SignUp() {
                     type="password"
                     placeholder="Enter your password"
                     value={password}
-                    onChange={onChange}
+                    onChange={onChangeHandler}
                   />
                 </Grid>
                 
@@ -205,6 +221,9 @@ export default function SignUp() {
                     variant="contained"
                     color="primary"
                     className={classes.submit}
+                    onClick={event => {
+                      createUserWithEmailAndPasswordHandler(event, email, password);
+                    }}
                     href="/profile"
                   >
                     Sign Up
