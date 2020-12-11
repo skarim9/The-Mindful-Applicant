@@ -75,6 +75,10 @@ export default class PointsAllocation extends Component <IAppProps,IAppState>{
         )
     }
     saveResults(){
+        if(this.state.pointsToAllocate>0){
+            alert(`Please reallocate the remaining points`)
+            return;
+        }
         alert("Results will be saved");
                 //add result to user
                 const user = auth.currentUser;
