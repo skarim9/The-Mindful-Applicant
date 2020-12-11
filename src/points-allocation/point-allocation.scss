@@ -91,3 +91,18 @@ button.button{
     justify-content: space-evenly;
     flex-direction: row;
 }
+
+@media only screen and (max-width: 800px) {
+    .resultsContainer{
+        flex-direction: column-reverse;
+    }
+    .polar-chart-container{
+        width:100%;
+    }
+    .tick-bars-container{
+        display:inline-block;
+        width:inherit;
+        margin:10px;
+        border-spacing: 0 10px;
+    }
+  }
