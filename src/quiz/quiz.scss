@@ -48,3 +48,32 @@ li.invis-label{ //we don't use the default li labels so set them to invis.
     display: table;
     width: 100%;
 }
+@media only screen and (max-width: 800px) {
+    ol {
+        display: block;
+        list-style-type: decimal;
+        margin-block-start: 0em;
+        margin-block-end: 0em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        padding-inline-start: 0px;
+    }
+    .quiz-questions-container{
+        width: 100%;
+    }
+    .question-container{
+        margin: 0;
+        padding: 0;
+    }
+    .ol-label-container{
+            
+    text-align: center;
+    border-radius: 10px;
+    margin-top:0px;
+    margin-right: 0px;
+    height: 50px;
+    border:2px solid;
+    
+    float: left;
+    }
+  }
