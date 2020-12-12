@@ -53,15 +53,13 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 If you decide to change any comparative questions, go to the quiz-questions-data.tsx file
 
 
+## Deploy to Firebase
+To start using our application, set up a firebase project and put your config in the src/firebase-db/config.js file of this repository. Then [follow these instructions for deploying to firebase](https://www.robinwieruch.de/firebase-deploy-react-js)
 
 ## Known Issues:
 * When user first submits the quiz, there is a lag between when they press the submit button and when the quiz results page comes up. This is due to the async nature of the write-to-database operations. Possible future fixes include making a loading button when it is pressed.
 * Points Allocation page with Polar Chart are not entirely responsive - when polar chart is squished too small by a small window, it does not display at all. (There will be an error in the log about negative radius)
 * The user's 'reason for point reallocation' that they type into the prompt box when reallocating their points is not displayed. In the future, there will be a place that displays the text that they entered as well (It is currently only stored in the database)
-
-
-## Sources
-
 
 
 ## [Our App is Deployed] (https://quickstart-1573950019598.web.app/)
@@ -82,7 +80,7 @@ If you decide to change any comparative questions, go to the quiz-questions-data
 * [Travis CI NodeJS](https://docs.travis-ci.com/user/languages/javascript-with-nodejs/)
 * [Travis CI Auto-Merge](https://medium.com/@allmonty/automerge-with-travis-ci-and-coveralls-to-elixir-248d1c6d2531)
 * [Travis CI Merge Specific Branch](https://stackoverflow.com/questions/31338562/travisci-run-after-success-on-a-specific-branch)
-
+* [Deploy to Firebase](https://www.robinwieruch.de/firebase-deploy-react-js)
 
 ## [Our App is Deployed] (https://quickstart-1573950019598.web.app/)
 
