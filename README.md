@@ -73,6 +73,16 @@ If you decide to change any comparative questions, go to the quiz-questions-data
 * [reactChartJS2 Sample Code](https://github.com/jerairrest/react-chartjs-2/blob/master/example/src/components/polar.js)
 * [firebase docs](https://firebase.google.com/docs)
 * [Firebase OAuth Tutorial](https://blog.logrocket.com/user-authentication-firebase-react-apps/)
+* [Firebase OAuth Tutorial 2](https://levelup.gitconnected.com/authentication-using-firebase-and-react-js-99392c6fa58b)
+* [Firebase OAuth Tutorial 3](https://dev.to/itnext/user-auth-with-firebase-and-react-1725)
+* [Material UI Templates](https://material-ui.com/getting-started/templates/)
+* [Material UI Sign In Template](https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/sign-in)
+* [Material UI Sign In Side Template](https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/sign-in-side)
+* [Material UI Bootstrap Input](https://material-ui.com/components/text-fields/)
+* [Travis CI NodeJS](https://docs.travis-ci.com/user/languages/javascript-with-nodejs/)
+* [Travis CI Auto-Merge](https://medium.com/@allmonty/automerge-with-travis-ci-and-coveralls-to-elixir-248d1c6d2531)
+* [Travis CI Merge Specific Branch](https://stackoverflow.com/questions/31338562/travisci-run-after-success-on-a-specific-branch)
+
 
 ## [Our App is Deployed] (https://quickstart-1573950019598.web.app/)
 
