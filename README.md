@@ -77,6 +77,8 @@ To start using our application, set up a firebase project and put your config in
 * [Material UI Sign In Template](https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/sign-in)
 * [Material UI Sign In Side Template](https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/sign-in-side)
 * [Material UI Bootstrap Input](https://material-ui.com/components/text-fields/)
+* [Material UI AppBar](https://material-ui.com/components/app-bar/)
+* [Material UI Drawer](https://material-ui.com/components/drawers/)
 * [Travis CI NodeJS](https://docs.travis-ci.com/user/languages/javascript-with-nodejs/)
 * [Travis CI Auto-Merge](https://medium.com/@allmonty/automerge-with-travis-ci-and-coveralls-to-elixir-248d1c6d2531)
 * [Travis CI Merge Specific Branch](https://stackoverflow.com/questions/31338562/travisci-run-after-success-on-a-specific-branch)
