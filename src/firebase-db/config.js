@@ -3,14 +3,14 @@ import 'firebase/auth'
 import 'firebase/firestore'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAyXW5rmBKE6CVO_alY3JaTprY6Qs4qqpE",
-  authDomain: "quickstart-1573950019598.firebaseapp.com",
-  databaseURL: "https://quickstart-1573950019598.firebaseio.com",
-  projectId: "quickstart-1573950019598",
-  storageBucket: "quickstart-1573950019598.appspot.com",
-  messagingSenderId: "581831503315",
-  appId: "1:581831503315:web:6da8aa3cb8f9d2ad14d326",
-  measurementId: "G-RQL95BZ6NJ"
+  apiKey: "FIREBASE_API_KEY",
+  authDomain: "FIREBASE_AUTH_DOMAIN",
+  databaseURL: "FIREBASE_DATABASE_URL",
+  projectId: "FIREBASE_PROJECT_ID",
+  storageBucket: "FIREBASE_STORAGE_BUCKET",
+  messagingSenderId: "FIREBASE_MESSAGING_SENDER_ID",
+  appId: "FIREBASE_APP_ID",
+  measurementId: "FIREBASE_MEASUREMENT_ID"
 };
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
